@@ -1,17 +1,22 @@
-
 /* 
  * File:   Group0Splay.h
- * Author: EnE
- *
+
  * Created on April 11, 2016, 3:03 AM
  */
 
 #ifndef GROUP0SPLAY_H
 #define GROUP0SPLAY_H
+#include <iostream>
+#include <string>
+#include <cassert>
+#include <algorithm>
+#include <cstdlib>
+#include <sstream>
 using namespace std;
-template <class type_t>
+//template <class type_t>
 class splay{
 public:
+     splay(splay *l = NULL, splay *r = NULL, int h = 0) : left(l), right(r){}//DONE
     ~splay();//DONE
     //Perform a left-left rotation
     splay *leftLeftRotation(splay* ll);
@@ -25,8 +30,11 @@ public:
     splay *splayIt(splay* root);
 protected:
     splay *left, *right; //left and right nodes
+    int height;
 };
 
 
 #endif /* GROUP0SPLAY_H */
+
+
 
