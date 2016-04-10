@@ -28,3 +28,6 @@ splay *splay :: leftLeftRotation(splay* element){
 splay *splay :: rightRightRotation(splay* element){
     
 }
+splay *splay :: splay(splay* element){
+    
+}
