@@ -23,11 +23,14 @@ splay *splay :: remove(splay* it){
     
 }
 splay *splay :: leftLeftRotation(splay* element){
-    
+    splay* temp = element->left;
+	element->left = temp->right;
+	temp->right = element;
+	return temp;
 }
 splay *splay :: rightRightRotation(splay* element){
-    
-}
-splay *splay :: splay(splay* element){
-    
+    splay* temp = element->right;
+	element->right = temp->left;
+	temp->left = element;
+	return temp;
 }
