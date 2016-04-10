@@ -1,15 +1,26 @@
-//
-//  main.cpp
-//  GroupProject
-//
-//  Created by Morgan Wesemann on 4/10/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
+//============================================================================
+// Name        : Tetris Driver.cpp
+// Author      : Dr. Booth
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Main Driver For Group Project
+//============================================================================
 
 #include <iostream>
+#include "GroupProject.h"
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+void Player(void);
+GroupProject* app;
+
+int main() {
+    GLUT_Plotter* g = new GLUT_Plotter(); //Create plotter
+    app = new GroupProject(g);                 //Create Game (Tetris)
+    g->RegisterIdleFunc(Player);          //Register Callback
+    g->MainLoop();                        //Enter main loop
     return 0;
+}
+
+void Player(void){
+    app->Play();
 }
