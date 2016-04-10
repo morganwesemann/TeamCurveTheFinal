@@ -13,6 +13,7 @@
 		5D5792371CBAD98A00E7FB14 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792361CBAD98A00E7FB14 /* GLUT.framework */; };
 		5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */; };
 		5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */; };
+		5D5792401CBAF54D00E7FB14 /* Group0Splay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroupProject.cpp; sourceTree = "<group>"; };
 		5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUT_Plotter.cpp; sourceTree = "<group>"; };
 		5D57923D1CBAD9B200E7FB14 /* GLUT_Plotter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUT_Plotter.h; sourceTree = "<group>"; };
+		5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Group0Splay.cpp; sourceTree = "<group>"; };
+		5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group0Splay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,8 @@
 		5D57921E1CBAD7BC00E7FB14 /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */,
+				5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */,
 				5D57921F1CBAD7BC00E7FB14 /* main.cpp */,
 				5D5792381CBAD99400E7FB14 /* GroupProject.h */,
 				5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */,
@@ -142,6 +147,7 @@
 			files = (
 				5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */,
 				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
+				5D5792401CBAF54D00E7FB14 /* Group0Splay.cpp in Sources */,
 				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
