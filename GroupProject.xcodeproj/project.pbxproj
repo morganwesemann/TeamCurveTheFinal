@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57921F1CBAD7BC00E7FB14 /* main.cpp */; };
+		5D5792331CBAD98300E7FB14 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792321CBAD98300E7FB14 /* OpenGL.framework */; };
+		5D5792351CBAD98700E7FB14 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792341CBAD98700E7FB14 /* Cocoa.framework */; };
+		5D5792371CBAD98A00E7FB14 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792361CBAD98A00E7FB14 /* GLUT.framework */; };
+		5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */; };
+		5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,13 @@
 /* Begin PBXFileReference section */
 		5D57921C1CBAD7BC00E7FB14 /* GroupProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GroupProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D57921F1CBAD7BC00E7FB14 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5D5792321CBAD98300E7FB14 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		5D5792341CBAD98700E7FB14 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5D5792361CBAD98A00E7FB14 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		5D5792381CBAD99400E7FB14 /* GroupProject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupProject.h; sourceTree = "<group>"; };
+		5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroupProject.cpp; sourceTree = "<group>"; };
+		5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUT_Plotter.cpp; sourceTree = "<group>"; };
+		5D57923D1CBAD9B200E7FB14 /* GLUT_Plotter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUT_Plotter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D5792371CBAD98A00E7FB14 /* GLUT.framework in Frameworks */,
+				5D5792351CBAD98700E7FB14 /* Cocoa.framework in Frameworks */,
+				5D5792331CBAD98300E7FB14 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +56,9 @@
 		5D5792131CBAD7BC00E7FB14 = {
 			isa = PBXGroup;
 			children = (
+				5D5792361CBAD98A00E7FB14 /* GLUT.framework */,
+				5D5792341CBAD98700E7FB14 /* Cocoa.framework */,
+				5D5792321CBAD98300E7FB14 /* OpenGL.framework */,
 				5D57921E1CBAD7BC00E7FB14 /* GroupProject */,
 				5D57921D1CBAD7BC00E7FB14 /* Products */,
 			);
@@ -58,6 +76,10 @@
 			isa = PBXGroup;
 			children = (
 				5D57921F1CBAD7BC00E7FB14 /* main.cpp */,
+				5D5792381CBAD99400E7FB14 /* GroupProject.h */,
+				5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */,
+				5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */,
+				5D57923D1CBAD9B200E7FB14 /* GLUT_Plotter.h */,
 			);
 			path = GroupProject;
 			sourceTree = "<group>";
@@ -119,6 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */,
+				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
+				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +261,7 @@
 				5D5792251CBAD7BC00E7FB14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
