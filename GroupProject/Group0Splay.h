@@ -1,40 +1,84 @@
-/* 
- * File:   Group0Splay.h
+#ifndef SPLAYTREECONSTANT
+#define SPLAYTREECONSTANT
 
- * Created on April 11, 2016, 3:03 AM
- */
-
-#ifndef GROUP0SPLAY_H
-#define GROUP0SPLAY_H
+// PREPROCESSOR DIRECTIVES
 #include <iostream>
 #include <string>
 #include <cassert>
-#include <algorithm>
-#include <cstdlib>
-#include <sstream>
+
 using namespace std;
-//template <class type_t>
-class splay{
+template <class Base>
+class SplayTree;
+
+////////////////////////////////////////////////////////////////////////////////
+
+// SPLAY NODE IMPLEMENTATION HERE
+template <class Base>
+class SplayNode
+{
 public:
-     splay(splay *l = NULL, splay *r = NULL, int h = 0) : left(l), right(r){}//DONE
-    ~splay();//DONE
-    //Perform a left-left rotation
-    splay *leftLeftRotation(splay* ll);
-    //Perform a left-left rotation
-    splay *rightRightRotation(splay* rr);
-    //Perform an insert
-    splay *insert(splay *root);
-    //Perform a remove
-    splay *remove(splay *root);
-    //Perform a splay
-    splay *splayIt(splay* root);
+	friend class SplayTree<Base>;
+
+	// CONSTRUCTOR, DESTRUCTOR
+	SplayNode											//DONE
+	(
+		const Base &d = Base(),
+		SplayNode*l=NULL,
+		SplayNode*r=NULL
+	) :data(d),left(l),right(r){}
+	~SplayNode();										//DONE
+
+	// FIND MIN, FIND MAX
+	const SplayNode *minNode() const;					//DONE
+	const SplayNode *maxNode() const;					//DONE
+
+	// ROTATIONS HERE
+	SplayNode *singleRotateLeft(); 						//DONE
+	SplayNode *singleRotateRight(); 					//DONE
+	SplayNode *doubleRotateLeftRight(); 				//DONE
+	SplayNode *doubleRotateRightLeft(); 				//DONE
+
+	// GETTERS HERE
+	const SplayNode* getLeft() const 	{return left;}	//DONE
+	const SplayNode* getRight() const	{return right;}	//DONE
+	const Base& getData() const			{return data;}	//DONE
+
+	// SPLAY HERE
+	const SplayNode* splay(SplayNode* root, Base& item);
+
 protected:
-    splay *left, *right; //left and right nodes
-    int height;
+	Base data;
+	SplayNode *left, *right;
 };
 
 
-#endif /* GROUP0SPLAY_H */
+////////////////////////////////////////////////////////////////////////////////
+
+
+// SPLAY TREE IMPLEMENTATION HERE
+template <class Base>
+class SplayTree
+{
+public:
+
+	// CONSTRUCTOR, DESTRUCTOR
+	SplayTree() {root = NULL;}
+	virtual ~SplayTree(){SplayNode<Base> *r = root;root = NULL;delete r;}
+
+	// INSERT, REMOVE, FIND, DISPLAY
+	void insert(const Base &item);
+	void remove(const Base &item);
+	bool find(const Base &item);
+	void display(ostream &os = cout) const {if (root) root->display(os);}
+
+protected:
+	SplayNode<Base> *root;
+};
 
 
 
+
+
+
+
+#endif
