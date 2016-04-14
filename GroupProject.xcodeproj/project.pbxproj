@@ -13,7 +13,6 @@
 		5D5792371CBAD98A00E7FB14 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792361CBAD98A00E7FB14 /* GLUT.framework */; };
 		5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */; };
 		5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */; };
-		5D5792401CBAF54D00E7FB14 /* Group0Splay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,8 +37,19 @@
 		5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroupProject.cpp; sourceTree = "<group>"; };
 		5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUT_Plotter.cpp; sourceTree = "<group>"; };
 		5D57923D1CBAD9B200E7FB14 /* GLUT_Plotter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUT_Plotter.h; sourceTree = "<group>"; };
-		5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Group0Splay.cpp; sourceTree = "<group>"; };
 		5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group0Splay.h; sourceTree = "<group>"; };
+		5D57924A1CC0507D00E7FB14 /* Group0SplayIMPL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group0SplayIMPL.h; sourceTree = "<group>"; };
+		5D57924B1CC0508A00E7FB14 /* A.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = A.txt; path = Characters/A.txt; sourceTree = "<group>"; };
+		5D57924C1CC0508A00E7FB14 /* B.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = B.txt; path = Characters/B.txt; sourceTree = "<group>"; };
+		5D57924D1CC0508A00E7FB14 /* C.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C.txt; path = Characters/C.txt; sourceTree = "<group>"; };
+		5D57924E1CC0508A00E7FB14 /* D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = D.txt; path = Characters/D.txt; sourceTree = "<group>"; };
+		5D57924F1CC0508A00E7FB14 /* E.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = E.txt; path = Characters/E.txt; sourceTree = "<group>"; };
+		5D5792501CC0508A00E7FB14 /* F.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = F.txt; path = Characters/F.txt; sourceTree = "<group>"; };
+		5D5792511CC0508A00E7FB14 /* G.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = G.txt; path = Characters/G.txt; sourceTree = "<group>"; };
+		5D5792521CC0508A00E7FB14 /* H.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H.txt; path = Characters/H.txt; sourceTree = "<group>"; };
+		5D5792531CC0508A00E7FB14 /* I.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = I.txt; path = Characters/I.txt; sourceTree = "<group>"; };
+		5D5792541CC0508A00E7FB14 /* J.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = J.txt; path = Characters/J.txt; sourceTree = "<group>"; };
+		5D5792551CC0508A00E7FB14 /* T.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = T.txt; path = Characters/T.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +88,8 @@
 		5D57921E1CBAD7BC00E7FB14 /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
-				5D57923E1CBAF54D00E7FB14 /* Group0Splay.cpp */,
+				5D5792561CC0509400E7FB14 /* Characters */,
+				5D57924A1CC0507D00E7FB14 /* Group0SplayIMPL.h */,
 				5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */,
 				5D57921F1CBAD7BC00E7FB14 /* main.cpp */,
 				5D5792381CBAD99400E7FB14 /* GroupProject.h */,
@@ -87,6 +98,24 @@
 				5D57923D1CBAD9B200E7FB14 /* GLUT_Plotter.h */,
 			);
 			path = GroupProject;
+			sourceTree = "<group>";
+		};
+		5D5792561CC0509400E7FB14 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				5D57924B1CC0508A00E7FB14 /* A.txt */,
+				5D57924C1CC0508A00E7FB14 /* B.txt */,
+				5D57924D1CC0508A00E7FB14 /* C.txt */,
+				5D57924E1CC0508A00E7FB14 /* D.txt */,
+				5D57924F1CC0508A00E7FB14 /* E.txt */,
+				5D5792501CC0508A00E7FB14 /* F.txt */,
+				5D5792511CC0508A00E7FB14 /* G.txt */,
+				5D5792521CC0508A00E7FB14 /* H.txt */,
+				5D5792531CC0508A00E7FB14 /* I.txt */,
+				5D5792541CC0508A00E7FB14 /* J.txt */,
+				5D5792551CC0508A00E7FB14 /* T.txt */,
+			);
+			name = Characters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +176,6 @@
 			files = (
 				5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */,
 				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
-				5D5792401CBAF54D00E7FB14 /* Group0Splay.cpp in Sources */,
 				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
