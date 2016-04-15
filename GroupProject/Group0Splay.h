@@ -12,43 +12,25 @@ class SplayTree;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// SPLAY NODE IMPLEMENTATION HERE
 template <class Base>
 class SplayNode
 {
 public:
 	friend class SplayTree<Base>;
 
-	// CONSTRUCTOR, DESTRUCTOR
-	SplayNode											//DONE
-	(
-		const Base &d = Base(),
-		SplayNode*l=NULL,
-		SplayNode*r=NULL
-	) :data(d),left(l),right(r){}
-	~SplayNode();										//DONE
+	/*ID=0 DONE*/SplayNode (const Base &d = Base(),SplayNode*p=NULL,SplayNode*l=NULL,SplayNode*r=NULL)
+	:data(d),parent(p),left(l),right(r){}
+	/*ID=1 DONE*/~SplayNode(){delete left;delete right;}
 
-	// FIND MIN, FIND MAX
-	const SplayNode *minNode() const;					//DONE
-	const SplayNode *maxNode() const;					//DONE
+	/*ID=2 DONE*/const SplayNode *minNode() const;
+	/*ID=3 DONE*/SplayNode *singleRotateLeft();
+	/*ID=4 DONE*/SplayNode *singleRotateRight();
+	/*ID=5 DONE*/void printPreorder(ostream &os = cout, string indent = "") const;
 
-	// ROTATIONS HERE
-	SplayNode *singleRotateLeft(); 						//DONE
-	SplayNode *singleRotateRight(); 					//DONE
-	SplayNode *doubleRotateLeftRight(); 				//DONE
-	SplayNode *doubleRotateRightLeft(); 				//DONE
-
-	// GETTERS HERE
-	const SplayNode* getLeft() const 	{return left;}	//DONE
-	const SplayNode* getRight() const	{return right;}	//DONE
-	const Base& getData() const			{return data;}	//DONE
-
-	// SPLAY HERE
-	const SplayNode* splay(SplayNode* root, Base& item);
 
 protected:
 	Base data;
-	SplayNode *left, *right;
+	SplayNode *left, *right, *parent;
 };
 
 
@@ -60,21 +42,21 @@ template <class Base>
 class SplayTree
 {
 public:
+	/*ID=0 DONE*/SplayTree()
+	{root = NULL;}
+	/*ID=1 DONE*/virtual ~SplayTree() { SplayNode<Base> *r = root; root = NULL; delete r; }
 
-	// CONSTRUCTOR, DESTRUCTOR
-	SplayTree() {root = NULL;}
-	virtual ~SplayTree(){SplayNode<Base> *r = root;root = NULL;delete r;}
-
-	// INSERT, REMOVE, FIND, DISPLAY
-	void insert(const Base &item);
-	void remove(const Base &item);
-	bool find(const Base &item);
-	void display(ostream &os = cout) const {if (root) root->display(os);}
+	/*ID=2 */void insert(const Base &item);
+	/*ID=3 */void remove(const Base &item);
+	/*ID=4 */bool find(const Base &item);
+	/*ID=5 */void splayToRoot(SplayNode<Base>* ptr);
+	/*ID=6 DONE*/void printLevelOrder(ostream &os = cout) const;
+	/*ID=7 DONE*/void printPreorder(ostream &os = cout) const
+	{if (root) root->printPreorder(os);}
 
 protected:
 	SplayNode<Base> *root;
 };
-
 
 
 
