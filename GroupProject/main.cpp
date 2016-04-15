@@ -1,26 +1,51 @@
-//============================================================================
-// Name        : Tetris Driver.cpp
-// Author      : Dr. Booth
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Main Driver For Group Project
-//============================================================================
-
 #include <iostream>
-#include "GroupProject.h"
+#include "Group0Splay.h"
+#include "Group0SplayIMPL.h"
 using namespace std;
+void solve();
 
-void Player(void);
-GroupProject* app;
-
-int main() {
-    GLUT_Plotter* g = new GLUT_Plotter(); //Create plotter
-    app = new GroupProject(g);                 //Create Game (Tetris)
-    g->RegisterIdleFunc(Player);          //Register Callback
-    g->MainLoop();                        //Enter main loop
-    return 0;
+int main()
+{
+	solve();
+	cout << "COMPLETE" << endl;
+	return 0;
 }
 
-void Player(void){
-    app->Play();
-}
+
+void solve()
+{
+	char operation;
+	bool valid = true;
+
+	int item;
+	SplayTree<int> mySplayTree;
+
+	cin >> operation;
+	while(valid)
+	{
+		switch(operation)
+		{
+			case 'i':
+			{
+				cin >> item;
+				mySplayTree.insert(item);
+				break;
+			}
+			case 'p':
+			{
+				mySplayTree.printLevelOrder(cout);
+				break;
+			}
+			case 'q':
+			{
+				valid = false;
+				break;
+			}
+		}
+
+		if(valid)
+			cin >> operation;
+
+	}//end while
+
+}//end solve()
