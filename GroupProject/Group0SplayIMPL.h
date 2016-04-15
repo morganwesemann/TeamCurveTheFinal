@@ -4,6 +4,18 @@
 //verifySearchOrder()
 //verfiyParentProperty()
 
+////////////////////////////////////////////////////////////////////////////////
+
+template <class Base>
+/*ID=2 DONE*/const SplayNode<Base>* SplayNode<Base>::maxNode() const
+{
+	const SplayNode<Base> * ptr = this;
+
+	while(ptr->right != NULL)
+		ptr = ptr->right;
+
+	return ptr;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -141,10 +153,20 @@ void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 			}
 			else if(grandParentData < parentData && parentData > myData)//RL access
 			{
+				/************************************************/
 				//LR rotate
 				cout << "BEGIN-> LEFT RIGHT ROTATION" << endl;
-				
+
+				ptr = ptr->parent;
+
+				//R rotation here
+				SplayNode<Base>* temp = ptr -> parent;
+				ptr = ptr -> singleRotateRight();
+				temp->right = ptr;
+				ptr->parent = temp;
+
 				cout << "END-> LEFT RIGHT ROTATION" << endl;
+				/************************************************/
 
 			}
 			else if(grandParentData > parentData && parentData > myData)//LL access
@@ -292,8 +314,11 @@ template <class Base>
 	//printPreorder(cout);
 
 	splayToRoot(newNode);
-	printPreorder(cout);
 
+	this->verifySearchOrder();
+	this->verifyParentProperty();
+
+	printPreorder(cout);
 }
 
 
