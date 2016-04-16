@@ -11,7 +11,7 @@ template <class Base>
 {
 	const SplayNode<Base> * ptr = this;
 
-	while(ptr->right != NULL)
+	while (ptr->right != NULL)
 		ptr = ptr->right;
 
 	return ptr;
@@ -24,7 +24,7 @@ template <class Base>
 {
 	const SplayNode<Base> * ptr = this;
 
-	while(ptr->left != NULL)
+	while (ptr->left != NULL)
 		ptr = ptr->left;
 
 	return ptr;
@@ -33,14 +33,14 @@ template <class Base>
 ////////////////////////////////////////////////////////////////////////////////
 
 /*
- * rotate ptr
- *
- * node* temp = ptr->parent;
- * ptr=ptr->singleRotateRight();
- * temp->left = ptr;
- * ptr->parent=temp;
- *
- */
+* rotate ptr
+*
+* node* temp = ptr->parent;
+* ptr=ptr->singleRotateRight();
+* temp->left = ptr;
+* ptr->parent=temp;
+*
+*/
 
 template <class Base>
 /*ID=3 DONE*/SplayNode<Base>* SplayNode<Base>::singleRotateRight()
@@ -48,11 +48,11 @@ template <class Base>
 	SplayNode<Base>* leftNode = this->left;
 
 	//update children
-	this->left = leftNode -> right;
+	this->left = leftNode->right;
 	leftNode->right = this;
 
 	//update parent
-	leftNode->right->parent=leftNode;
+	leftNode->right->parent = leftNode;
 
 	return leftNode;
 }
@@ -60,25 +60,25 @@ template <class Base>
 ////////////////////////////////////////////////////////////////////////////////
 
 /*
- * rotate around ptr
- *
- * Node* temp = ptr -> parent;
- * ptr = ptr -> singleRotateLeft();
- * temp->left = ptr;
- * ptr->parent = temp;
- *
- */
+* rotate around ptr
+*
+* Node* temp = ptr -> parent;
+* ptr = ptr -> singleRotateLeft();
+* temp->left = ptr;
+* ptr->parent = temp;
+*
+*/
 template <class Base>
 /*ID=4 DONE*/SplayNode<Base>* SplayNode<Base>::singleRotateLeft()
 {
 	SplayNode<Base>* rightNode = this->right;
 
 	//update children
-	this->right = rightNode -> left;
-	rightNode -> left = this;
+	this->right = rightNode->left;
+	rightNode->left = this;
 
 	//update parent
-	rightNode->left->parent=rightNode;
+	rightNode->left->parent = rightNode;
 
 	return rightNode;
 }
@@ -90,6 +90,9 @@ template<class Base>
 
 void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 {
+
+	//IN ALL DOUBLE ROTATE CASES, ROTATE TWICE AROUND GRANDPARENT
+
 	Base rootData;
 	Base myData;
 	Base parentData;
@@ -98,35 +101,38 @@ void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 	bool flagDoubleRotate = false;
 
 
-	while(ptr != root)
+	while (ptr != root)
 	{
+		cout << "working..." << endl;
 
-		if(ptr == root->left || ptr == root->right) // 1 node above
+		if (ptr == root->left || ptr == root->right) // 1 node above
 			flagSingleRotate = true;
 		else
 			flagDoubleRotate = true;
-		if(flagSingleRotate)
+
+
+		if (flagSingleRotate)
 		{
 			// single rotate here
 			myData = ptr->data;
 			rootData = root->data;
 
-			if(rootData > myData)//L access
+			if (rootData > myData)//L access
 			{
 				//R rotate here
-				root = root -> singleRotateRight();
+				root = root->singleRotateRight();
 			}
 			else
 			{
 				//L rotate here
-				 root = root -> singleRotateLeft();
+				root = root->singleRotateLeft();
 			}
 
 		}//if singlerotate
 
 
 
-		if(flagDoubleRotate)
+		if (flagDoubleRotate)
 		{
 			// double rotate here
 
@@ -135,64 +141,109 @@ void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 			parentData = ptr->parent->data;
 			grandParentData = ptr->parent->parent->data;
 
-			if(grandParentData < parentData && parentData < myData) //RR access
+			if (grandParentData < parentData && parentData < myData) //RR access
 			{
 				//LL rotate to correct
 
-				//L rotation here
-				SplayNode<Base>* temp = ptr -> parent;
-				ptr = ptr -> singleRotateLeft();
-				temp->left = ptr;
-				ptr->parent = temp;
+				SplayNode<Base>* grandPtr = ptr->parent->parent;
+				SplayNode<Base>* parentPtr = ptr->parent;
 
 				//L rotation here
-				temp = ptr -> parent;
-				ptr = ptr -> singleRotateLeft();
-				temp->left = ptr;
-				ptr->parent = temp;
+				parentPtr = parentPtr->singleRotateLeft();
+				grandPtr->right = parentPtr;
+				parentPtr->left->parent = parentPtr;
+
+				if (grandPtr == root)
+				{
+					root = root->singleRotateLeft(); //single left rotate to root
+				}
+				else
+				{
+					SplayNode<Base>* temp = grandPtr->parent;
+					grandPtr = grandPtr->singleRotateLeft(); //single left rotate
+					temp->right = grandPtr;
+					grandPtr->parent = temp;// second rotate down
+					ptr = grandPtr;// update ptr
+				}
+
 			}
-			else if(grandParentData < parentData && parentData > myData)//RL access
+			else if (grandParentData < parentData && parentData > myData)//RL access
 			{
-				/************************************************/
-				//LR rotate
-				cout << "BEGIN-> LEFT RIGHT ROTATION" << endl;
+				SplayNode<Base>* grandPtr = ptr->parent->parent;
+				SplayNode<Base>* parentPtr = ptr->parent;
 
-				ptr = ptr->parent;
+				parentPtr = parentPtr->singleRotateRight();	//update parentPtr
+				parentPtr->right->parent = parentPtr;		//ensure child parent is true
+				grandPtr->right = parentPtr;				//ensure parent parent is true
+				// first right rotate done
 
-				//R rotation here
-				SplayNode<Base>* temp = ptr -> parent;
-				ptr = ptr -> singleRotateRight();
-				temp->right = ptr;
-				ptr->parent = temp;
-
-				cout << "END-> LEFT RIGHT ROTATION" << endl;
-				/************************************************/
-
+				if (grandPtr == root)
+				{
+					root = root->singleRotateLeft(); //single left rotate to root
+				}
+				else
+				{
+					SplayNode<Base>* temp = grandPtr->parent;
+					grandPtr = grandPtr->singleRotateLeft(); //single left rotate
+					temp->right = grandPtr;
+					grandPtr->parent = temp;// second rotate down
+					ptr = grandPtr;// update ptr
+				}
 			}
-			else if(grandParentData > parentData && parentData > myData)//LL access
+			else if (grandParentData > parentData && parentData > myData)//LL access
 			{
-				//RR rotate for correction
+				//RR rotate to correct
+
+				SplayNode<Base>* grandPtr = ptr->parent->parent;
+				SplayNode<Base>* parentPtr = ptr->parent;
 
 				//R rotation here
-				SplayNode<Base>* temp = ptr -> parent;
-				ptr = ptr -> singleRotateRight();
-				temp->right = ptr;
-				ptr->parent = temp;
+				parentPtr = parentPtr->singleRotateRight();
+				grandPtr->left = parentPtr;
+				parentPtr->right->parent = parentPtr;
 
-				//R rotation here
-				temp = ptr -> parent;
-				ptr = ptr -> singleRotateRight();
-				temp->right = ptr;
-				ptr->parent = temp;
+				if (grandPtr == root)
+				{
+					root = root->singleRotateRight(); //single left rotate to root
+				}
+				else
+				{
+					SplayNode<Base>* temp = grandPtr->parent;
+					grandPtr = grandPtr->singleRotateRight(); //single left rotate
+					temp->left = grandPtr;
+					grandPtr->parent = temp;// second rotate down
+					ptr = grandPtr;// update ptr
+				}
+
 			}
-			else if(grandParentData > parentData && parentData < myData)//LR access
+			else if (grandParentData > parentData && parentData < myData)//LR access
 			{
 				//RL rotate
+				SplayNode<Base>* grandPtr = ptr->parent->parent;
+				SplayNode<Base>* parentPtr = ptr->parent;
+
+				parentPtr = parentPtr->singleRotateLeft();	//update parentPtr
+				parentPtr->left->parent = parentPtr;		//ensure child parent is true
+				grandPtr->left  = parentPtr;				//ensure parent parent is true
+															// first right rotate done
+
+				if (grandPtr == root)
+				{
+					root = root->singleRotateRight(); //single left rotate to root
+				}
+				else
+				{
+					SplayNode<Base>* temp = grandPtr->parent;
+					grandPtr = grandPtr->singleRotateRight(); //single left rotate
+					temp->left = grandPtr;
+					grandPtr->parent = temp;// second rotate down
+					ptr = grandPtr;// update ptr
+				}
 			}
 
 		}//if doublerotate
 
-		// reset flags here
+		 // reset flags here
 		flagSingleRotate = false;
 		flagDoubleRotate = false;
 
@@ -200,12 +251,12 @@ void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 }//splayToRoot()
 
-////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////
 
 template <class Base>
 void SplayTree<Base>::printLevelOrder(ostream &os) const
 {
-	if(root == NULL)
+	if (root == NULL)
 	{
 		os << "NULL" << endl;
 		return;
@@ -218,10 +269,10 @@ void SplayTree<Base>::printLevelOrder(ostream &os) const
 
 	qParent.push(root);
 
-	while(!qParent.empty())
+	while (!qParent.empty())
 	{
-		os << "Level "<< levelNum << ":\t";
-		while(!qParent.empty())
+		os << "Level " << levelNum << ":\t";
+		while (!qParent.empty())
 		{
 
 			current = qParent.front();
@@ -229,9 +280,9 @@ void SplayTree<Base>::printLevelOrder(ostream &os) const
 
 			qParent.pop();
 
-			if(current->left!=NULL)
+			if (current->left != NULL)
 				qChildren.push(current->left);
-			if(current->right!=NULL)
+			if (current->right != NULL)
 				qChildren.push(current->right);
 		}
 
@@ -240,23 +291,23 @@ void SplayTree<Base>::printLevelOrder(ostream &os) const
 		levelNum++;
 
 		qParent = qChildren;
-		while(!qChildren.empty()) qChildren.pop();
+		while (!qChildren.empty()) qChildren.pop();
 
 	}//while
 
 
 }//printLevelOrder()
 
-////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////
 
 template <class Base>
 void SplayNode<Base>::printPreorder(ostream &os, string indent) const
 {
-	if(this!=NULL)
+	if (this != NULL)
 	{
 		os << indent << this->data << endl;
-		this->left->printPreorder(os,indent+="  ");
-		this->right->printPreorder(os,indent);
+		this->left->printPreorder(os, indent += "  ");
+		this->right->printPreorder(os, indent);
 	}
 	else
 		os << indent << "NULL" << endl;
@@ -268,9 +319,9 @@ void SplayNode<Base>::printPreorder(ostream &os, string indent) const
 template <class Base>
 /*ID=2 */void SplayTree<Base>::insert(const Base &item)
 {
-	if(root == NULL)
+	if (root == NULL)
 	{
-		root = new SplayNode<Base>(item,root,NULL,NULL);
+		root = new SplayNode<Base>(item, root, NULL, NULL);
 		printPreorder(cout);
 		return;
 	}
@@ -279,33 +330,33 @@ template <class Base>
 	SplayNode<Base>* parent = root;
 	bool right = false;
 
-	while(ptr != NULL)
+	while (ptr != NULL)
 	{
-		if(ptr->data == item) return;
+		if (ptr->data == item) return;
 
-		if(ptr->data < item){
+		if (ptr->data < item) {
 			parent = ptr;
 			ptr = ptr->right;
 			right = true;
 		}
 		else
-			if(ptr->data > item){
-			parent = ptr;
-			ptr = ptr->left;
-			right = false;
-		}
+			if (ptr->data > item) {
+				parent = ptr;
+				ptr = ptr->left;
+				right = false;
+			}
 	}
 
 	SplayNode<Base>* newNode;
 
-	if(right)
+	if (right)
 	{
-		parent->right = new SplayNode<Base>(item,parent,NULL,NULL);
+		parent->right = new SplayNode<Base>(item, parent, NULL, NULL);
 		newNode = parent->right;
 	}
 	else
 	{
-		parent->left = new SplayNode<Base>(item,parent,NULL,NULL);
+		parent->left = new SplayNode<Base>(item, parent, NULL, NULL);
 		newNode = parent->left;
 	}
 
