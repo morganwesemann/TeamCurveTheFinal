@@ -72,16 +72,14 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 			if(root->data > ptr->data)
 			{
 				root = root->singleRotateRight();
-				if(root->left)
-					root->left->parent = root;
-				cout << "single R rotation" << endl;
+				if(root->left)	root->left->parent = root;
+				//cout << "single R rotation" << endl;
 			}
 			else
 			{
 				root = root->singleRotateLeft();
-				if(root->right)
-					root->right->parent=root;
-				cout << "single L rotation" << endl;
+				if(root->right)	root->right->parent=root;
+				//cout << "single L rotation" << endl;
 			}
 			ptr=root;
 		}
@@ -95,15 +93,15 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 			grandParentData = ptr->parent->parent->data;
 			SplayNode<Base>* rotateNode = ptr->parent->parent;
 
-			cout << endl;
-			cout << "current     data = " << myData<<endl;
-			cout << "parent      data = " << parentData<<endl;
-			cout << "grandparent data = " << grandParentData<<endl;
+			//cout << endl;
+			//cout << "current     data = " << myData<<endl;
+			//cout << "parent      data = " << parentData<<endl;
+			//cout << "grandparent data = " << grandParentData<<endl;
 
 /*******************************************************************************/
 			if(grandParentData < parentData && parentData < myData) //RR access
 			{
-				cout << endl << "LL correction" << endl;//temporary
+				//cout << endl << "LL correction" << endl;//temporary
 
 				if(rotateNode == root) //LL correction
 				{
@@ -134,13 +132,13 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 						anchorNode->right->parent = anchorNode;
 					}
 
-					cout << "LL correction done" << endl;//temp
+					//cout << "LL correction done" << endl;//temp
 				}
 			}
 /*******************************************************************************/
 			else if(grandParentData > parentData && parentData > myData)//LL access
 			{
-				cout << endl << "RR correction" << endl;//temporary
+				//cout << endl << "RR correction" << endl;//temporary
 
 				if(rotateNode == root)//RR correction
 				{
@@ -176,7 +174,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 /*******************************************************************************/
 			else if(grandParentData < parentData && parentData > myData)//RL access
 			{
-				cout << endl << "LR correction" << endl;//temporary
+				//cout << endl << "LR correction" << endl;//temporary
 
 				if(rotateNode == root)//LR correction
 				{
@@ -214,7 +212,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 /*******************************************************************************/
 			else if(grandParentData > parentData && parentData < myData)//LR access
 			{
-				cout << endl << "RL correction" << endl;//temporary
+				//cout << endl << "RL correction" << endl;//temporary
 
 				if(rotateNode == root) //RL correction
 				{
@@ -273,7 +271,11 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 template <class Base> void SplayTree<Base>::printLevelOrder(ostream &os) const
 {
-	if(root == NULL) {os << "NULL" << endl;return;}
+	if(root == NULL) // TREE IS EMPTY HERE, 0 ITEMS
+	{
+		os << "NULL" << endl;
+		return;
+	}
 
 	queue <SplayNode<Base>*> qParent,qChildren;
 	int levelNum = 0;
@@ -320,7 +322,11 @@ template<class Base>void SplayNode<Base>::printPreorder(ostream&os, string inden
 
 template <class Base> void SplayTree<Base>::insert(const Base &item)
 {
-	if(root == NULL) {root = new SplayNode<Base>(item,NULL,NULL,NULL);return;}
+	if(root == NULL) // TREE IS EMPTY HERE, 0 ITEMS
+	{
+		root = new SplayNode<Base>(item,NULL,NULL,NULL);
+		return;
+	}
 
 	SplayNode<Base>* ptr = root;
 	SplayNode<Base>* parent = root;
@@ -364,6 +370,9 @@ template <class Base> void SplayTree<Base>::insert(const Base &item)
 
 template <class Base> bool SplayTree<Base>::find(const Base &item)
 {
+	if(root == NULL) // TREE IS EMPTY
+		return false;
+
 	SplayNode<Base>* lastNode = root;
 	SplayNode<Base>* ptr = root;
 	bool isFound = false;
@@ -392,7 +401,153 @@ template <class Base> bool SplayTree<Base>::find(const Base &item)
 	return isFound;
 }
 
-// i 50 i 2 i 90 i 58 i 32 i 5956 i 32 i 99
-// i 100
 
 /*******************************************************************************/
+/*
+ * CASE 0: not found -> splay from last accessed node DONE
+ *
+ * CASE 1: delete root with 0 children -> do not splay
+ * CASE 2: delete root with 1 children -> do not splay
+ * CASe 3: delete root with 2 children -> splay removed node's parent
+ *
+ * CASE 4: delete node with 0 children -> splay removed node's parent
+ * CASE 5: delete node with 1 children -> splay removed node's parent
+ * CASE 6: delete node with 2 children -> splay removed node's parent
+ *
+ */
+
+
+template <class Base>
+void SplayTree<Base>::remove(const Base &item)
+{
+	if(root == NULL) // TREE IS EMPTY, 0 ITEMS
+		return;
+
+	SplayNode<Base>* ptr=root;
+	SplayNode<Base>* parent=root;
+	bool isFound = false, right = true;
+
+	while(ptr != NULL && !isFound)
+	{
+		if(ptr->data == item)
+			isFound = true;
+
+		else if(ptr->data < item){
+			parent = ptr;
+			ptr = ptr->right;
+			right = true;
+		}
+		else if(ptr->data > item){
+			parent = ptr;
+			ptr = ptr->left;
+			right = false;
+		}
+	}
+
+/*******************************************************************************/
+
+	if(isFound == false)// item not found
+	{
+		splayToRoot(parent); //DONE
+		return;
+	}
+
+/*******************************************************************************/
+
+	if(ptr->right==NULL && ptr->left==NULL)// delete 0 children
+	{
+		if(ptr == root) // delete ROOT with 0 children, DO NOT SPLAY
+		{
+			delete root;
+			root = NULL;
+		}
+		else // delete NODE with 0 children
+		{
+			right? parent->right = NULL : parent->left = NULL;
+			delete ptr;
+
+			splayToRoot(parent); //DONE
+		}
+	}//delete 0 children
+
+/*******************************************************************************/
+
+	else if(ptr->right != NULL && ptr->left != NULL)// delete 2 children
+	{
+		if(ptr==root) // delete ROOT with 2 children
+		{
+			SplayNode<Base>* min = root->right;
+			SplayNode<Base>* minParent = root->right;
+
+			while(min->left!=NULL)
+			{
+				minParent = min;
+				min = min->left;
+			}
+
+			root->data = min->data;
+
+			if(min==ptr->right)
+				ptr->right = min->right;
+			else
+			if(min->right == NULL)
+				minParent->left = NULL;
+			else
+				minParent->left = min->right;
+
+			min->parent = NULL;
+			min->right=NULL;
+			delete min;
+		}
+		else // delete NODE with 2 children
+		{
+			splayToRoot(ptr);
+			// send NODE to delete to ROOT
+		}
+
+	}// delete 2 children
+
+/*******************************************************************************/
+
+	else // delete 1 child
+	{
+		SplayNode<Base>* temp = root;
+
+		if(ptr->right != NULL)// RIGHT child only
+		{
+			if(ptr==root)// delete ROOT with RIGHT child only, DO NOT SPLAY
+			{
+				root = root->right;
+				temp->right = NULL;
+				delete temp;
+			}
+			else // delete NODE with RIGHT child only
+			{
+				(right)? parent->right = ptr->right : parent->left = ptr->right;
+				ptr->right = NULL;
+				delete ptr;
+				splayToRoot(parent);
+			}
+		}
+		else // LEFT child only
+		{
+			if(ptr==root) // delete ROOT with LEFT child only, DO NOT SPLAY
+			{
+				root = root->left;
+				temp->right = temp->left = NULL;
+				delete temp;
+			}
+			else // delete NODE with LEFT child only
+			{
+				(right)? parent->right = ptr->left : parent->left = ptr->left;
+				ptr->left = ptr->right = NULL;
+				delete ptr;
+				splayToRoot(parent);
+			}
+		}
+
+	}// delete 1 child
+
+/*******************************************************************************/
+
+}// remove()
