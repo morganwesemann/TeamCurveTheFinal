@@ -33,7 +33,7 @@ public:
 
 protected:
 	Base data;
-	SplayNode *left, *right, *parent;
+	SplayNode *parent, *left, *right;
 };
 
 template <class Base>
