@@ -4,6 +4,11 @@
 using namespace std;
 void solve();
 
+// TEST DATA:
+
+// i 50 i 2 i 90 i 58 i 32 i 5900 i 99
+// i 100
+
 int main()
 {
 	solve();
@@ -52,6 +57,12 @@ void solve()
 			case 'l':
 			{
 				mySplayTree.printLevelOrder(cout);
+				break;
+			}
+			case 'r':
+			{
+				cin >> item;
+				mySplayTree.remove(item);
 				break;
 			}
 			case 'q':
