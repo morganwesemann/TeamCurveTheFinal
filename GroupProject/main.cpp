@@ -11,16 +11,15 @@ int main()
 	return 0;
 }
 
-
 void solve()
 {
 	char operation;
 	bool valid = true;
-
 	int item;
 	SplayTree<int> mySplayTree;
 
 	cin >> operation;
+
 	while(valid)
 	{
 		switch(operation)
@@ -29,9 +28,28 @@ void solve()
 			{
 				cin >> item;
 				mySplayTree.insert(item);
+				cout << endl;
+				mySplayTree.print(cout);
+				cout << endl;
+				break;
+			}
+			case 'f':
+			{
+				cin >> item;
+
+				if(mySplayTree.find(item))
+					cout << item << " found!" << endl;
+				else
+					cout << item << " not found..." << endl;
+
 				break;
 			}
 			case 'p':
+			{
+				mySplayTree.printPreorder(cout);
+				break;
+			}
+			case 'l':
 			{
 				mySplayTree.printLevelOrder(cout);
 				break;
