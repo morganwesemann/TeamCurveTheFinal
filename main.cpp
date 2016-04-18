@@ -7,8 +7,11 @@ void solve();
 // TEST DATA:
 
 // i 50 i 2 i 90 i 58 i 32 i 5900 i 99
-// i 100
+// i 100 i 58 i 48 i 93 i 43 i 22 i 99 i 11 i 3 i 5 i 88 i 42 i 31 i 35
+// r 35 r 48 r 43 r 3 r 100 r 88 r 42 r 88 f 93 f 11 r11
 
+// i 10 i 5 i 15 i 7
+// i 15 i 10 i 1 i 5
 int main()
 {
 	solve();
@@ -33,9 +36,6 @@ void solve()
 			{
 				cin >> item;
 				mySplayTree.insert(item);
-				cout << endl;
-				mySplayTree.print(cout);
-				cout << endl;
 				break;
 			}
 			case 'f':
