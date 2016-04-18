@@ -75,6 +75,16 @@
 		5D5792A41CC46C6600E7FB14 /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
 		5D5792A81CC46C9300E7FB14 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
 		5D5792A91CC46D0400E7FB14 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		5D5792B41CC4705400E7FB14 /* 0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0.txt; path = Characters/0.txt; sourceTree = "<group>"; };
+		5D5792B51CC4705400E7FB14 /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 1.txt; path = Characters/1.txt; sourceTree = "<group>"; };
+		5D5792B61CC4705400E7FB14 /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2.txt; path = Characters/2.txt; sourceTree = "<group>"; };
+		5D5792B71CC4705400E7FB14 /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 3.txt; path = Characters/3.txt; sourceTree = "<group>"; };
+		5D5792B81CC4705400E7FB14 /* 4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 4.txt; path = Characters/4.txt; sourceTree = "<group>"; };
+		5D5792B91CC4705400E7FB14 /* 5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 5.txt; path = Characters/5.txt; sourceTree = "<group>"; };
+		5D5792BA1CC4705400E7FB14 /* 6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 6.txt; path = Characters/6.txt; sourceTree = "<group>"; };
+		5D5792BB1CC4705400E7FB14 /* 7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 7.txt; path = Characters/7.txt; sourceTree = "<group>"; };
+		5D5792BC1CC4705400E7FB14 /* 8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 8.txt; path = Characters/8.txt; sourceTree = "<group>"; };
+		5D5792BD1CC4705400E7FB14 /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = Characters/9.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,16 @@
 		5D5792561CC0509400E7FB14 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				5D5792B41CC4705400E7FB14 /* 0.txt */,
+				5D5792B51CC4705400E7FB14 /* 1.txt */,
+				5D5792B61CC4705400E7FB14 /* 2.txt */,
+				5D5792B71CC4705400E7FB14 /* 3.txt */,
+				5D5792B81CC4705400E7FB14 /* 4.txt */,
+				5D5792B91CC4705400E7FB14 /* 5.txt */,
+				5D5792BA1CC4705400E7FB14 /* 6.txt */,
+				5D5792BB1CC4705400E7FB14 /* 7.txt */,
+				5D5792BC1CC4705400E7FB14 /* 8.txt */,
+				5D5792BD1CC4705400E7FB14 /* 9.txt */,
 				5D5792911CC4659400E7FB14 /* K.txt */,
 				5D5792921CC4659400E7FB14 /* L.txt */,
 				5D5792931CC4659400E7FB14 /* M.txt */,

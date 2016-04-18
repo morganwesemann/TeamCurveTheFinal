@@ -11,7 +11,7 @@
 AlphanumericPlotter::AlphanumericPlotter(GLUT_Plotter* g) {
     screen = g;
     init();
-
+    
 }
 
 AlphanumericPlotter::~AlphanumericPlotter() {
@@ -672,7 +672,7 @@ void AlphanumericPlotter::init() {
     
     file.close();
     file.clear();
-    /*
+    
     file.open("Characters/0.txt");
     if (!file) {
         //cout << "FATAL ERROR: Assets not found. Exiting program.";
@@ -922,7 +922,7 @@ void AlphanumericPlotter::init() {
     
     file.close();
     file.clear();
-    */
+    
     
 }
 
@@ -1012,24 +1012,34 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
                 charPtr = &charZ;
                 break;
             case '0':
+                charPtr = &char0;
                 break;
             case '1':
+                charPtr = &char1;
                 break;
             case '2':
+                charPtr = &char2;
                 break;
             case '3':
+                charPtr = &char3;
                 break;
             case '4':
+                charPtr = &char4;
                 break;
             case '5':
+                charPtr = &char5;
                 break;
             case '6':
+                charPtr = &char6;
                 break;
             case '7':
+                charPtr = &char7;
                 break;
             case '8':
+                charPtr = &char8;
                 break;
             case '9':
+                charPtr = &char9;
                 break;
             case ' ':
                 break;
@@ -1056,7 +1066,7 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
                 
             }
         } else {
-
+            
         }
         
         x+= spaceAmount + charPtr->width;
