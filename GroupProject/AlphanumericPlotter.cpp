@@ -684,15 +684,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char0.width >> char0.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char0.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char0.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char0.characterArray.push_back(temp);
     }
     
     file.close();
@@ -709,15 +709,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char1.width >> char1.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char1.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char1.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char1.characterArray.push_back(temp);
     }
     
     file.close();
@@ -734,15 +734,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char2.width >> char2.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char2.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char2.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char2.characterArray.push_back(temp);
     }
     
     file.close();
@@ -759,15 +759,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char3.width >> char3.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char3.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char3.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char3.characterArray.push_back(temp);
     }
     
     file.close();
@@ -784,15 +784,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char4.width >> char4.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char4.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char4.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char4.characterArray.push_back(temp);
     }
     
     file.close();
@@ -809,15 +809,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char5.width >> char5.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char5.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char5.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char5.characterArray.push_back(temp);
     }
     
     file.close();
@@ -834,15 +834,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char6.width >> char6.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char6.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char6.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char6.characterArray.push_back(temp);
     }
     
     file.close();
@@ -859,15 +859,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char7.width >> char7.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char7.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char7.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char7.characterArray.push_back(temp);
     }
     
     file.close();
@@ -884,15 +884,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char8.width >> char8.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char8.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char8.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char8.characterArray.push_back(temp);
     }
     
     file.close();
@@ -909,15 +909,15 @@ void AlphanumericPlotter::init() {
         getline(file,dummyText);
     }
     
-    file >> charA.width >> charA.height;
+    file >> char9.width >> char9.height;
     //store in vector
-    for (int i = 0; i < charA.width; i++) {
+    for (int i = 0; i < char9.height; i++) {
         vector<char> temp;
-        for (int j =0; j < charA.width; j++) {
+        for (int j =0; j < char9.width; j++) {
             file >> c;
             temp.push_back(c);
         }
-        charA.characterArray.push_back(temp);
+        char9.characterArray.push_back(temp);
     }
     
     file.close();
@@ -1046,7 +1046,6 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
             default:
                 charPtr = &charA;
                 break;
-                
         }
         
         if (c != ' ') {
@@ -1057,9 +1056,8 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
                     c = charPtr->characterArray[j][k];
                     if (c == '1') {
                         screen->setColor(0xffffff);
-                        
                         screen->plot(x+k,y-j);
-                        
+
                     }
                 }
                 
