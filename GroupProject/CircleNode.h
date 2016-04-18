@@ -13,6 +13,7 @@
 #include "GLUT_Plotter.h"
 #include "AlphanumericPlotter.h"
 #include <cmath>
+#include "dirent.h"
 
 class CircleNode {
 private:

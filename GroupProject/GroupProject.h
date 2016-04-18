@@ -14,6 +14,7 @@
 #include "Line.h"
 #include <fstream>
 #include <cmath>
+#include <iostream>
 
 
 class GroupProject{

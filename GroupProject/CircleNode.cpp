@@ -37,6 +37,12 @@ void CircleNode::draw() {
                      loc.y + ((radius+1) * sin(i * twoPi / 360))
                      );
     }
+    /*int length = data.length();
+    int totalLength = 0;
+    for (int i = 0; i < length; i++) {
+        totalLength +=
+    }*/
+    
     alpha->plotString(data, loc.x-23, loc.y+11);
 }
 

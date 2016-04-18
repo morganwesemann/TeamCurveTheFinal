@@ -10,6 +10,8 @@
 
 AlphanumericPlotter::AlphanumericPlotter(GLUT_Plotter* g) {
     screen = g;
+    numCharacters = 36;
+    spaceAmount = 10;
     init();
     
 }
@@ -1069,10 +1071,6 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
         
         x+= spaceAmount + charPtr->width;
     }
-}
-
-void AlphanumericPlotter::plotNumber(int num, int x, int y) {
-    
 }
 
 AlphanumericPlotter& AlphanumericPlotter::operator=(GLUT_Plotter* s) {

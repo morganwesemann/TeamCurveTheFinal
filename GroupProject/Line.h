@@ -14,6 +14,7 @@
 #include "AlphanumericPlotter.h"
 #include "CircleNode.h"
 #include <cmath>
+#include <iostream>
 
 class Line {
 private:

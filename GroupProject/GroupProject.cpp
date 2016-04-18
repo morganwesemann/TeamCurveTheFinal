@@ -44,18 +44,18 @@ void GroupProject::drawT() {
     l.x = 200;
     l.y = 425;
     AlphanumericPlotter alpha4(g);
-    CircleNode circle4(g,&alpha4,"IW",l,32);
+    CircleNode circle4(g,&alpha4,"12",l,32);
     circle4.draw();
     
     l.x = 100;
     l.y = 200;
     AlphanumericPlotter alpha5(g);
-    CircleNode circle5(g,&alpha5,"ZI",l,32);
+    CircleNode circle5(g,&alpha5,"14",l,32);
     circle5.draw();
     
     Line lin(g);
     
-    lin.draw(circle4, circle5);
+    lin.draw(circle, circle3);
     
 }
 //GroupProject Main Game Loop
@@ -80,7 +80,8 @@ void GroupProject::Play(void){
         c = g->getClick();
         AlphanumericPlotter alpha(g);
         g->setColor(0xffffff);
-        alpha.plotString("TEAM CURVE THE FINAL", 100, 100);
+        alpha.plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
+        alpha.plotString("0123456789", 300, 300);
         drawT();
         g->plot(c.x, g->getHeight() - c.y);
     }

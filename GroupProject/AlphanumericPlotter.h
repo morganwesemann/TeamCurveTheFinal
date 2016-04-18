@@ -11,11 +11,17 @@
 
 #include "GLUT_Plotter.h"
 #include <fstream>
+#include "dirent.h"
 
 struct character {
     vector<vector<char> > characterArray;
-    int width = 0, height = 0;
+    int width, height;
     string fileName;
+    character() {
+        width = 0;
+        height = 0;
+        fileName = "";
+    }
 };
 
 class AlphanumericPlotter {
@@ -58,16 +64,16 @@ private:
     character char8;
     character char9;
     
-    int numCharacters = 36;
-    int spaceAmount = 10;
+    int numCharacters;
+    int spaceAmount;
     ifstream file;
+    
+    DIR * dirp;
     
     unsigned int color;
     
     GLUT_Plotter* screen;
     
-    
-
     void init();
 public:
     
@@ -78,16 +84,6 @@ public:
     ~AlphanumericPlotter();
     
     void plotString(string str, int x, int y);
-    void plotNumber(int num, int x, int y);
-    
-
-    
-    
-    
-    
-    
-    
-    
     
 };
 
