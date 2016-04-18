@@ -13,6 +13,9 @@
 		5D5792371CBAD98A00E7FB14 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5792361CBAD98A00E7FB14 /* GLUT.framework */; };
 		5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792391CBAD99D00E7FB14 /* GroupProject.cpp */; };
 		5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D57923B1CBAD9A700E7FB14 /* GLUT_Plotter.cpp */; };
+		5D5792A51CC46C6600E7FB14 /* AlphanumericPlotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A01CC46C6600E7FB14 /* AlphanumericPlotter.cpp */; };
+		5D5792A61CC46C6600E7FB14 /* CircleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */; };
+		5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A41CC46C6600E7FB14 /* Line.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +53,28 @@
 		5D5792531CC0508A00E7FB14 /* I.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = I.txt; path = Characters/I.txt; sourceTree = "<group>"; };
 		5D5792541CC0508A00E7FB14 /* J.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = J.txt; path = Characters/J.txt; sourceTree = "<group>"; };
 		5D5792551CC0508A00E7FB14 /* T.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = T.txt; path = Characters/T.txt; sourceTree = "<group>"; };
+		5D5792911CC4659400E7FB14 /* K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = K.txt; path = Characters/K.txt; sourceTree = "<group>"; };
+		5D5792921CC4659400E7FB14 /* L.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = L.txt; path = Characters/L.txt; sourceTree = "<group>"; };
+		5D5792931CC4659400E7FB14 /* M.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = M.txt; path = Characters/M.txt; sourceTree = "<group>"; };
+		5D5792941CC4659400E7FB14 /* N.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = N.txt; path = Characters/N.txt; sourceTree = "<group>"; };
+		5D5792951CC4659400E7FB14 /* O.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = O.txt; path = Characters/O.txt; sourceTree = "<group>"; };
+		5D5792961CC4659400E7FB14 /* P.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = P.txt; path = Characters/P.txt; sourceTree = "<group>"; };
+		5D5792971CC4659400E7FB14 /* Q.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Q.txt; path = Characters/Q.txt; sourceTree = "<group>"; };
+		5D5792981CC4659400E7FB14 /* R.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = R.txt; path = Characters/R.txt; sourceTree = "<group>"; };
+		5D5792991CC4659400E7FB14 /* S.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = S.txt; path = Characters/S.txt; sourceTree = "<group>"; };
+		5D57929A1CC4659400E7FB14 /* U.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = U.txt; path = Characters/U.txt; sourceTree = "<group>"; };
+		5D57929B1CC4659400E7FB14 /* V.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = V.txt; path = Characters/V.txt; sourceTree = "<group>"; };
+		5D57929C1CC4659400E7FB14 /* W.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = W.txt; path = Characters/W.txt; sourceTree = "<group>"; };
+		5D57929D1CC4659400E7FB14 /* X.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = X.txt; path = Characters/X.txt; sourceTree = "<group>"; };
+		5D57929E1CC4659400E7FB14 /* Y.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Y.txt; path = Characters/Y.txt; sourceTree = "<group>"; };
+		5D57929F1CC4659400E7FB14 /* Z.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Z.txt; path = Characters/Z.txt; sourceTree = "<group>"; };
+		5D5792A01CC46C6600E7FB14 /* AlphanumericPlotter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlphanumericPlotter.cpp; sourceTree = "<group>"; };
+		5D5792A11CC46C6600E7FB14 /* AlphanumericPlotter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphanumericPlotter.h; sourceTree = "<group>"; };
+		5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircleNode.cpp; sourceTree = "<group>"; };
+		5D5792A31CC46C6600E7FB14 /* CircleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleNode.h; sourceTree = "<group>"; };
+		5D5792A41CC46C6600E7FB14 /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		5D5792A81CC46C9300E7FB14 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		5D5792A91CC46D0400E7FB14 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +113,13 @@
 		5D57921E1CBAD7BC00E7FB14 /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				5D5792A91CC46D0400E7FB14 /* Location.h */,
+				5D5792A81CC46C9300E7FB14 /* Line.h */,
+				5D5792A01CC46C6600E7FB14 /* AlphanumericPlotter.cpp */,
+				5D5792A11CC46C6600E7FB14 /* AlphanumericPlotter.h */,
+				5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */,
+				5D5792A31CC46C6600E7FB14 /* CircleNode.h */,
+				5D5792A41CC46C6600E7FB14 /* Line.cpp */,
 				5D5792561CC0509400E7FB14 /* Characters */,
 				5D57924A1CC0507D00E7FB14 /* Group0SplayIMPL.h */,
 				5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */,
@@ -103,6 +135,21 @@
 		5D5792561CC0509400E7FB14 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				5D5792911CC4659400E7FB14 /* K.txt */,
+				5D5792921CC4659400E7FB14 /* L.txt */,
+				5D5792931CC4659400E7FB14 /* M.txt */,
+				5D5792941CC4659400E7FB14 /* N.txt */,
+				5D5792951CC4659400E7FB14 /* O.txt */,
+				5D5792961CC4659400E7FB14 /* P.txt */,
+				5D5792971CC4659400E7FB14 /* Q.txt */,
+				5D5792981CC4659400E7FB14 /* R.txt */,
+				5D5792991CC4659400E7FB14 /* S.txt */,
+				5D57929A1CC4659400E7FB14 /* U.txt */,
+				5D57929B1CC4659400E7FB14 /* V.txt */,
+				5D57929C1CC4659400E7FB14 /* W.txt */,
+				5D57929D1CC4659400E7FB14 /* X.txt */,
+				5D57929E1CC4659400E7FB14 /* Y.txt */,
+				5D57929F1CC4659400E7FB14 /* Z.txt */,
 				5D57924B1CC0508A00E7FB14 /* A.txt */,
 				5D57924C1CC0508A00E7FB14 /* B.txt */,
 				5D57924D1CC0508A00E7FB14 /* C.txt */,
@@ -175,8 +222,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */,
+				5D5792A61CC46C6600E7FB14 /* CircleNode.cpp in Sources */,
 				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
+				5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */,
 				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,
+				5D5792A51CC46C6600E7FB14 /* AlphanumericPlotter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

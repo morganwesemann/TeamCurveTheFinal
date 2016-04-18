@@ -34,7 +34,7 @@ protected:
     unsigned int color;
     
 public:
-    GLUT_Plotter(int width = 500, int height = 500);
+    GLUT_Plotter(int width = 1024, int height = 768);
     ~GLUT_Plotter(){;}
     
     void Draw(void);

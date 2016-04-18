@@ -9,6 +9,11 @@
 #ifndef GroupProject_H_
 #define GroupProject_H_
 #include "GLUT_Plotter.h"
+#include "AlphanumericPlotter.h"
+#include "CircleNode.h"
+#include "Line.h"
+#include <fstream>
+#include <cmath>
 
 
 class GroupProject{
@@ -21,6 +26,8 @@ public:
     
     //Main GAIM FUNCTION
     void Play(void);
+    
+    void drawT();
 };
 
 #endif /* GroupProject_H_ */
