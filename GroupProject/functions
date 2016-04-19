@@ -4,11 +4,12 @@ int getWidth(int depth){
   return ( getWidth(depth - 1) * 2 ) + 1;
 }
 
-int getHeight(SplayNode *n) {
+template <class Base>
+int getHeight(SplayNode<Base> *n) {
   int leftHeight = 1, rightHeight = 1;
   if(n.left)
     leftHeight = getHeight(n.left);
   if(n.right)
     rightHeight = getHeight(n.right);
-  return leftHeight > rightHeight ? leftHeight : rightHeight;
+  return leftHeight < rightHeight ? rightHeight : leftHeight;
 }
