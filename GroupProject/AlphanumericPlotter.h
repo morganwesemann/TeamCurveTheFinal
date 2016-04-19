@@ -11,7 +11,8 @@
 
 #include "GLUT_Plotter.h"
 #include <fstream>
-#include "dirent.h"
+#include <map>
+#include <iostream>
 
 struct character {
     vector<vector<char> > characterArray;
@@ -26,6 +27,7 @@ struct character {
 
 class AlphanumericPlotter {
 private:
+    map<char,character> characters;
     
     character charA;
     character charB;
@@ -66,9 +68,6 @@ private:
     
     int numCharacters;
     int spaceAmount;
-    ifstream file;
-    
-    DIR * dirp;
     
     unsigned int color;
     
