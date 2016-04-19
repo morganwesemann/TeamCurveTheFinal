@@ -4,7 +4,7 @@ int getWidth(int depth){
   return ( getWidth(depth - 1) * 2 ) + 1;
 }
 
-int getHeight(Node *n) {
+int getHeight(SplayNode *n) {
   int leftHeight = 1, rightHeight = 1;
   if(n.left)
     leftHeight = getHeight(n.left);
