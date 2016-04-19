@@ -16,47 +16,19 @@ GroupProject::GroupProject(GLUT_Plotter* g){
 }
 
 void GroupProject::drawT() {
-    Location l;
-    l.x = 200;
-    l.y = 200;
     AlphanumericPlotter alpha(g);
-    CircleNode circle(g,&alpha,"II",l,32);
-    circle.draw();
+    VisualSplay v(g,&alpha);
+    v.insert(5);
+    v.insert(400);
+    v.insert(45);
+    v.insert(69);
+    v.insert(61);
+    v.insert(67);
+    v.insert(65);
+    v.insert(63);
+    v.draw();
     
-    l.x = 300;
-    l.y = 200;
-    AlphanumericPlotter alpha1(g);
-    CircleNode circle1(g,&alpha1,"AA",l,32);
-    circle1.draw();
-    
-    l.x = 425;
-    l.y = 200;
-    AlphanumericPlotter alpha2(g);
-    CircleNode circle2(g,&alpha2,"AI",l,32);
-    circle2.draw();
-    
-    l.x = 200;
-    l.y = 300;
-    AlphanumericPlotter alpha3(g);
-    CircleNode circle3(g,&alpha3,"MI",l,32);
-    circle3.draw();
-    
-    l.x = 200;
-    l.y = 425;
-    AlphanumericPlotter alpha4(g);
-    CircleNode circle4(g,&alpha4,"12",l,32);
-    circle4.draw();
-    
-    l.x = 100;
-    l.y = 200;
-    AlphanumericPlotter alpha5(g);
-    CircleNode circle5(g,&alpha5,"14",l,32);
-    circle5.draw();
-    
-    Line lin(g);
-    
-    lin.draw(circle, circle3);
-    
+
 }
 //GroupProject Main Game Loop
 void GroupProject::Play(void){

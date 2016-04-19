@@ -16,6 +16,7 @@
 		5D5792A51CC46C6600E7FB14 /* AlphanumericPlotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A01CC46C6600E7FB14 /* AlphanumericPlotter.cpp */; };
 		5D5792A61CC46C6600E7FB14 /* CircleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */; };
 		5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A41CC46C6600E7FB14 /* Line.cpp */; };
+		5D5792E51CC5A6C600E7FB14 /* VisualSplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792E41CC5A6C600E7FB14 /* VisualSplay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +86,8 @@
 		5D5792BB1CC4705400E7FB14 /* 7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 7.txt; path = Characters/7.txt; sourceTree = "<group>"; };
 		5D5792BC1CC4705400E7FB14 /* 8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 8.txt; path = Characters/8.txt; sourceTree = "<group>"; };
 		5D5792BD1CC4705400E7FB14 /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = Characters/9.txt; sourceTree = "<group>"; };
+		5D5792E31CC5A6B100E7FB14 /* VisualSplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisualSplay.h; sourceTree = "<group>"; };
+		5D5792E41CC5A6C600E7FB14 /* VisualSplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisualSplay.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,14 +126,16 @@
 		5D57921E1CBAD7BC00E7FB14 /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				5D5792561CC0509400E7FB14 /* Characters */,
 				5D5792A91CC46D0400E7FB14 /* Location.h */,
 				5D5792A81CC46C9300E7FB14 /* Line.h */,
 				5D5792A01CC46C6600E7FB14 /* AlphanumericPlotter.cpp */,
 				5D5792A11CC46C6600E7FB14 /* AlphanumericPlotter.h */,
-				5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */,
 				5D5792A31CC46C6600E7FB14 /* CircleNode.h */,
+				5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */,
+				5D5792E31CC5A6B100E7FB14 /* VisualSplay.h */,
+				5D5792E41CC5A6C600E7FB14 /* VisualSplay.cpp */,
 				5D5792A41CC46C6600E7FB14 /* Line.cpp */,
-				5D5792561CC0509400E7FB14 /* Characters */,
 				5D57924A1CC0507D00E7FB14 /* Group0SplayIMPL.h */,
 				5D57923F1CBAF54D00E7FB14 /* Group0Splay.h */,
 				5D57921F1CBAD7BC00E7FB14 /* main.cpp */,
@@ -243,6 +248,7 @@
 			files = (
 				5D5792201CBAD7BC00E7FB14 /* main.cpp in Sources */,
 				5D5792A61CC46C6600E7FB14 /* CircleNode.cpp in Sources */,
+				5D5792E51CC5A6C600E7FB14 /* VisualSplay.cpp in Sources */,
 				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
 				5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */,
 				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,

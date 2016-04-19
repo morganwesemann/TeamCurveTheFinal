@@ -15,6 +15,7 @@
 #include <fstream>
 #include <cmath>
 #include <iostream>
+#include "VisualSplay.h"
 
 
 class GroupProject{

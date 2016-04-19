@@ -23,8 +23,13 @@ private:
     Location loc;
     int radius;
 public:
-    
-    CircleNode(GLUT_Plotter* g, AlphanumericPlotter* a, string d, Location l, int r = 25);
+    CircleNode() {
+        screen = NULL;
+        data = "";
+        alpha = NULL;
+        radius = 0;
+    }
+    CircleNode(GLUT_Plotter* g, AlphanumericPlotter* a, string d, Location l, int r = 40);
     void draw();
     void setLocation(Location l);
     Location getLocation();

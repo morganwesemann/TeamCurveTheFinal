@@ -23,10 +23,19 @@ void Line::draw(CircleNode a, CircleNode b) {
     l = node1.getLocation();
     c = node2.getLocation();
     
-    float slope = (l.y - c.y) / (l.x - c.x);
+    
+    
+    float slope;
+    
+    if (l.y == c.y || l.x == c.x) {
+        slope = 0;
+    } else {
+        slope = (l.y - c.y) / (l.x - c.x);
+    }
+    
     
     int i, j;
-    
+    bool switchXY = false;
     if (l != c) {
         int theY = 0;
         cout << "not equal" << endl;
@@ -45,7 +54,9 @@ void Line::draw(CircleNode a, CircleNode b) {
             }
         } else {
             cout << "diff y" << endl;
+            switchXY = true;
             if (l.y < c.y) {
+            
                 cout << "first less" << endl;
                 i = l.y;
                 j = c.y;
@@ -59,12 +70,17 @@ void Line::draw(CircleNode a, CircleNode b) {
         }
         
         while (i <= j) {
+            if (switchXY) {
+                screen->plot(theY, i);
+            } else {
+                screen->plot(i, theY);
+            }
             theY += slope;
-            screen->plot(i, theY);
-            screen->plot(i-1, theY-1);
-            screen->plot(i+1, theY+1);
+            
+            //screen->plot(i-1, theY-1);
+            //screen->plot(i+1, theY+1);
             cout << i << endl;
-            cout << slope;
+            
             i++;
         }
     }
