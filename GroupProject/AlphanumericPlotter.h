@@ -29,43 +29,6 @@ class AlphanumericPlotter {
 private:
     map<char,character> characters;
     
-    character charA;
-    character charB;
-    character charC;
-    character charD;
-    character charE;
-    character charF;
-    character charG;
-    character charH;
-    character charI;
-    character charJ;
-    character charK;
-    character charL;
-    character charM;
-    character charN;
-    character charO;
-    character charP;
-    character charQ;
-    character charR;
-    character charS;
-    character charT;
-    character charU;
-    character charV;
-    character charW;
-    character charX;
-    character charY;
-    character charZ;
-    character char0;
-    character char1;
-    character char2;
-    character char3;
-    character char4;
-    character char5;
-    character char6;
-    character char7;
-    character char8;
-    character char9;
-    
     int numCharacters;
     int spaceAmount;
     
