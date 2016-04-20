@@ -70,6 +70,7 @@ void Line::draw(CircleNode a, CircleNode b) {
         }
         
         while (i <= j) {
+            
             if (switchXY) {
                 screen->plot(theY, i);
             } else {
@@ -79,7 +80,7 @@ void Line::draw(CircleNode a, CircleNode b) {
             
             //screen->plot(i-1, theY-1);
             //screen->plot(i+1, theY+1);
-            cout << i << endl;
+            //cout << i << endl;
             
             i++;
         }

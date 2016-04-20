@@ -83,6 +83,10 @@ void GLUT_Plotter::RegisterMouseFunc(void (*func)(int button, int state,int x, i
     glutMouseFunc(func);
 }
 
+void GLUT_Plotter::RegisterMouseMoveFunc(void (*func)(int x, int y)){
+    glutMotionFunc(func);
+}
+
 void GLUT_Plotter::RegisterIdleFunc(void (*func)(void)){
     glutIdleFunc(func);
 }
@@ -118,8 +122,6 @@ char* GLUT_Plotter::getBuffer(){
     return buffer;
 }
 
-
-
 void GLUT_Plotter::setColor(unsigned int c){
     color = c;
 }
@@ -141,6 +143,8 @@ void GLUT_Plotter::callBacks(){
     RegisterKeyboardFunc(keyboardFunction);
     RegisterSpecialKeyboardFunc(SpecialKeyboardFunction);
     RegisterMouseFunc(mouseFunction);
+    RegisterMouseMoveFunc(mouseMoveFunction);
+
 }
 
 unsigned char GLUT_Plotter::getKey(){
@@ -188,11 +192,23 @@ void mouseFunction(int button, int state,int x, int y){
     Click c;
     c.button = button;
     c.state = state;
+    
     c.x = x;
     c.y = y;
+    
     if(state == 0){
         g->addClick(c);
     }
+    
+}
+
+void mouseMoveFunction(int x, int y){
+    Click c;
+
+    c.x = x;
+    c.y = y;
+    
+    g->addClick(c);
     
 }
 

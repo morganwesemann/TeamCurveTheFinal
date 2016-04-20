@@ -92,7 +92,9 @@ public:
     /*ID=3 DONE*/void splayToRoot(SplayNode<Base>* ptr);
     /*ID=4 DONE*/void printLevelOrderInt(ostream &os = cout) const;
     int getNumNodes();
-    
+    int getWidth(int depth);
+    int getHeight(SplayNode<Base> *n);
+    SplayNode<Base>* getRoot();
 protected:
     int numNodes;
     SplayNode<Base> *root;

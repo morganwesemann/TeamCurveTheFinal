@@ -35,6 +35,8 @@ public:
     Location getLocation();
     int getRadius();
     void setRadius(int r);
+    string getData();
+    void setData(string str);
 };
 
 

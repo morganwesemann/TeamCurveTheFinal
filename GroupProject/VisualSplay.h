@@ -19,14 +19,20 @@
 #include "Group0SplayIMPL.h"
 #include <sstream>
 #include <cstring>
+#include <vector>
 
 class VisualSplay {
 private:
+    vector<CircleNode* > visualSplay;
     SplayTree<int>* splay;
     GLUT_Plotter* screen;
     AlphanumericPlotter* alpha;
-    vector<string> splitStrIntoVector(string sentence, const char &d);
+    vector<string> splitStrIntoVector(string str, const char &d = ' ');
+    int totalNodeSlots;
+    int screenHeight;
+    int screenWidth;
     
+    void deleteVisualSplay();
 public:
     
     void insert(int val);

@@ -150,11 +150,10 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
                 
                 
             }
-        } else {
-            
+            x+= spaceAmount + charPtr->width;
         }
         
-        x+= spaceAmount + charPtr->width;
+        
     }
 }
 
@@ -162,4 +161,26 @@ AlphanumericPlotter& AlphanumericPlotter::operator=(GLUT_Plotter* s) {
     screen = s;
     init();
     return *this;
+}
+
+int AlphanumericPlotter::getPixelWidth(string str) {
+    int size = str.length();
+    int pixelWidth = 0;
+    character* charPtr;
+    char c;
+    for (int i = 0; i < size; i++) {
+        c = str[i];
+        
+        map<char,character>::iterator it;
+        
+        it = characters.find(c);
+        
+        if (c != ' ' && it != characters.end()) {
+            charPtr = &characters[c];
+            pixelWidth += charPtr->width;
+            pixelWidth += spaceAmount;
+            
+        }
+    }
+    return pixelWidth;
 }

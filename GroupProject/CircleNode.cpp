@@ -23,29 +23,29 @@ void CircleNode::draw() {
     
     float twoPi = 2.0 * M_PI;
     
+    float x, y;
+    
     for(int i = 0; i <= 360;i++) {
-        screen->plot(
-                     loc.x + (radius * cos(i *  twoPi / 360)),
-                     loc.y + (radius * sin(i * twoPi / 360))
-                    );
-        screen->plot(
-                     loc.x + ((radius-1) * cos(i *  twoPi / 360)),
-                     loc.y + ((radius-1) * sin(i * twoPi / 360))
-                     );
-        screen->plot(
-                     loc.x + ((radius+1) * cos(i *  twoPi / 360)),
-                     loc.y + ((radius+1) * sin(i * twoPi / 360))
-                     );
+        //thickness of 1
+        x = loc.x + (radius * cos(i *  twoPi / 360));
+        y = loc.y + (radius * sin(i * twoPi / 360));
+        screen->plot(x,y);
+        
+        //thickness of 2
+        x = loc.x + ((radius-1) * cos(i *  twoPi / 360));
+        y = loc.y + ((radius-1) * sin(i * twoPi / 360));
+        screen->plot(x,y);
+        
+        //thickness of 3
+        x = loc.x + ((radius+1) * cos(i *  twoPi / 360));
+        y = loc.y + ((radius+1) * sin(i * twoPi / 360));
+        
+        screen->plot(x,y);
     }
     
+    int pixelWidth = (alpha->getPixelWidth(data) / 2) - 2;
     
-    /*int length = data.length();
-    int totalLength = 0;
-    for (int i = 0; i < length; i++) {
-        totalLength +=
-    }*/
-    
-    alpha->plotString(data, loc.x-34, loc.y+11);
+    alpha->plotString(data, loc.x-pixelWidth, loc.y+11);
 }
 
 void CircleNode::setLocation(Location l) {
@@ -60,9 +60,15 @@ int CircleNode::getRadius() {
     return radius;
 }
 
-
 void CircleNode::setRadius(int r) {
     radius = r;
+}
+
+string CircleNode::getData() {
+    return data;
+}
+void CircleNode::setData(string str) {
+    data = str;
 }
 
 

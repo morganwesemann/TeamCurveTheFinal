@@ -30,6 +30,21 @@ void GroupProject::drawT() {
     
 
 }
+
+/*void GroupProject::drawT() {
+    int screenHeight, screenWidth;
+    screenHeight = screen->getHeight();
+    screenWidth = screen->getWidth();
+    AlphanumericPlotter alpha(g)
+    Location rootLoc;
+    rootLoc.x = screenWidth/2;
+    rootLoc.y = screenHeight - 100;
+    CircleNode rootCircle(g,&alpha,"19",rootLoc);
+    
+
+    
+}*/
+
 //GroupProject Main Game Loop
 void GroupProject::Play(void){
     
@@ -50,12 +65,22 @@ void GroupProject::Play(void){
         
         Click c;
         c = g->getClick();
-        AlphanumericPlotter alpha(g);
-        g->setColor(0xffffff);
-        alpha.plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
-        alpha.plotString("0123456789", 300, 300);
-        drawT();
-        g->plot(c.x, g->getHeight() - c.y);
+        
+        //if location is IN BOUNDS, plot
+        if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
+        
+            if (c.state == 0) {
+                
+            }
+            AlphanumericPlotter alpha(g);
+            g->setColor(0xffffff);
+            alpha.plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
+            alpha.plotString("0123456789", 300, 300);
+            drawT();
+            char* buffer = g->getBuffer();
+            g->plot(c.x, g->getHeight() - c.y);
+            
+        }
     }
     
     // Update screen - draw game

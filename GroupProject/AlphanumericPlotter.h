@@ -47,6 +47,8 @@ public:
     
     void plotString(string str, int x, int y);
     
+    int getPixelWidth(string str);
+    
 };
 
 #endif /* AlphanumericPlotter_h */
