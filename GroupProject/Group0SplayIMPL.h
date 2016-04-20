@@ -607,6 +607,8 @@ int SplayTree<Base>::getHeight(SplayNode<Base> *n) {
     return leftHeight < rightHeight ? rightHeight : leftHeight;
 }
 
+/*******************************************************************************/
+
 template <class Base>
 SplayNode<Base>* SplayTree<Base>::getRoot() {
     return root;

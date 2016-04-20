@@ -19,8 +19,6 @@ AlphanumericPlotter::AlphanumericPlotter(GLUT_Plotter* g) {
 AlphanumericPlotter::~AlphanumericPlotter() {
 }
 
-//it's ugly BUT IT WORKS
-//to update and clean up
 void AlphanumericPlotter::init() {
     string dummyText;
     char c;

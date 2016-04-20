@@ -96,7 +96,7 @@ void VisualSplay::draw() {
         int tempSize = 0;
         int visualLocation = 1;
         Location l;
-                for (int i = 0; i < countLevels; i++) {
+        for (int i = 0; i < countLevels; i++) {
             tempSize = tempDoubleVec[i].size();
             for (int j = 0; j < tempSize; j++) {
                 if (tempDoubleVec[i][j] == "-1") {
@@ -117,9 +117,9 @@ void VisualSplay::draw() {
                         int temp2 = ((i+2) / 2) - 1;
                         if (visualSplay[temp2] == visualSplay[temp]) {
                             //left ptr
-                            //int depth = splay->getHeight(splay->getRoot());
+                            int depth = splay->getHeight(splay->getRoot());
                             //
-                            //cout << depth;
+                            cout << "depth: " << depth;
                             //int width = splay->getWidth(depth-1 - i);
                             l.x = screenWidth/2 + (50);
                         } else {
@@ -128,10 +128,6 @@ void VisualSplay::draw() {
                         }
                     }
                     l.y = screenHeight - 100 - (i * 70);
-                    
-                    
-
-                    
                     
                     visualSplay[visualLocation] = new CircleNode(screen,alpha,tempDoubleVec[i][j],l);
                 }
