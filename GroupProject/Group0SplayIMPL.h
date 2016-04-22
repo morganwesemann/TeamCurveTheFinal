@@ -588,29 +588,5 @@ void SplayTree<Base>::remove(const Base &item)
 }// remove()
 
 /*******************************************************************************/
-template <class Base>
-int SplayTree<Base>::getWidth(int depth){
-    if(depth == 1)
-        return 1;
-    return ( getWidth(depth - 1) * 2 ) + 1;
-}
 
-/*******************************************************************************/
-
-template <class Base>
-int SplayTree<Base>::getHeight(SplayNode<Base> *n) {
-    int leftHeight = 1, rightHeight = 1;
-    if(n->left)
-        leftHeight = getHeight(n->left);
-    if(n->right)
-        rightHeight = getHeight(n->right);
-    return leftHeight < rightHeight ? rightHeight : leftHeight;
-}
-
-/*******************************************************************************/
-
-template <class Base>
-SplayNode<Base>* SplayTree<Base>::getRoot() {
-    return root;
-}
 
