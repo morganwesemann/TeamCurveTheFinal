@@ -26,26 +26,36 @@ void CircleNode::draw() {
     float x, y;
     
     for(int i = 0; i <= 360;i++) {
+        
+        
         //thickness of 1
         x = loc.x + (radius * cos(i *  twoPi / 360));
         y = loc.y + (radius * sin(i * twoPi / 360));
+        if (x > 0 && x < screen->getWidth() && y > 0 && y < screen->getHeight()) {
         screen->plot(x,y);
-        
+        }
         //thickness of 2
         x = loc.x + ((radius-1) * cos(i *  twoPi / 360));
         y = loc.y + ((radius-1) * sin(i * twoPi / 360));
-        screen->plot(x,y);
+        if (x > 0 && x < screen->getWidth() && y > 0 && y < screen->getHeight()) {
+            screen->plot(x,y);
+        }
         
         //thickness of 3
         x = loc.x + ((radius+1) * cos(i *  twoPi / 360));
         y = loc.y + ((radius+1) * sin(i * twoPi / 360));
         
-        screen->plot(x,y);
+        if (x > 0 && x < screen->getWidth() && y > 0 && y < screen->getHeight()) {
+            screen->plot(x,y);
+        }
     }
     
     int pixelWidth = (alpha->getPixelWidth(data) / 2) - 2;
     
-    alpha->plotString(data, loc.x-pixelWidth, loc.y+11);
+    //if (loc.x-pixelWidth > 0 && loc.x-pixelWidth < screen->getWidth() && loc.y+11 > 0 && loc.y+11 < screen->getHeight()) {
+        alpha->plotString(data, loc.x-pixelWidth, loc.y+11);
+    //}
+    
 }
 
 void CircleNode::setLocation(Location l) {

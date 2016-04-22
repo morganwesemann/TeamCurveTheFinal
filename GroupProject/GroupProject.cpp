@@ -19,13 +19,17 @@ void GroupProject::drawT() {
     AlphanumericPlotter alpha(g);
     VisualSplay v(g,&alpha);
     v.insert(5);
-    v.insert(400);
-    v.insert(45);
-    v.insert(69);
     v.insert(61);
-    v.insert(67);
     v.insert(65);
-    v.insert(63);
+    v.insert(64);
+    v.insert(59);
+    v.insert(58);
+    v.insert(57);
+    v.insert(83);
+    v.insert(72);
+    v.insert(1);
+    v.insert(17);
+    
     v.draw();
     
 

@@ -140,8 +140,10 @@ void AlphanumericPlotter::plotString(string str, int x, int y) {
                 for (int k = 0; k < charPtr->width; k++) {
                     c = charPtr->characterArray[j][k];
                     if (c == '1') {
+                        if (x+k > 0 && x+k < screen->getWidth() && y-j > 0 && y-j < screen->getHeight()) {
                         screen->setColor(0xffffff);
                         screen->plot(x+k,y-j);
+                        }
 
                     }
                 }

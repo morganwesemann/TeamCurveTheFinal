@@ -17,6 +17,11 @@ VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) {
     screenHeight = screen->getHeight();
     screenWidth = screen->getWidth();
     totalNodeSlots = 0;
+    treeHeight = 0;
+    rootLoc.x = screenWidth / 2;
+    rootLoc.y = screenHeight - 100;
+    
+    
 }
 
 
@@ -41,6 +46,9 @@ void VisualSplay::draw() {
     
     if (splay != NULL) {
         
+        vector<vector<string> > tempDoubleVec;
+        vector<string> tempVec;
+        
         int numNodes = splay->getNumNodes();
         
         ostringstream levelOrderStream;
@@ -48,12 +56,12 @@ void VisualSplay::draw() {
         string levelOrder = levelOrderStream.str();
         
         int size = levelOrder.length();
-        int countLevels = count(levelOrder.begin(),levelOrder.end(),'l');
+        int treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
         
         
-        
+        //if first draw call, make vector
         if (visualSplay.empty()) {
-            for (int i = 0; i < countLevels; i++) {
+            for (int i = 0; i < treeHeight; i++) {
                 totalNodeSlots+= pow(2.0, i);
             }
             for (int i = 0; i < totalNodeSlots+1;i++) {
@@ -64,7 +72,7 @@ void VisualSplay::draw() {
         } else {
             //calc node slots of current splay tree
             int tempNodeSlots = 0;
-            for (int i = 0; i < countLevels; i++) {
+            for (int i = 0; i < treeHeight; i++) {
                 tempNodeSlots+= pow(2.0, i);
             }
             
@@ -77,8 +85,7 @@ void VisualSplay::draw() {
             }
             
         }
-        vector<vector<string> > tempDoubleVec;
-        vector<string> tempVec;
+        
         
         
         levelOrder.erase(0,1);
@@ -88,7 +95,7 @@ void VisualSplay::draw() {
         if (tempVec.empty()) {
             exit(1);
         }
-        for (int i = 0; i < countLevels; i++) {
+        for (int i = 0; i < treeHeight; i++) {
             tempVec[i].erase(0,1);
             tempDoubleVec.push_back(splitStrIntoVector(tempVec[i]));
         }
@@ -96,8 +103,11 @@ void VisualSplay::draw() {
         int tempSize = 0;
         int visualLocation = 1;
         Location l;
-        for (int i = 0; i < countLevels; i++) {
+        l.x = -1;
+        l.y = -1;
+        for (int i = 0; i < treeHeight; i++) {
             tempSize = tempDoubleVec[i].size();
+            //prepare vector for nodes
             for (int j = 0; j < tempSize; j++) {
                 if (tempDoubleVec[i][j] == "-1") {
                     if (visualSplay[visualLocation] != NULL) {
@@ -105,29 +115,152 @@ void VisualSplay::draw() {
                         visualSplay[visualLocation] = NULL;
                     }
                 } else {
+                    
+                    
                     if (visualSplay[visualLocation] != NULL) {
                         delete visualSplay[visualLocation];
                     }
                     if (visualLocation == 1) {
-                        l.x = screenWidth/2;
-                    } else if (visualLocation == 2) {
-                        l.x = screenWidth/2 - 50;
-                    } else {
-                        int temp = ((i+1) / 2) - 1;
-                        int temp2 = ((i+2) / 2) - 1;
-                        if (visualSplay[temp2] == visualSplay[temp]) {
+                        l.x = rootLoc.x;
+                    } else if (visualLocation == 2 || visualLocation == 3) {
+                    
+                        int parent = visualLocation / 2;
+                        cout << "parent" << parent << endl;
+                        Location parentLoc;
+                        parentLoc = visualSplay[parent]->getLocation();
+                        
+                        //calc possible parents
+                        int child1 = parent*2;
+                        
+                        if (child1 == visualLocation) {
                             //left ptr
-                            int depth = splay->getHeight(splay->getRoot());
-                            //
-                            cout << "depth: " << depth;
-                            //int width = splay->getWidth(depth-1 - i);
-                            l.x = screenWidth/2 + (50);
+                            l.x = parentLoc.x - 60;
+                            
                         } else {
-                            l.x = screenWidth/2 - (50);
                             //right ptr
+                            l.x = parentLoc.x + 60;
+                            
                         }
+
+                    } else {
+                            
+                        
+                        int parent = visualLocation / 2;
+                        int grandparent = parent / 2;
+                        cout << "parent" << parent << endl;
+                        Location parentLoc;
+                        Location grandparentLoc;
+                        parentLoc = visualSplay[parent]->getLocation();
+                        grandparentLoc = visualSplay[grandparent]->getLocation();
+                        
+                        
+                        
+
+                        
+                        //calc possible parents
+                        
+                        int child1 = parent*2;
+                        
+                        if (child1 == visualLocation) {
+                            //left ptr
+                            l.x = parentLoc.x - 60;
+                            //check collisions
+                            
+                            if (parentLoc.x > grandparentLoc.x) {
+                                if (l.x <= grandparentLoc.x) {
+                                    parentLoc.x += 60;
+                                    l.x = parentLoc.x - 60;
+                                    visualSplay[parent]->setLocation(parentLoc);
+                                }
+                            }
+                            
+                        } else {
+                           //right ptr
+                            l.x = parentLoc.x + 60;
+                            
+                            //check
+                            if (parentLoc.x < grandparentLoc.x) {
+                                if (l.x <= grandparentLoc.x) {
+                                    parentLoc.x -= 60;
+                                    l.x = parentLoc.x + 60;
+                                    visualSplay[parent]->setLocation(parentLoc);
+                                }
+                            }
+                        }
+                        
+                        int currentLocation = visualLocation;
+                        
+                        //check every node for going past parents
+                        /*do {
+                            if (visualSplay[currentLocation] != NULL) {
+                                l = visualSplay[currentLocation]->getLocation();
+                                cout << "there is a node here and it is not null";
+
+                                //calc possible parents
+                                
+                                 child1 = parent*2;
+                                
+                                if (child1 == visualLocation) {
+                                    //left ptr
+                                    cout << " and it is a left child" << endl;
+                                    if (parentLoc.x > grandparentLoc.x) {
+                                        if (l.x <= grandparentLoc.x) {
+                                            parentLoc.x += 60;
+                                            l.x = parentLoc.x - 60;
+                                            visualSplay[parent]->setLocation(parentLoc);
+                                        }
+                                    }
+                                    
+                                } else {
+                                    //right ptr
+                                    cout << " and it is a right child" << endl;
+                                    if (parentLoc.x < grandparentLoc.x) {
+                                        if (l.x <= grandparentLoc.x) {
+                                            parentLoc.x -= 60;
+                                            l.x = parentLoc.x + 60;
+                                            visualSplay[parent]->setLocation(parentLoc);
+                                        }
+                                    }
+                                    
+                                }
+                                /*
+                                if (child1 == visualLocation) {
+                                    //left ptr
+                                    l.x = parentLoc.x - 60;
+                                    //check collisions
+                                    
+                                    if (parentLoc.x > grandparentLoc.x) {
+                                        if (l.x <= grandparentLoc.x) {
+                                            parentLoc.x += 60;
+                                            l.x = parentLoc.x - 60;
+                                            visualSplay[parent]->setLocation(parentLoc);
+                                        }
+                                    }
+                                    
+                                } else {
+                                    //right ptr
+                                    l.x = parentLoc.x + 60;
+                                    
+                                    //check
+                                    if (parentLoc.x < grandparentLoc.x) {
+                                        if (l.x <= grandparentLoc.x) {
+                                            parentLoc.x -= 60;
+                                            l.x = parentLoc.x + 60;
+                                            visualSplay[parent]->setLocation(parentLoc);
+                                        }
+                                    }
+                                }*
+                                
+                                
+                                
+                            }
+                            currentLocation--;
+                            parent = currentLocation / 2;
+                            grandparent = parent / 2;
+                            cout << "p: " << parent << " " << grandparent << endl;
+                        } while (currentLocation > 4);*/
                     }
-                    l.y = screenHeight - 100 - (i * 70);
+                    l.y = rootLoc.y - (i * 100);
                     
                     visualSplay[visualLocation] = new CircleNode(screen,alpha,tempDoubleVec[i][j],l);
                 }
@@ -135,60 +268,32 @@ void VisualSplay::draw() {
             }
         }
         
-    
+        //resolve collisions
         
-        for (int i = 1; i < totalNodeSlots+1;i++) {
+    
+        //draw tree (nodes and lines)
+        for (int i = 1; i < totalNodeSlots+1; i++) {
             if (visualSplay[i] != NULL) {
                 visualSplay[i]->draw();
-                cout << visualSplay[i]->getData() << endl;
-            } else {
-                cout << "NULL" << endl;
-            }
-        }
-        
-        for (int i = totalNodeSlots; i > 1;i--) {
-            if (visualSplay[i] != NULL) {
-                int temp;
-                if (i == 2) {
-                    temp = 1;
-                } else {
-                    temp = ((i+1) / 2) - 1;
-                }
                 Line lin(screen);
-                cout << "first: " << i << " second: " << temp << endl;
-                lin.draw(*visualSplay[i], *visualSplay[temp]);
+                int child1 = i*2;
+                int child2 = i*2 + 1;
                 
-            } else {
+                //only draw left child if exists
+                if (child1 < totalNodeSlots+1) {
+                    if (visualSplay[child1] != NULL) {
+                        lin.draw(*visualSplay[i], *visualSplay[child1]);
+                    }
+                }
+                
+                //only draw right child if exists
+                if (child2 < totalNodeSlots+1) {
+                    if (visualSplay[child2] != NULL) {
+                        lin.draw(*visualSplay[i], *visualSplay[child2]);
+                    }
+                }
             }
         }
-        
-        
-        /*Location rootLoc;
-        rootLoc.x = screenWidth/2;
-        rootLoc.y = screenHeight - 100;
-        CircleNode rootCircle(screen,alpha,"19",rootLoc);
-        rootCircle.draw();*/
-        
-       
-        
-        
-        
-        
-        
-        CircleNode* circleTree = new CircleNode[numNodes+1];
-        
-        /*for (int i = 0; i < size; i++) {
-            if (str[i] != ' ') {
-                if (str)
-            }
-        }
-        
-        //rootCircle.draw();
-
-        /*int numNodes = splay->getNumNodes();
-        for (int i = 0; i < numNodes; i++) {
-            
-        }*/
     }
 }
 

@@ -10,8 +10,8 @@
 #define Location_h
 
 struct Location {
-    int x = 0;
-    int y = 0;
+    float x = -1;
+    float y = -1;
     
     Location(int a = 0, int b = 0) {
         x = a;

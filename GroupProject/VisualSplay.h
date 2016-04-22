@@ -20,6 +20,9 @@
 #include <sstream>
 #include <cstring>
 #include <vector>
+#include <algorithm>
+
+using namespace std;
 
 class VisualSplay {
 private:
@@ -29,10 +32,14 @@ private:
     AlphanumericPlotter* alpha;
     vector<string> splitStrIntoVector(string str, const char &d = ' ');
     int totalNodeSlots;
+    int treeHeight;
     int screenHeight;
     int screenWidth;
     
+    Location rootLoc;
+    
     void deleteVisualSplay();
+    void updateTree();
 public:
     
     void insert(int val);
