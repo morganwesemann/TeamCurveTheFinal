@@ -51,7 +51,7 @@ public:
     
     AlphanumericPlotter(GLUT_Plotter* s);
     
-    AlphanumericPlotter& operator=(GLUT_Plotter* s);
+    AlphanumericPlotter& operator=(AlphanumericPlotter& a);
     
     ~AlphanumericPlotter();
     

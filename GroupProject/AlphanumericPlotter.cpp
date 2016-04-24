@@ -18,6 +18,15 @@ AlphanumericPlotter::AlphanumericPlotter(GLUT_Plotter* g)
     init();
 }
 
+AlphanumericPlotter& AlphanumericPlotter::operator=(AlphanumericPlotter& a)
+{
+    screen = a.screen;
+    numCharacters = a.numCharacters;
+    spaceAmount = a.spaceAmount;
+    init();
+    return *this;
+}
+
 // DESTRUCTOR
 AlphanumericPlotter::~AlphanumericPlotter() {}
 
@@ -169,18 +178,6 @@ void AlphanumericPlotter::plotString(string str, int x, int y)
         }
     }
 }
-
-
-
-
-AlphanumericPlotter& AlphanumericPlotter::operator=(GLUT_Plotter* s)
-{
-    screen = s;
-    init();
-    return *this;
-}
-
-
 
 
 int AlphanumericPlotter::getPixelWidth(string str)
