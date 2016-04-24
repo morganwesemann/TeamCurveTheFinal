@@ -48,14 +48,18 @@ void VisualSplay::draw() {
     
     if (splay != NULL) {
         
-        vector<vector<string> > tempDoubleVec;
+        vector< pair<int,string> > vectorOfNodePairs = splay->parseToVector();
+        
+        int x = vectorOfNodePairs.size();
+        /*vector<vector<string> > tempDoubleVec;
         vector<string> tempVec;
         
         ostringstream levelOrderStream;
         splay->printLevelOrderInt(levelOrderStream);
         string levelOrder = levelOrderStream.str();
-        
-        size_t treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
+        cout << "level order: " << levelOrder << endl;
+
+        int treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
         
         //if first draw call, make vector
         if (visualSplay.empty())
@@ -72,24 +76,29 @@ void VisualSplay::draw() {
         else
         {
             int tempNodeSlots = 0;
+            
             for (int i = 0; i < treeHeight; i++) {
                 tempNodeSlots+= pow(2.0, i);
             }
-            
+            cout << "them nodeslots: " << tempNodeSlots << endl;
             //increase capacity of visual splay if needed
             if (tempNodeSlots > totalNodeSlots) {
+                int temp = tempNodeSlots;
                 tempNodeSlots -= totalNodeSlots;
                 for (int i = 0; i < tempNodeSlots; i++) {
                     visualSplay.push_back(NULL);
                 }
+                totalNodeSlots = temp;
+                
             }
             
         }
         
         
         
+        
         levelOrder.erase(0,1);
-        cout << levelOrder;
+        cout << "level order: " << levelOrder << endl;
         
         tempVec = splitStrIntoVector(levelOrder,'l');
         if (tempVec.empty()) {
@@ -100,7 +109,7 @@ void VisualSplay::draw() {
             tempDoubleVec.push_back(splitStrIntoVector(tempVec[i]));
         }
         
-        size_t tempSize = 0;
+        int tempSize = 0;
         int visualLocation = 1;
         Location l;
         l.x = -1;
@@ -118,6 +127,7 @@ void VisualSplay::draw() {
                     
                     
                     if (visualSplay[visualLocation] != NULL) {
+                        cout << "ey that location do: " << visualLocation << endl;
                         delete visualSplay[visualLocation];
                     }
                     if (visualLocation == 1) {
@@ -125,7 +135,7 @@ void VisualSplay::draw() {
                     } else if (visualLocation == 2 || visualLocation == 3) {
                     
                         int parent = visualLocation / 2;
-                        cout << "parent" << parent << endl;
+                        //cout << "parent" << parent << endl;
                         Location parentLoc;
                         parentLoc = visualSplay[parent]->getLocation();
                         
@@ -147,7 +157,7 @@ void VisualSplay::draw() {
                         
                         int parent = visualLocation / 2;
                         int grandparent = parent / 2;
-                        cout << "parent" << parent << endl;
+                        //cout << "parent" << parent << endl;
                         Location parentLoc;
                         Location grandparentLoc;
                         parentLoc = visualSplay[parent]->getLocation();
@@ -188,77 +198,7 @@ void VisualSplay::draw() {
                             }
                         }
                         
-                        //int currentLocation = visualLocation;
-                        
-                        //check every node for going past parents
-                        /*do {
-                            if (visualSplay[currentLocation] != NULL) {
-                                l = visualSplay[currentLocation]->getLocation();
-                                cout << "there is a node here and it is not null";
-
-                                //calc possible parents
-                                
-                                 child1 = parent*2;
-                                
-                                if (child1 == visualLocation) {
-                                    //left ptr
-                                    cout << " and it is a left child" << endl;
-                                    if (parentLoc.x > grandparentLoc.x) {
-                                        if (l.x <= grandparentLoc.x) {
-                                            parentLoc.x += 60;
-                                            l.x = parentLoc.x - 60;
-                                            visualSplay[parent]->setLocation(parentLoc);
-                                        }
-                                    }
-                                    
-                                } else {
-                                    //right ptr
-                                    cout << " and it is a right child" << endl;
-                                    if (parentLoc.x < grandparentLoc.x) {
-                                        if (l.x <= grandparentLoc.x) {
-                                            parentLoc.x -= 60;
-                                            l.x = parentLoc.x + 60;
-                                            visualSplay[parent]->setLocation(parentLoc);
-                                        }
-                                    }
-                                    
-                                }
-                         
-                                if (child1 == visualLocation) {
-                                    //left ptr
-                                    l.x = parentLoc.x - 60;
-                                    //check collisions
-                                    
-                                    if (parentLoc.x > grandparentLoc.x) {
-                                        if (l.x <= grandparentLoc.x) {
-                                            parentLoc.x += 60;
-                                            l.x = parentLoc.x - 60;
-                                            visualSplay[parent]->setLocation(parentLoc);
-                                        }
-                                    }
-                                    
-                                } else {
-                                    //right ptr
-                                    l.x = parentLoc.x + 60;
-                                    
-                                    //check
-                                    if (parentLoc.x < grandparentLoc.x) {
-                                        if (l.x <= grandparentLoc.x) {
-                                            parentLoc.x -= 60;
-                                            l.x = parentLoc.x + 60;
-                                            visualSplay[parent]->setLocation(parentLoc);
-                                        }
-                                    }
-                                }*
-                                
-                                
-                                
-                            }
-                            currentLocation--;
-                            parent = currentLocation / 2;
-                            grandparent = parent / 2;
-                            cout << "p: " << parent << " " << grandparent << endl;
-                        } while (currentLocation > 4);*/
+                      
                     }
                     l.y = rootLoc.y - (i * 100);
                     
@@ -293,7 +233,17 @@ void VisualSplay::draw() {
                     }
                 }
             }
-        }
+        }*/
+    }
+}
+
+void VisualSplay::moveTree(Location loc) {
+    if (splay != NULL) {
+    
+        rootLoc.x += loc.x;
+        rootLoc.y += loc.y;
+        cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
+
     }
 }
 

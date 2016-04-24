@@ -273,6 +273,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 }//splayToRoot()
 
+//no longer used, but kept in for legacy support
 /*******************************************************************************/
 
 template <class Base> void SplayTree<Base>::printLevelOrderInt(ostream &os) const
@@ -327,6 +328,64 @@ template <class Base> void SplayTree<Base>::printLevelOrderInt(ostream &os) cons
 	}//while
     delete temp;
 }//printLevelOrder()
+
+/*******************************************************************************/
+template<class Base>
+vector<pair<int,string> > SplayTree<Base>::parseToVector() {
+    vector<pair<int,string> > nodes;
+    pair<int,string> indexDataPair;
+    if(root == NULL) //empty tree
+    {
+        return nodes;
+    }
+    
+    queue <SplayNode<Base>*> qParent,qChildren;
+    int levelNum = 0;
+    int count = 1;
+    
+    qParent.push(root);
+    
+    while(!qParent.empty())
+    {
+        
+        while(!qParent.empty() )
+        {
+            SplayNode<Base>* current = qParent.front();
+            
+            indexDataPair.first = count;
+            
+            stringstream intAsString;
+            intAsString << current->data;
+            string data = intAsString.str();
+            
+            indexDataPair.second = data;
+            
+            nodes.push_back(indexDataPair);
+            
+            qParent.pop();
+            
+            
+            if(current->left!=NULL) {
+                qChildren.push(current->left);
+                
+            }
+            count++;
+            
+            if(current->right!=NULL) {
+                qChildren.push(current->right);
+                
+            }
+            count++;
+            
+        }
+        
+        levelNum++;
+        qParent = qChildren;
+        while(!qChildren.empty()) qChildren.pop();
+    }//while
+    
+    return nodes;
+}
 
 /*******************************************************************************/
 
