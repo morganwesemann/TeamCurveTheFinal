@@ -14,23 +14,33 @@
 #include <map>
 #include <iostream>
 
-struct character {
+
+struct character
+{
+    // 2 dimensional vector of characters
     vector<vector<char> > characterArray;
+    
     int width, height;
+    
     string fileName;
-    character() {
+    
+    character()
+    {
         width = 0;
         height = 0;
         fileName = "";
     }
 };
 
-class AlphanumericPlotter {
+
+
+
+class AlphanumericPlotter
+{
 private:
     map<char,character> characters;
     
-    int numCharacters;
-    int spaceAmount;
+    int numCharacters, spaceAmount;
     
     unsigned int color;
     
@@ -46,9 +56,9 @@ public:
     ~AlphanumericPlotter();
     
     void plotString(string str, int x, int y);
-    
+
     int getPixelWidth(string str);
     
 };
 
-#endif /* AlphanumericPlotter_h */
+#endif

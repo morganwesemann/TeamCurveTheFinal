@@ -16,7 +16,8 @@
 #include <cmath>
 #include <iostream>
 
-class Line {
+class Line
+{
 private:
     GLUT_Plotter* screen;
     

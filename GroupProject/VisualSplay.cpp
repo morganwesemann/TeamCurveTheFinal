@@ -33,12 +33,14 @@ void VisualSplay::remove(int val) {
     splay->remove(val);
 }
 
-void VisualSplay::clear() {
+void VisualSplay::clear()
+{
     delete splay;
     deleteVisualSplay();
 }
 
-void VisualSplay::deleteVisualSplay() {
+void VisualSplay::deleteVisualSplay()
+{
     visualSplay.clear();
 }
 
@@ -49,28 +51,26 @@ void VisualSplay::draw() {
         vector<vector<string> > tempDoubleVec;
         vector<string> tempVec;
         
-        int numNodes = splay->getNumNodes();
-        
         ostringstream levelOrderStream;
         splay->printLevelOrderInt(levelOrderStream);
         string levelOrder = levelOrderStream.str();
         
-        int size = levelOrder.length();
-        int treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
-        
+        size_t treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
         
         //if first draw call, make vector
-        if (visualSplay.empty()) {
-            for (int i = 0; i < treeHeight; i++) {
+        if (visualSplay.empty())
+        {
+            for (int i = 0; i < treeHeight; i++)
+            {
                 totalNodeSlots+= pow(2.0, i);
             }
-            for (int i = 0; i < totalNodeSlots+1;i++) {
+            for (int i = 0; i < totalNodeSlots+1;i++)
+            {
                 visualSplay.push_back(NULL);
-                
             }
-            
-        } else {
-            //calc node slots of current splay tree
+        }
+        else
+        {
             int tempNodeSlots = 0;
             for (int i = 0; i < treeHeight; i++) {
                 tempNodeSlots+= pow(2.0, i);
@@ -100,7 +100,7 @@ void VisualSplay::draw() {
             tempDoubleVec.push_back(splitStrIntoVector(tempVec[i]));
         }
         
-        int tempSize = 0;
+        size_t tempSize = 0;
         int visualLocation = 1;
         Location l;
         l.x = -1;
@@ -188,7 +188,7 @@ void VisualSplay::draw() {
                             }
                         }
                         
-                        int currentLocation = visualLocation;
+                        //int currentLocation = visualLocation;
                         
                         //check every node for going past parents
                         /*do {
@@ -223,7 +223,7 @@ void VisualSplay::draw() {
                                     }
                                     
                                 }
-                                /*
+                         
                                 if (child1 == visualLocation) {
                                     //left ptr
                                     l.x = parentLoc.x - 60;

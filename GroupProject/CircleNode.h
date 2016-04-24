@@ -14,29 +14,35 @@
 #include "AlphanumericPlotter.h"
 #include <cmath>
 
-class CircleNode {
+class CircleNode
+{
 private:
     GLUT_Plotter* screen;
     string data;
     AlphanumericPlotter* alpha;
     Location loc;
     int radius;
+    
 public:
-    CircleNode() {
+    CircleNode()
+    {
         screen = NULL;
         data = "";
         alpha = NULL;
         radius = 0;
     }
     CircleNode(GLUT_Plotter* g, AlphanumericPlotter* a, string d, Location l, int r = 40);
+    
     void draw();
+    
     void setLocation(Location l);
+    void setRadius(int r);
+    void setData(string str);
+    
     Location getLocation();
     int getRadius();
-    void setRadius(int r);
     string getData();
-    void setData(string str);
 };
 
 
-#endif /* CircleNode_h */
+#endif

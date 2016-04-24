@@ -22,9 +22,6 @@ void GroupProject::drawT() {
     v.insert(61);
     v.insert(65);
     v.insert(64);
-    v.insert(59);
-    v.insert(58);
-    v.insert(57);
     v.insert(83);
     v.insert(72);
     v.insert(1);
@@ -81,7 +78,7 @@ void GroupProject::Play(void){
             alpha.plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
             alpha.plotString("0123456789", 300, 300);
             drawT();
-            char* buffer = g->getBuffer();
+            //char* buffer = g->getBuffer();
             g->plot(c.x, g->getHeight() - c.y);
             
         }

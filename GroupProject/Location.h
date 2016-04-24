@@ -9,20 +9,26 @@
 #ifndef Location_h
 #define Location_h
 
-struct Location {
-    float x = -1;
-    float y = -1;
+struct Location
+{
+    float x,y;
     
-    Location(int a = 0, int b = 0) {
+    // Default to 0,0
+    Location(int a = 0, int b = 0)
+    {
         x = a;
         x = b;
     }
     
-    bool operator==(Location l) {
+    // Comparison
+    bool operator==(Location l)
+    {
         return l.x == x && l.y == y;
     }
     
-    bool operator!=(Location l) {
+    // Inequivalence
+    bool operator!=(Location l)
+    {
         return !operator==(l);
     }
 };
