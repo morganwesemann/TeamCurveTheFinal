@@ -3,8 +3,11 @@
 
 // PREPROCESSOR DIRECTIVES
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <cstdlib>
 #include <cassert>
+#include <vector>
 
 using namespace std;
 
@@ -91,6 +94,9 @@ public:
     /*ID=2 DONE*/bool find(const Base &item);
     /*ID=3 DONE*/void splayToRoot(SplayNode<Base>* ptr);
     /*ID=4 DONE*/void printLevelOrderInt(ostream &os = cout) const;
+    
+    vector<pair<int,string> > parseToVector();
+    
     int getNumNodes();
     int getWidth(int depth);
     int getHeight(SplayNode<Base> *n);
