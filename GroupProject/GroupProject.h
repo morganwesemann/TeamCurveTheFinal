@@ -21,6 +21,8 @@
 class GroupProject{
 private:
     GLUT_Plotter *g;
+    VisualSplay *v;
+    AlphanumericPlotter *alpha;
     
 public:
     //constructor

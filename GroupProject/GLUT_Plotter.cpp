@@ -208,7 +208,7 @@ void mouseMoveFunction(int x, int y){
 
     c.x = x;
     c.y = y;
-    
+    c.state = 2;
     g->addClick(c);
     
 }

@@ -47,6 +47,8 @@ public:
     void clear();
     void draw();
     
+    void moveTree(Location loc);
+    
     VisualSplay() {
         exit(1);
     }
