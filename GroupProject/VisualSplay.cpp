@@ -54,19 +54,16 @@ void VisualSplay::checkBalance()
     if (splay != NULL) // if tree is null, do not draw
     {
         
-        vector< pair<int,string> > vectorOfNodePairs = splay->parseToVector();
-        
-        int x = vectorOfNodePairs.size();
-        /*vector<vector<string> > tempDoubleVec;
-        vector<string> tempVec;
+        vector<vector<string> > nodeMatrix;
+        vector<string> nodesInLevelVector;
         
         // These 3 lines
         ostringstream levelOrderStream;
         splay->printLevelOrderInt(levelOrderStream);
-        string levelOrder = levelOrderStream.str();
-        cout << "level order: " << levelOrder << endl;
-
-        int treeHeight = count(levelOrder.begin(),levelOrder.end(),'l');
+        string convertedTreeString = levelOrderStream.str();
+        
+        // treeHeight counts number of levelså
+        long treeHeight = count(convertedTreeString.begin(),convertedTreeString.end(),'l');
         
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -85,21 +82,19 @@ void VisualSplay::checkBalance()
         else // Here vector previously exists & needs updating
         {
             int tempNodeSlots = 0;
-            
-            for (int i = 0; i < treeHeight; i++) {
+            for (int i = 0; i < treeHeight; i++)
+            {
                 tempNodeSlots+= pow(2.0, i);
             }
-            cout << "them nodeslots: " << tempNodeSlots << endl;
+            
             //increase capacity of visual splay if needed
-            if (tempNodeSlots > totalNodeSlots) {
-                int temp = tempNodeSlots;
+            if (tempNodeSlots > totalNodeSlots)
+            {
                 tempNodeSlots -= totalNodeSlots;
                 for (int i = 0; i < tempNodeSlots; i++)
                 {
                     visualSplay.push_back(NULL);
                 }
-                totalNodeSlots = temp;
-                
             }
         }// end building vector
         
@@ -110,9 +105,6 @@ void VisualSplay::checkBalance()
         nodesInLevelVector = splitStrIntoVector(convertedTreeString,'l');
         
         
-        levelOrder.erase(0,1);
-        cout << "level order: " << levelOrder << endl;
-        
         //if (nodesInLevel.empty()){exit(1);}
         
         
@@ -122,8 +114,11 @@ void VisualSplay::checkBalance()
             nodeMatrix.push_back(splitStrIntoVector(nodesInLevelVector[i]));
         }
         
-        int tempSize = 0;
-        int visualLocation = 1;
+////////////////////////////////////////////////////////////////////////////////
+        
+        size_t numNodesInLevel = 0; //nodes in each level
+        int index = 1;              // index in visualSplay[] circleNode array
+        
         Location l;
         
         // visualsplay is a vector containing circlenodes ordered as a splay tree
@@ -150,15 +145,17 @@ void VisualSplay::checkBalance()
                 {
                     //COMPARISON HAPPENS HERE
                     
-                    if (visualSplay[visualLocation] != NULL) {
-                        cout << "ey that location do: " << visualLocation << endl;
-                        delete visualSplay[visualLocation];
-                    }
-                    if (visualLocation == 1) {
+                    if (visualSplay[index] != NULL)
+                        delete visualSplay[index];
+                    
+                    if (index == 1) // ROOT CASE
                         l.x = rootLoc.x;
                     
-                        int parent = visualLocation / 2;
-                        //cout << "parent" << parent << endl;
+                    else
+                    if (index == 2 || index == 3) // ROOT CHILDREN CASE
+                    {
+                        //here root's children
+                        int parent = index / 2;
                         Location parentLoc;
                         parentLoc = visualSplay[parent]->getLocation();
                         
@@ -179,39 +176,62 @@ void VisualSplay::checkBalance()
                         // getting grandparent & parent
                         int parent = index / 2;
                         int grandparent = parent / 2;
-                        //cout << "parent" << parent << endl;
-                        Location parentLoc;
-                        Location grandparentLoc;
+                        Location parentLoc, ancestorLocation;
                         parentLoc = visualSplay[parent]->getLocation();
                         ancestorLocation = visualSplay[grandparent]->getLocation();
                         // left child check
                         int child1 = parent*2;
-                        
-                        if (child1 == visualLocation) {
-                            //left ptr
-                            l.x = parentLoc.x - 60;
-                            //check collisions
-                            
-                            if (parentLoc.x > grandparentLoc.x) {
-                                if (l.x <= grandparentLoc.x) {
-                                    parentLoc.x += 60;
-                                    l.x = parentLoc.x - 60;
-                                    visualSplay[parent]->setLocation(parentLoc);
+
+                        // redo work here
+                        if (child1 == index)
+                        {
+                            l.x = parentLoc.x - 60; // l = leftchild
+                            int ancestor;
+                            int ancestorChild;
+                            int currentLocation = index;
+                            do
+                            {
+                                ancestorChild = currentLocation/2;
+                                ancestor = ancestorChild/2;
+                                if (parentLoc.x > ancestorLocation.x)
+                                {
+                                    if (l.x >= ancestorLocation.x)
+                                    {
+                                        // here corrects LR problem
+                                        // by shifting parent & child left
+                                        parentLoc.x += 60;
+                                        l.x = parentLoc.x - 60;
+                                        visualSplay[parent]->setLocation(parentLoc);
+                                    }
                                 }
-                            }
-                            
-                        } else {
-                           //right ptr
-                            l.x = parentLoc.x + 60;
-                            
-                            //check
-                            if (parentLoc.x < grandparentLoc.x) {
-                                if (l.x <= grandparentLoc.x) {
-                                    parentLoc.x -= 60;
-                                    l.x = parentLoc.x + 60;
-                                    visualSplay[parent]->setLocation(parentLoc);
+                                currentLocation /= 2;
+                                //break; // temporary
+                            }while(ancestor > 1); // root is 1
+                        }
+                        else //right side check
+                        {
+                            l.x = parentLoc.x + 60; // l = rightchild
+                            int ancestor;
+                            int ancestorChild;
+                            int currentLocation = index;
+                            do
+                            {
+                                ancestorChild = currentLocation/2;
+                                ancestor = ancestorChild/2;
+                                if (parentLoc.x < ancestorLocation.x)
+                                {
+                                    if (l.x <= ancestorLocation.x)
+                                    {
+                                        // here corrects LR problem
+                                        // by shifting parent & child left
+                                        parentLoc.x -= 60;
+                                        l.x = parentLoc.x + 60;
+                                        visualSplay[parent]->setLocation(parentLoc);
+                                    }
                                 }
-                            }
+                                currentLocation /= 2;
+                                //break; //temporary
+                            }while(ancestor > 1); // root is 1
                         }
                         
                       
@@ -266,7 +286,7 @@ void VisualSplay::draw()
                     }
                 }
             }
-        }*/
+        }
     }
 }
 
@@ -276,11 +296,8 @@ void VisualSplay::moveTree(Location loc) {
         rootLoc.x += loc.x;
         rootLoc.y += loc.y;
         cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
-
     }
 }
-
-
 /******************************************************************************/
 
 
