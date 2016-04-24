@@ -39,7 +39,9 @@ private:
     Location rootLoc;
     
     void deleteVisualSplay();
+    
     void updateTree();
+    void checkBalance();
 public:
     
     void insert(int val);
