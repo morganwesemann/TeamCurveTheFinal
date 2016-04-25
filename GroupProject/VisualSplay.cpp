@@ -196,7 +196,7 @@ void VisualSplay::draw()
                     searchForNode = visualMap.find(leftChild);
                     if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[currentIndex], *visualMap[leftChild]);
+                        lin.drawBetweenNodes(*visualMap[currentIndex], *visualMap[leftChild]);
                         indexQueue.push(leftChild);
                     }
                 
@@ -205,7 +205,7 @@ void VisualSplay::draw()
                     searchForNode = visualMap.find(rightChild);
                     if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[currentIndex], *visualMap[rightChild]);
+                        lin.drawBetweenNodes(*visualMap[currentIndex], *visualMap[rightChild]);
                         indexQueue.push(rightChild);
                     }
                 
