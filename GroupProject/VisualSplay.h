@@ -27,42 +27,36 @@ using namespace std;
 
 class VisualSplay {
 private:
-    map<int,CircleNode*> visualMap;     // nodes
     
     SplayTree<int>* splay;              // pointer to splay tree
-    
-    GLUT_Plotter* screen;               // plotter
-    
+    GLUT_Plotter* screen;               // plotter for screen
     AlphanumericPlotter* alpha;         // alphanumeric plotter
-    
-    vector<string> splitStrIntoVector(string str, const char &d = ' ');
     
     int totalNodeSlots;
     int treeHeight;
-    
     int screenHeight;
     int screenWidth;
     
     Location rootLoc;
     
-    void deleteVisualSplay();
-    
-    void updateTree();
-    
-    void checkBalance();
-    
+    map<int,CircleNode*> visualMap;     // map <index, circleNodes>
+    void buildVisualMap();                // converts vector<index, data>
+                                        // to map<index, circleNodes>
 public:
     
+    VisualSplay(GLUT_Plotter* g, AlphanumericPlotter* a);
     void insert(int val);
     void remove(int val);
     void clear();
     void draw();
-    
     void moveTree(Location loc);
     
-    VisualSplay(){exit(-10);}
+    VisualSplay()
+    {
+        cerr << "DEFAULT CONSTRUCTOR FOR VISUAL SPLAY CALLED, QUITTING..."<<endl;
+        exit(-1);
+    }
     
-    VisualSplay(GLUT_Plotter* g, AlphanumericPlotter* a);
 };
 
 #endif /* VisualSplay_h */
