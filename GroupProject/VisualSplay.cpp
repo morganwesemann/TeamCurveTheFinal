@@ -38,7 +38,7 @@ void VisualSplay::clear() //DESTRUCTOR
 
 /******************************************************************************/
 
-void VisualSplay::checkBalance()
+void VisualSplay::buildVisualMap()
 {
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
@@ -159,51 +159,44 @@ void VisualSplay::checkBalance()
     
 }// checkBalance()
 
+/******************************************************************************/
 
-//TODO: refactor for visualMap, not visualSplay
 void VisualSplay::draw()
 {
-    if (splay != NULL) // if tree is null, do not draw
+    if (splay != NULL)
     {
-        checkBalance();
-        // ONLY PART THAT DRAWS
-        //draw tree (nodes and lines)
-        
-        map<int,CircleNode*>::iterator searchForNode;
-        
-        
+        buildVisualMap();
         
         for (int i = 1; i < totalNodeSlots+1; i++)
         {
-            searchForNode = visualMap.find(i);
-            if (searchForNode != visualMap.end())
+            if (visualMap.find(i) != visualMap.end())
             {
                 visualMap[i]->draw();
                 Line lin(screen);
-                int child1 = i*2;
-                int child2 = i*2 + 1;
-                //only draw left child if exists
-                if (child1 < totalNodeSlots+1)
+                int leftchild = i*2;
+                int rightChild = i*2 + 1;
+                
+                if (leftchild < totalNodeSlots+1)
                 {
-                    searchForNode = visualMap.find(child1);
-                    if (searchForNode != visualMap.end())
+                    if (visualMap.find(leftchild) != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[child1]);
+                        lin.draw(*visualMap[i], *visualMap[leftchild]);
                     }
                 }
-                //only draw right child if exists
-                if (child2 < totalNodeSlots+1)
+                
+                if (rightChild < totalNodeSlots+1)
                 {
-                    searchForNode = visualMap.find(child2);
-                    if (searchForNode != visualMap.end())
+                    if (visualMap.find(rightChild) != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[child2]);
+                        lin.draw(*visualMap[i], *visualMap[rightChild]);
                     }
                 }
             }
         }
     }
 }
+
+/******************************************************************************/
 
 void VisualSplay::moveTree(Location loc) {
     screen->setColor(0x000000);

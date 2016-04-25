@@ -91,15 +91,14 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
             if (c.state == 1) {
                 oldLoc.x = c.x;
-                oldLoc
-                .y = c.y;
-                cout << "x: " << c.x << " y: " << c.y << endl;
+                oldLoc.y = c.y;
+                //cout << "x: " << c.x << " y: " << c.y << endl;
             }
             if (c.state == 2) {
                 
                 
-                cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
-                cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
+                //cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
+                //cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
                 
                 changedLoc.y = (c.y - oldLoc.y)* -1;
                 //cout << "y diff" << changedLoc.y << endl;
