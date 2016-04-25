@@ -12,6 +12,7 @@ GroupProject::GroupProject(GLUT_Plotter* g)
 /******************************************************************************/
 
 bool doInsert = false;
+bool doDelete = false;
 bool first = true;
 string ourNumber;
 Location changedLoc;
@@ -28,12 +29,15 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             case 'I':
             case 'i':
                 doInsert = true;
+                doDelete = false;
                 ourNumber.clear();
                 break;
             case 13:
                 if (doInsert)
                 {
                     doInsert = false;
+                    doDelete = false;
+                   // cout << "our number: " << ourNumber;
                     int temp = atoi(ourNumber.c_str());
                     g->setColor(0x000000);
                     v->draw();
@@ -42,6 +46,21 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                     v->draw();
                     ourNumber.clear();
 
+                }
+                
+                if (doDelete) {
+                    doInsert = false;
+                    // cout << "our number: " << ourNumber;
+                    int temp = atoi(ourNumber.c_str());
+                    //cout << "int: " << temp;
+                    
+                    g->setColor(0x000000);
+                    v->draw();
+                    v->remove(temp);
+                    g->setColor(0xffffff);
+                    v->draw();
+                    ourNumber.clear();
+                    
                 }
                 
                 break;
@@ -77,22 +96,52 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                     }
                 }
                 
+                if (doDelete) {
+                    //k -= 0x30;
+                    //cout << char(k) << endl;
+                    ourNumber += char(k);
+                    //cout << ourNumber.length();
+                    if (ourNumber.length() == 3) {
+                        doDelete = false;
+                        //cout << "our number: " << ourNumber;
+                        int temp = atoi(ourNumber.c_str());
+                        //cout << "int: " << temp;
+                        
+                        g->setColor(0x000000);
+                        v->draw();
+                        v->remove(temp);
+                        g->setColor(0xffffff);
+                        v->draw();
+                        ourNumber.clear();
+                        
+                        
+                    }
+                }
+
+                
                 break;
                 
                 
             case 27: exit(1); //ESC key
 		              break;
+            case 'R':
+            case 'r':
+                doDelete = true;
+                doInsert = false;
+                ourNumber.clear();
+                break;
             case 'c':
             case 'C':
                 float screenWidth = g->getWidth();
                 
                 float screenHeight = g->getHeight();
-                cout << endl << "w: " << screenWidth  << " h: " << screenHeight << endl;
                 Location newRootLoc(screenWidth/2, screenHeight - 100);
                 g->setColor(0xffffff);
                 
                 v->moveTreeTo(newRootLoc);
                 break;
+                
+            
 
         }
     }
@@ -109,12 +158,12 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             if (c.state == 1) {
                 oldLoc.x = c.x;
                 oldLoc.y = c.y;
-                //cout << "x: " << c.x << " y: " << c.y << endl;
+                cout << "x: " << c.x << " y: " << c.y << endl;
             }
             if (c.state == 2) {
                 
                 
-                //cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
+                cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
                 //cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
                 
                 changedLoc.y = (c.y - oldLoc.y)* -1;
@@ -130,6 +179,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
+                v->moveTreeBy(changedLoc);
                 //g->Clear();
                 //v->draw();
                 

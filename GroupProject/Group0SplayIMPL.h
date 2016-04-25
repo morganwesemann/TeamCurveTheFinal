@@ -42,7 +42,7 @@ template <class Base> SplayNode<Base>* SplayNode<Base>::singleRotateRight()
 }
 
 /*******************************************************************************/
-
+//bug
 template <class Base> SplayNode<Base>* SplayNode<Base>::singleRotateLeft()
 {
 	SplayNode<Base>* rightNode = this->right;

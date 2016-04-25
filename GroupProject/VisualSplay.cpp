@@ -110,9 +110,9 @@ void VisualSplay::buildVisualMap()
             }
         }
         
-        int numNodes = vectorOfNodePairs.size();
+        totalNodes = vectorOfNodePairs.size();
         
-        for (int i = 0; i < numNodes; i++) // do this for all nodes
+        for (int i = 0; i < totalNodes; i++) // do this for all nodes
         {
             //get current index
             currentIndex = vectorOfNodePairs[i].first;
@@ -142,7 +142,7 @@ void VisualSplay::buildVisualMap()
                     locationToInsert.x = parentLocation.x - 60; //neg x left child
                 } else {
                     locationToInsert.x = parentLocation.x + 60; //pos x for right child
-                } 
+                }
             }
             
             locationToInsert.y = parentLocation.y - 100;
@@ -169,36 +169,81 @@ void VisualSplay::buildVisualMap()
 void VisualSplay::draw()
 
 {
-    if (splay != NULL)
+    if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         buildVisualMap();
         
-        for (int i = 1; i < totalNodeSlots+1; i++)
+        map<int,CircleNode*>::iterator searchForNode;
+        queue<int> indexQueue;
+        
+        int currentIndex = 1;
+        
+        indexQueue.push(1);
+        
+        while (!indexQueue.empty()) {
+            searchForNode = visualMap.find(currentIndex);
+            if (searchForNode != visualMap.end())
+            {
+                currentIndex = indexQueue.front();
+                visualMap[currentIndex]->draw();
+                indexQueue.pop();
+                
+                Line lin(screen);
+                int leftChild = currentIndex*2;
+                int rightChild = currentIndex*2 + 1;
+                //only draw left child if exists
+                
+                    searchForNode = visualMap.find(leftChild);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[currentIndex], *visualMap[leftChild]);
+                        indexQueue.push(leftChild);
+                    }
+                
+                //only draw right child if exists
+                
+                    searchForNode = visualMap.find(rightChild);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[currentIndex], *visualMap[rightChild]);
+                        indexQueue.push(rightChild);
+                    }
+                
+            }
+        }
+        
+        
+        //OLD CODE
+        
+        /*for (int i = 1; i < totalNodeSlots+1; i++)
         {
-            if (visualMap.find(i) != visualMap.end())
+            searchForNode = visualMap.find(i);
+            if (searchForNode != visualMap.end())
             {
                 visualMap[i]->draw();
                 Line lin(screen);
-                int leftchild = i*2;
-                int rightChild = i*2 + 1;
-                
-                if (leftchild < totalNodeSlots+1)
+                int child1 = i*2;
+                int child2 = i*2 + 1;
+                //only draw left child if exists
+                if (child1 < totalNodeSlots+1)
                 {
-                    if (visualMap.find(leftchild) != visualMap.end())
+                    searchForNode = visualMap.find(child1);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[leftchild]);
+                        lin.draw(*visualMap[i], *visualMap[child1]);
                     }
                 }
-                
-                if (rightChild < totalNodeSlots+1)
+                //only draw right child if exists
+                if (child2 < totalNodeSlots+1)
                 {
-                    if (visualMap.find(rightChild) != visualMap.end())
+                    searchForNode = visualMap.find(child2);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[rightChild]);
+                        lin.draw(*visualMap[i], *visualMap[child2]);
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
