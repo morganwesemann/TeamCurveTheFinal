@@ -1,26 +1,12 @@
-//
-//  Line.cpp
-//  3334groupproject
-//
-//  Created by Morgan Wesemann on 4/15/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
-
-
 #include "Line.h"
 using namespace std;
 
-
-// Constructor requires plotter
 Line::Line(GLUT_Plotter* g)
 {
     screen = g;
 }
 
-
-// specialized line that conects 2 nodes
-
-void Line::draw(CircleNode a, CircleNode b)
+void Line::draw(CircleNode a, CircleNode b) //this line connects 2 circlesnodes
 {
     // requires 2 circle nodes
     CircleNode node1 = a;
@@ -32,7 +18,7 @@ void Line::draw(CircleNode a, CircleNode b)
     locA = node1.getLocation();
     locB = node2.getLocation();
     
-    cout << node1.getData() << node2.getData(); //logging
+    //cout << node1.getData() << node2.getData(); //logging
     
     
     if (locA.y == locB.y || locB.x == locA.x)
@@ -44,7 +30,7 @@ void Line::draw(CircleNode a, CircleNode b)
         slope = float((locA.y - locB.y)) / (locA.x - locB.x);
     }
     
-    cout << "SLOPE: " << slope; //logging
+    //cout << "SLOPE: " << slope; //logging
     
     
     int i, j; // position variables
@@ -158,7 +144,4 @@ void Line::draw(CircleNode a, CircleNode b)
             i++;
         }
     }
-    
-    
-    
 }

@@ -1,11 +1,3 @@
-//
-//  AlphanumericPlotter.h
-//  3334groupproject
-//
-//  Created by Morgan Wesemann on 4/14/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
-
 #ifndef AlphanumericPlotter_h
 #define AlphanumericPlotter_h
 
