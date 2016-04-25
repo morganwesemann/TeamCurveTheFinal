@@ -84,7 +84,7 @@ void GroupProject::Play(void){
                     //k -= 0x30;
                     //cout << char(k) << endl;
                     ourNumber += char(k);
-                    cout << ourNumber.length();
+                    //cout << ourNumber.length();
                     if (ourNumber.length() == 3) {
                         doInsert = false;
                         //cout << "our number: " << ourNumber;

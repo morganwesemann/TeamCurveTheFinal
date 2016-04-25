@@ -53,6 +53,14 @@ Location CircleNode::getLocation()
     return loc;
 }
 
+int CircleNode::getX() {
+    return loc.x;
+}
+
+int CircleNode::getY() {
+    return loc.y;
+}
+
 int CircleNode::getRadius()
 {
     return radius;

@@ -19,6 +19,7 @@
 #include "Group0SplayIMPL.h"
 #include <sstream>
 #include <cstring>
+#include <map>
 #include <vector>
 #include <algorithm>
 
@@ -26,7 +27,7 @@ using namespace std;
 
 class VisualSplay {
 private:
-    vector<CircleNode* > visualSplay;
+    map<int,CircleNode*> visualMap;
     SplayTree<int>* splay;
     GLUT_Plotter* screen;
     AlphanumericPlotter* alpha;

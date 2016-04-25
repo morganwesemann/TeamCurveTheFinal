@@ -1,3 +1,4 @@
+
 #include "VisualSplay.h"
 VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a)
 {
@@ -44,7 +45,7 @@ void VisualSplay::clear()
 
 void VisualSplay::deleteVisualSplay()
 {
-    visualSplay.clear();
+    visualMap.clear();
 }
 
 /******************************************************************************/
@@ -54,7 +55,103 @@ void VisualSplay::checkBalance()
     if (splay != NULL) // if tree is null, do not draw
     {
         
-        vector<vector<string> > nodeMatrix;
+        /*retrieve our tree as a vector of indexes and data
+         *note that index is index in the tree, not index in the vector
+         * e.g.  1
+         *     /   \
+         *    2     3
+         *   / \   / \
+         *  4   5 6   7
+         *
+         * Above tree is INDEXES of those nodes, each level has 2^level nodes
+         */
+        vector< pair<int,string> > vectorOfNodePairs = splay->parseToVector();
+        
+        
+        //note that pairs are accessed using pair.first and pair.second members
+        
+        //iterator for map, searching for a node
+        map<int,CircleNode*>::iterator searchForNode;
+        
+        
+        //split vector of indexes and data into map of indexes and CIRCLENODES
+        
+        Location locationToInsert;
+        Location parentLocation;
+        int parentIndex;
+        int currentIndex;
+        int possibleChild;
+        int numTreeLevels;
+        string currentData;
+        string parentData;
+        int backIndex = vectorOfNodePairs.back().first;
+        
+        if (backIndex == 1) {
+            numTreeLevels = 0;
+            totalNodeSlots = 1;
+        } else {
+            numTreeLevels = 1;
+            while (backIndex != 1) {
+                backIndex /= 2;
+                numTreeLevels++;
+            }
+            totalNodeSlots = 0;
+            for (int i = 0; i < numTreeLevels; i++) {
+                totalNodeSlots += pow(2, i);
+            }
+        }
+        
+        //leave size as an iteger. Suck it Xcode
+        int numNodes = vectorOfNodePairs.size();
+
+        
+        for (int i = 0; i < numNodes; i++)
+        {
+            currentIndex = vectorOfNodePairs[i].first;
+            currentData = vectorOfNodePairs[i].second;
+            searchForNode = visualMap.find(currentIndex);
+            
+            if (searchForNode != visualMap.end())
+            {
+                if (visualMap[currentIndex] != NULL)
+                {
+                    delete visualMap[currentIndex];
+                }
+                
+            }
+            
+            if (currentIndex == 1)
+            {
+                locationToInsert.x = rootLoc.x;
+                locationToInsert.y = rootLoc.y;
+                parentLocation.y = rootLoc.y + 100;
+                parentLocation.x = rootLoc.x;
+                
+            } else
+            {
+                parentIndex = currentIndex / 2;
+                parentLocation = visualMap[parentIndex]->getLocation();
+                parentData = visualMap[parentIndex]->getData();
+                possibleChild = parentIndex*2;
+                searchForNode = visualMap.find(possibleChild);
+                if (currentData < parentData)
+                {
+                        //left child
+                        locationToInsert.x = parentLocation.x - 60;
+                } else
+                {
+                        //right child
+                        locationToInsert.x = parentLocation.x + 60;
+                }
+            }
+                
+            locationToInsert.y = parentLocation.y - 100;
+            visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
+            
+            
+        }
+
+        /*vector<vector<string> > nodeMatrix;
         vector<string> nodesInLevelVector;
         
         // These 3 lines
@@ -62,7 +159,7 @@ void VisualSplay::checkBalance()
         splay->printLevelOrderInt(levelOrderStream);
         string convertedTreeString = levelOrderStream.str();
         
-        // treeHeight counts number of levelså
+        // treeHeight counts number of levels
         long treeHeight = count(convertedTreeString.begin(),convertedTreeString.end(),'l');
         
 ////////////////////////////////////////////////////////////////////////////////
@@ -245,7 +342,7 @@ void VisualSplay::checkBalance()
             
             }
         
-        }// for i<treeHeight
+        }// for i<treeHeight*/
     
     }// if tree is !NULL
     
@@ -253,7 +350,7 @@ void VisualSplay::checkBalance()
 
 /******************************************************************************/
 
-
+//TODO: refactor for visualMap, not visualSplay
 void VisualSplay::draw()
 {
     if (splay != NULL) // if tree is null, do not draw
@@ -261,28 +358,36 @@ void VisualSplay::draw()
         checkBalance();
         // ONLY PART THAT DRAWS
         //draw tree (nodes and lines)
+        
+        map<int,CircleNode*>::iterator searchForNode;
+        
+        
+        
         for (int i = 1; i < totalNodeSlots+1; i++)
         {
-            if (visualSplay[i] != NULL)
+            searchForNode = visualMap.find(i);
+            if (searchForNode != visualMap.end())
             {
-                visualSplay[i]->draw();
+                visualMap[i]->draw();
                 Line lin(screen);
                 int child1 = i*2;
                 int child2 = i*2 + 1;
                 //only draw left child if exists
                 if (child1 < totalNodeSlots+1)
                 {
-                    if (visualSplay[child1] != NULL)
+                    searchForNode = visualMap.find(child1);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualSplay[i], *visualSplay[child1]);
+                        lin.draw(*visualMap[i], *visualMap[child1]);
                     }
                 }
                 //only draw right child if exists
                 if (child2 < totalNodeSlots+1)
                 {
-                    if (visualSplay[child2] != NULL)
+                    searchForNode = visualMap.find(child2);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualSplay[i], *visualSplay[child2]);
+                        lin.draw(*visualMap[i], *visualMap[child2]);
                     }
                 }
             }

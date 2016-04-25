@@ -9,8 +9,24 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "GroupProject/VisualSplay.cpp"
+            timestampString = "483241312.232962"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "VisualSplay::checkBalance()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "GroupProject/GroupProject.cpp"
-            timestampString = "483221467.541836"
+            timestampString = "483239436.582287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -26,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GroupProject/GroupProject.cpp"
-            timestampString = "483221467.541836"
+            timestampString = "483239439.342131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -42,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GroupProject/VisualSplay.cpp"
-            timestampString = "483230397.962538"
+            timestampString = "483242833.794862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "VisualSplay::draw()"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "VisualSplay::checkBalance()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,14 +73,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GroupProject/VisualSplay.cpp"
-            timestampString = "483230395.302591"
+            filePath = "GroupProject/Group0SplayIMPL.h"
+            timestampString = "483243838.281488"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "VisualSplay::draw()"
-            landmarkType = "5">
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "parseToVector()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

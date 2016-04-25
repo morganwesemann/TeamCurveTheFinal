@@ -332,30 +332,36 @@ template <class Base> void SplayTree<Base>::printLevelOrderInt(ostream &os) cons
 /*******************************************************************************/
 template<class Base>
 vector<pair<int,string> > SplayTree<Base>::parseToVector() {
+    
     vector<pair<int,string> > nodes;
+    
     pair<int,string> indexDataPair;
+    pair<int,SplayNode<Base>*> currentPair;
+    SplayNode<Base>* node;
     if(root == NULL) //empty tree
     {
         return nodes;
     }
     
-    queue <SplayNode<Base>*> qParent,qChildren;
+    queue <pair<int,SplayNode<Base>*> > qParent,qChildren;
     int levelNum = 0;
-    int count = 1;
     
-    qParent.push(root);
+    currentPair.first = 1;
+    currentPair.second = root;
+    
+    qParent.push(currentPair);
     
     while(!qParent.empty())
     {
         
         while(!qParent.empty() )
         {
-            SplayNode<Base>* current = qParent.front();
+            currentPair = qParent.front();
             
-            indexDataPair.first = count;
-            
+            indexDataPair.first = currentPair.first;
+            node = currentPair.second;
             stringstream intAsString;
-            intAsString << current->data;
+            intAsString << node->data;
             string data = intAsString.str();
             
             indexDataPair.second = data;
@@ -365,17 +371,21 @@ vector<pair<int,string> > SplayTree<Base>::parseToVector() {
             qParent.pop();
             
             
-            if(current->left!=NULL) {
-                qChildren.push(current->left);
+            if(node->left!=NULL) {
+                currentPair.first = currentPair.first*2;
+                currentPair.second = node->left;
+                qChildren.push(currentPair);
                 
             }
-            count++;
             
-            if(current->right!=NULL) {
-                qChildren.push(current->right);
+            
+            if(node->right!=NULL) {
+                currentPair.first = currentPair.first*2+1;
+                currentPair.second = node->right;
+                qChildren.push(currentPair);
                 
             }
-            count++;
+            
             
         }
         

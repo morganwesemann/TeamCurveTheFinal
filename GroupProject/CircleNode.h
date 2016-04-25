@@ -40,6 +40,8 @@ public:
     void setData(string str);
     
     Location getLocation();
+    int getX();
+    int getY();
     int getRadius();
     string getData();
 };
