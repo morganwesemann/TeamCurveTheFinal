@@ -1,40 +1,15 @@
-/*
- * GroupProject.cpp
- *
- *  Created on: Mar 31, 2014
- *  Modified on: Mar 31, 2014
- *  Author: D. Booth
- */
-
-
 #include "GroupProject.h"
 
-//GroupProject Constructor
 
-GroupProject::GroupProject(GLUT_Plotter* g){
+/******************************************************************************/
+GroupProject::GroupProject(GLUT_Plotter* g)
+{
     this->g = g;
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
 }
 
-void GroupProject::drawT() {
-    //v->draw();
-    
-}
-
-/*void GroupProject::drawT() {
-    int screenHeight, screenWidth;
-    screenHeight = screen->getHeight();
-    screenWidth = screen->getWidth();
-    AlphanumericPlotter alpha(g)
-    Location rootLoc;
-    rootLoc.x = screenWidth/2;
-    rootLoc.y = screenHeight - 100;
-    CircleNode rootCircle(g,&alpha,"19",rootLoc);
-    
-
-    
-}*/
+/******************************************************************************/
 
 bool doInsert = false;
 bool doDelete = false;
@@ -43,13 +18,12 @@ string ourNumber;
 Location changedLoc;
 Location oldLoc;
 
-//GroupProject Main Game Loop
-void GroupProject::Play(void){
-    
-    //Check for Keyboard Hit
-    while(g->kbhit()){
+void GroupProject::Play(void) //GroupProject Main Game Loop
+{
+    while(g->kbhit()) //Check for Keyboard Hit
+    {
         int k = g->getKey();
-        //cout << "key entered: " << k << endl;
+
         switch (k){
                 
             case 'I':
@@ -57,16 +31,14 @@ void GroupProject::Play(void){
                 doInsert = true;
                 doDelete = false;
                 ourNumber.clear();
-                //cout << endl << "insert" << endl;
                 break;
             case 13:
-                if (doInsert) {
+                if (doInsert)
+                {
                     doInsert = false;
                     doDelete = false;
                    // cout << "our number: " << ourNumber;
                     int temp = atoi(ourNumber.c_str());
-                    //cout << "int: " << temp;
-                    
                     g->setColor(0x000000);
                     v->draw();
                     v->insert(temp);
@@ -121,8 +93,6 @@ void GroupProject::Play(void){
                         g->setColor(0xffffff);
                         v->draw();
                         ourNumber.clear();
-                        
-                        
                     }
                 }
                 
@@ -204,7 +174,6 @@ void GroupProject::Play(void){
                 //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
-                v->moveTreeBy(changedLoc);
                 //g->Clear();
                 //v->draw();
                 
@@ -226,4 +195,4 @@ void GroupProject::Play(void){
     g->Draw();
     
 }
-
+/******************************************************************************/

@@ -5,6 +5,8 @@
  *      Author: Dr. Booth
  */
 
+// DO NOT CHANGE
+
 #include "GLUT_Plotter.h"
 GLUT_Plotter* g;
 

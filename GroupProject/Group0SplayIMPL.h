@@ -497,7 +497,11 @@ template <class Base> void SplayTree<Base>::insert(const Base &item)
 
 	while(ptr != NULL)
 	{
-		if(ptr->data == item) return;
+		if(ptr->data == item)
+        {
+            splayToRoot(ptr);
+            return;
+        }
 
 		else if(ptr->data < item){
 			parent = ptr;

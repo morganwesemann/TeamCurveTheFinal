@@ -6,6 +6,8 @@
  *  Modified on: Mar 22, 2014
  */
 
+// DO NOT CHANGE
+
 #ifndef GLUT_PLOTTER_H_
 #define GLUT_PLOTTER_H_
 

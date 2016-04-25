@@ -15,7 +15,6 @@ private:
     
 public:
     Line(GLUT_Plotter* g);
-    
     void draw(CircleNode a, CircleNode b);
 };
 

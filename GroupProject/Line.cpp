@@ -11,8 +11,7 @@ void Line::draw(CircleNode a, CircleNode b) //this line connects 2 circlesnodes
     // requires 2 circle nodes
     CircleNode node1 = a;
     CircleNode node2 = b;
-    Location locA;
-    Location locB;
+    Location locA, locB;
     float slope;
     
     locA = node1.getLocation();
@@ -20,15 +19,11 @@ void Line::draw(CircleNode a, CircleNode b) //this line connects 2 circlesnodes
     
     //cout << node1.getData() << node2.getData(); //logging
     
-    
-    if (locA.y == locB.y || locB.x == locA.x)
-    {
+    //if (locA.y == locB.y || locB.x == locA.x)
+    if(locA == locB)
         slope = 0;
-    }
     else
-    {
         slope = float((locA.y - locB.y)) / (locA.x - locB.x);
-    }
     
     //cout << "SLOPE: " << slope; //logging
     
