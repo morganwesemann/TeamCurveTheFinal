@@ -78,7 +78,7 @@ void VisualSplay::buildVisualMap()
         Location parentLocation;
         int parentIndex;
         int currentIndex;
-        int possibleChild;
+        int possibleChildIndex;
         int numTreeLevels;
         string currentData;
         string parentData;
@@ -140,13 +140,13 @@ void VisualSplay::buildVisualMap()
                 parentLocation = visualMap[parentIndex]->getLocation();
                 parentData = visualMap[parentIndex]->getData();
                 
-                possibleChild = parentIndex*2;
-                searchForNode = visualMap.find(possibleChild);
+                possibleChildIndex = parentIndex*2;
                 
-                if (currentData < parentData)
-                    locationToInsert.x = parentLocation.x - 60; //pos x left child
-                else
+                if (possibleChildIndex == currentIndex) {
+                    locationToInsert.x = parentLocation.x - 60; //neg x left child
+                } else {
                     locationToInsert.x = parentLocation.x + 60; //pos x for right child
+                } 
             }
             
             locationToInsert.y = parentLocation.y - 100;
