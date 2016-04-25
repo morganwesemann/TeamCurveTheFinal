@@ -150,10 +150,16 @@ void VisualSplay::buildVisualMap()
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
             
             /*
-             * ADAM CODE GO HERE
+             visual map (index, circlNodes)
+             compare
              */
+            
+            
+            
+            
+            
         }
-        
+
     }// if tree is !NULL
     
 }// checkBalance()

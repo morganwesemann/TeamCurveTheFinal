@@ -118,6 +118,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 					root->parent = NULL;
 					ptr=root;
+                    root = ptr;
 				}
 				else
 				{
@@ -156,6 +157,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 					root->parent = NULL;
 					ptr=root;
+                    root = ptr;
 				}
 				else
 				{
@@ -191,11 +193,14 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 					root = root -> singleRotateLeft();
 					ptr=root;
+                    root = ptr;
 				}
-				else
+				else // here rotateNode is not
 				{
 					//correction
 					SplayNode<Base>* anchorNode = rotateNode->parent;
+                    
+                    //THIS SHOULD NOT BE HERE
 
 					rotateNode->right = rotateNode->right->singleRotateRight();//rotate
 					rotateNode->right->right->parent = rotateNode->right;//parent
@@ -229,6 +234,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 					root = root -> singleRotateRight();
 					ptr=root;
+                    root = ptr;
 				}
 				else
 				{
@@ -637,7 +643,13 @@ void SplayTree<Base>::remove(const Base &item)
 			right? parent->right = NULL : parent->left = NULL;
 			delete ptr;
 
+            root->verifySearchOrder();
+            root->verifyParentProperty();
+            
 			splayToRoot(parent); //DONE
+            
+            root->verifySearchOrder();
+            root->verifyParentProperty();
 		}
 	}//delete 0 children
 
@@ -680,8 +692,9 @@ void SplayTree<Base>::remove(const Base &item)
 
 		splayToRoot(parent);
         
+        root->verifySearchOrder();
+        root->verifyParentProperty();
         
-
 	}// delete 2 children
 
 /*******************************************************************************/
@@ -700,10 +713,26 @@ void SplayTree<Base>::remove(const Base &item)
 			}
 			else // delete NODE with RIGHT child only
 			{
-				(right)? parent->right = ptr->right : parent->left = ptr->right;
-				ptr->right = NULL;
+                if(right)
+                {
+                    parent->right = ptr->right;
+                    parent->right->parent = parent;
+                }
+                else
+                {
+                    parent->left = ptr->right;
+                    parent->left->parent = parent;
+                }
+				ptr->left = ptr->right = NULL;
 				delete ptr;
+                
+                root->verifySearchOrder();
+                root->verifyParentProperty();
+                
 				splayToRoot(parent);
+                
+                root->verifySearchOrder();
+                root->verifyParentProperty();
 			}
 		}
 		else // LEFT child only
@@ -716,10 +745,27 @@ void SplayTree<Base>::remove(const Base &item)
 			}
 			else // delete NODE with LEFT child only
 			{
-				(right)? parent->right = ptr->left : parent->left = ptr->left;
+                if(right == true)
+                {
+                    parent->right = ptr->left;
+                    parent->right->parent = parent;
+                }
+                else
+                {
+                    parent->left = ptr->left;
+                    parent->left->parent = parent;
+                }
+                
 				ptr->left = ptr->right = NULL;
 				delete ptr;
+                
+                root->verifySearchOrder();
+                root->verifyParentProperty();
+                
 				splayToRoot(parent);
+                
+                root->verifySearchOrder();
+                root->verifyParentProperty();
 			}
 		}
 
