@@ -3,14 +3,18 @@
 VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) // constructor
 {
     screen = g;                            // screen
+    
     alpha = a;                             // alphanumeric plotter
+    
     screenHeight = screen->getHeight();    // screen width
     screenWidth = screen->getWidth();      // screen height
+    
     rootLoc.x = screenWidth / 2;           // fixes root loc in x
     rootLoc.y = screenHeight - 100;        // fixes root loc in y
     
 
     splay = new SplayTree<int>;            // tree here
+    
     totalNodeSlots = 0;                    // number of nodes
     treeHeight = 0;                        // # of levels in gree
 }
@@ -29,11 +33,6 @@ void VisualSplay::remove(int val) //REMOVE FUNCTION
 void VisualSplay::clear() //DESTRUCTOR
 {
     delete splay;
-    deleteVisualSplay();
-}
-/******************************************************************************/
-void VisualSplay::deleteVisualSplay() //DESTRUCTOR HELPER FUNCTION
-{
     visualMap.clear();
 }
 
@@ -62,47 +61,43 @@ void VisualSplay::checkBalance()
         for(int i = 0; i < vectorOfNodePairs.size(); i++)
         {
             readPair = vectorOfNodePairs[i];
-            
             cout << "(Index = " << readPair.first << " , ";
             cout << "Data = " << readPair.second << ")";
             cout << endl;
         }
-        cout << "**************************************" << endl;
-        visualMap.clear();
         
-        //note that pairs are accessed using pair.first and pair.second members
         
-        //iterator for map, searching for a node
+        
         map<int,CircleNode*>::iterator searchForNode;
-        
-        
-        //split vector of indexes and data into map of indexes and CIRCLENODES
+
         
         Location locationToInsert;
         Location parentLocation;
-        
         int parentIndex;
         int currentIndex;
         int possibleChild;
         int numTreeLevels;
-        
         string currentData;
         string parentData;
         
         // backIndex is the index of the very last element in vector
         int backIndex = vectorOfNodePairs.back().first;
         
+        cout<<"LAST INDEX = "<< backIndex << endl;
+        cout << "**************************************" << endl<<endl;
         
-        if (backIndex == 1) // only root
+        visualMap.clear();
+        
+        if (backIndex == 1) // 1 item (only root)
         {
             numTreeLevels = 0;
             totalNodeSlots = 1;
         }
-        else // more than just root
+        else // 2 or more items ( > root)
         {
             numTreeLevels = 1;
             
-            while (backIndex != 1)
+            while (backIndex != 1) // counts number of levels
             {
                 backIndex /= 2;
                 numTreeLevels++;
@@ -116,12 +111,9 @@ void VisualSplay::checkBalance()
             }
         }
         
-        //leave size as an iteger. Suck it Xcode
         int numNodes = vectorOfNodePairs.size();
-        // get total number of nodes in tree
         
-        // cover all nodes
-        for (int i = 0; i < numNodes; i++)
+        for (int i = 0; i < numNodes; i++) // do this for all nodes
         {
             //get current index
             currentIndex = vectorOfNodePairs[i].first;
@@ -149,14 +141,9 @@ void VisualSplay::checkBalance()
                 searchForNode = visualMap.find(possibleChild);
                 
                 if (currentData < parentData)
-                {
-                    //left child
-                    locationToInsert.x = parentLocation.x - 60;
-                } else
-                {
-                    //right child
-                    locationToInsert.x = parentLocation.x + 60;
-                }
+                    locationToInsert.x = parentLocation.x - 60; //pos x left child
+                else
+                    locationToInsert.x = parentLocation.x + 60; //pos x for right child
             }
             
             locationToInsert.y = parentLocation.y - 100;
