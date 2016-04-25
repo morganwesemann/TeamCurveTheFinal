@@ -16,6 +16,9 @@ private:
     GLUT_Plotter *g;
     VisualSplay *v;
     AlphanumericPlotter *alpha;
+    int screenHeight;
+    int screenWidth;
+    int maxPixelX;
     
 public:
     GroupProject(GLUT_Plotter* g);
