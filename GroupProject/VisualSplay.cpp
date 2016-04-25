@@ -162,6 +162,7 @@ void VisualSplay::buildVisualMap()
 
 //TODO: refactor for visualMap, not visualSplay
 void VisualSplay::draw()
+
 {
     if (splay != NULL) // if tree is null, do not draw
     {
