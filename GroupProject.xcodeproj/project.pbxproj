@@ -17,6 +17,7 @@
 		5D5792A61CC46C6600E7FB14 /* CircleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A21CC46C6600E7FB14 /* CircleNode.cpp */; };
 		5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792A41CC46C6600E7FB14 /* Line.cpp */; };
 		5D5792E51CC5A6C600E7FB14 /* VisualSplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D5792E41CC5A6C600E7FB14 /* VisualSplay.cpp */; };
+		C09D8C571CCED44900C7897A /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C09D8C561CCED44900C7897A /* menu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +89,8 @@
 		5D5792BD1CC4705400E7FB14 /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = Characters/9.txt; sourceTree = "<group>"; };
 		5D5792E31CC5A6B100E7FB14 /* VisualSplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisualSplay.h; sourceTree = "<group>"; };
 		5D5792E41CC5A6C600E7FB14 /* VisualSplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisualSplay.cpp; sourceTree = "<group>"; };
+		C09D8C551CCED43300C7897A /* menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
+		C09D8C561CCED44900C7897A /* menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 		5D57921E1CBAD7BC00E7FB14 /* GroupProject */ = {
 			isa = PBXGroup;
 			children = (
+				C09D8C551CCED43300C7897A /* menu.h */,
+				C09D8C561CCED44900C7897A /* menu.cpp */,
 				5D1DA0A71CCDC4AD0090F930 /* Buttons */,
 				5D5792561CC0509400E7FB14 /* Characters */,
 				5D5792A91CC46D0400E7FB14 /* Location.h */,
@@ -260,6 +265,7 @@
 				5D57923A1CBAD99D00E7FB14 /* GroupProject.cpp in Sources */,
 				5D5792A71CC46C6600E7FB14 /* Line.cpp in Sources */,
 				5D57923C1CBAD9A700E7FB14 /* GLUT_Plotter.cpp in Sources */,
+				C09D8C571CCED44900C7897A /* menu.cpp in Sources */,
 				5D5792A51CC46C6600E7FB14 /* AlphanumericPlotter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
