@@ -32,6 +32,14 @@ public:
         alpha = NULL;
     }
     
+    menuButton(GLUT_Plotter* g, AlphanumericPlotter* a, string d, Location l, int t) {
+        screen = g;
+        alpha = a;
+        data = d;
+        loc = l;
+        typeMode = (type)t;
+    }
+    
     void draw();
     
     void setLocation(Location l);
