@@ -51,7 +51,7 @@ void AlphanumericPlotter::init()
         file.open(fileName.c_str());
         if (!file)
         {
-            cout << "FATAL ERROR: Assets not found. Exiting program.";
+            cerr << "FATAL ERROR: char assets not found. Exiting program."<<endl;
             exit(1);
         }
         

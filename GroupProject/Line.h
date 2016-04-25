@@ -1,11 +1,3 @@
-//
-//  Line.h
-//  3334groupproject
-//
-//  Created by Morgan Wesemann on 4/15/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
-
 #ifndef Line_h
 #define Line_h
 
@@ -27,4 +19,4 @@ public:
     void draw(CircleNode a, CircleNode b);
 };
 
-#endif /* Line_h */
+#endif 

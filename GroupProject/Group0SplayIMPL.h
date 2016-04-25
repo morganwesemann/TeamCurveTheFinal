@@ -278,6 +278,7 @@ template<class Base> void SplayTree<Base>::splayToRoot(SplayNode<Base>* ptr)
 
 template <class Base> void SplayTree<Base>::printLevelOrderInt(ostream &os) const
 {
+
     SplayNode<Base>* temp = new SplayNode<int>(-1);
 	if(root == NULL) // TREE IS EMPTY HERE, 0 ITEMS
 	{
@@ -327,12 +328,76 @@ template <class Base> void SplayTree<Base>::printLevelOrderInt(ostream &os) cons
 		while(!qChildren.empty()) qChildren.pop();
 	}//while
     delete temp;
+     
+     
 }//printLevelOrder()
 
 /*******************************************************************************/
 template<class Base>
-vector<pair<int,string> > SplayTree<Base>::parseToVector() {
+vector<pair<int,string> > SplayTree<Base>::parseToVector()
+{
+    vector<pair<int,string> > dataVector;
+    pair<int, string> dataPair;
     
+    queue<pair<int, SplayNode<Base>*> > nodeQueueParent, nodeQueueChildren;
+    pair<int, SplayNode<Base>*> nodePair;
+    pair<int, SplayNode<Base>*> tempNodePair;
+    
+    
+    if(root == NULL)
+    {
+        return dataVector;
+    }
+    
+    
+    // here 1 element is guaranteed, so add to vector and queue
+    nodePair.first = 1;
+    nodePair.second = root;
+    nodeQueueParent.push(nodePair);
+    
+    //while(!nodeQueueParent.empty())
+    //{
+        while(!nodeQueueParent.empty())
+        {
+            nodePair = nodeQueueParent.front();
+            nodeQueueParent.pop();
+            
+            dataPair.first = nodePair.first;
+            //dataPair.second = nodePair.second->data;
+            
+            stringstream dataReader;
+            dataReader << nodePair.second->data;
+            string data = dataReader.str();
+            dataPair.second = data;
+            dataVector.push_back(dataPair);
+            
+            
+            if(nodePair.second->left != NULL)
+            {
+                tempNodePair.first = (2 * nodePair.first);
+                
+                tempNodePair.second = nodePair.second->left;
+                
+                nodeQueueParent.push(tempNodePair);
+            }
+            if(nodePair.second->right!=NULL)
+            {
+                tempNodePair.first = (2 * nodePair.first)+1;
+                
+                tempNodePair.second = nodePair.second->right;
+                
+                nodeQueueParent.push(tempNodePair);
+            }
+        }
+        
+       // nodeQueueParent = nodeQueueChildren;
+        //while(!nodeQueueChildren.empty()) nodeQueueChildren.pop();
+    //}
+    
+    return dataVector;
+    
+    
+    /*
     vector<pair<int,string> > nodes;
     
     pair<int,string> indexDataPair;
@@ -371,7 +436,8 @@ vector<pair<int,string> > SplayTree<Base>::parseToVector() {
             qParent.pop();
             
             
-            if(node->left!=NULL) {
+            if(node->left!=NULL)
+            {
                 currentPair.first = currentPair.first*2;
                 currentPair.second = node->left;
                 qChildren.push(currentPair);
@@ -379,7 +445,8 @@ vector<pair<int,string> > SplayTree<Base>::parseToVector() {
             }
             
             
-            if(node->right!=NULL) {
+            if(node->right!=NULL)
+            {
                 currentPair.first = currentPair.first*2+1;
                 currentPair.second = node->right;
                 qChildren.push(currentPair);
@@ -395,6 +462,8 @@ vector<pair<int,string> > SplayTree<Base>::parseToVector() {
     }//while
     
     return nodes;
+     */
+     
 }
 
 /*******************************************************************************/
@@ -447,15 +516,16 @@ template <class Base> void SplayTree<Base>::insert(const Base &item)
 	if(right)
 	{
 		parent->right = new SplayNode<Base>(item,parent,NULL,NULL);
-        numNodes++;
+        
 		newNode = parent->right;
 	}
 	else
 	{
 		parent->left = new SplayNode<Base>(item,parent,NULL,NULL);
-        numNodes++;
 		newNode = parent->left;
 	}
+    
+    numNodes++; // update # of nodes
 
 	//cout << endl << "SPLAYING NODE -> "<< newNode->data<<endl; //temporary
 
@@ -493,6 +563,7 @@ template <class Base> bool SplayTree<Base>::find(const Base &item)
 		splayToRoot(ptr);
 	else
 		splayToRoot(lastNode);
+
 
 	return isFound;
 }
