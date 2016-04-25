@@ -41,23 +41,23 @@ void VisualSplay::clear() //DESTRUCTOR
 
 void VisualSplay::buildVisualMap()
 {
+    /*retrieve our tree as a vector of indexes and data
+     *note that index is index in the tree, not index in the vector
+     * e.g.  1
+     *     /   \
+     *    2     3
+     *   / \   / \
+     *  4   5 6   7
+     *
+     * Above tree is INDEXES of those nodes, each level has 2^level nodes
+     */
+    
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         
-        /*retrieve our tree as a vector of indexes and data
-         *note that index is index in the tree, not index in the vector
-         * e.g.  1
-         *     /   \
-         *    2     3
-         *   / \   / \
-         *  4   5 6   7
-         *
-         * Above tree is INDEXES of those nodes, each level has 2^level nodes
-         */
-        
         vector< pair<int,string> > vectorOfNodePairs = splay->parseToVector();
         
-        //adam code here
+        // CHECK VECTOR
         pair<int,string> readPair;
         for(int i = 0; i < vectorOfNodePairs.size(); i++)
         {
@@ -66,11 +66,10 @@ void VisualSplay::buildVisualMap()
             cout << "Data = " << readPair.second << ")";
             cout << endl;
         }
-        
+        //CHECK VECTOR
         
         
         map<int,CircleNode*>::iterator searchForNode;
-
         
         Location locationToInsert;
         Location parentLocation;
@@ -81,14 +80,13 @@ void VisualSplay::buildVisualMap()
         string currentData;
         string parentData;
         
-        // backIndex is the index of the very last element in vector
-        int backIndex = vectorOfNodePairs.back().first;
+        int backIndex = vectorOfNodePairs.back().first;//index of last elem in vector
         
         cout<<"LAST INDEX = "<< backIndex << endl;
         cout << "**************************************" << endl<<endl;
         
-        visualMap.clear();
         
+        visualMap.clear();
         if (backIndex == 1) // 1 item (only root)
         {
             numTreeLevels = 0;
@@ -133,13 +131,13 @@ void VisualSplay::buildVisualMap()
             }
             else // DRAW !ROOT NODE
             {
-                parentIndex = currentIndex / 2;
+                parentIndex = currentIndex/2;
                 
                 parentLocation = visualMap[parentIndex]->getLocation();
                 parentData = visualMap[parentIndex]->getData();
                 
-                possibleChild = parentIndex*2;
-                searchForNode = visualMap.find(possibleChild);
+                //possibleChild = parentIndex*2;
+                //searchForNode = visualMap.find(possibleChild);
                 
                 if (currentData < parentData)
                     locationToInsert.x = parentLocation.x - 60; //pos x left child
@@ -149,7 +147,6 @@ void VisualSplay::buildVisualMap()
             
             locationToInsert.y = parentLocation.y - 100;
             
-            // insert item to draw into map
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
         }
         
@@ -194,9 +191,7 @@ void VisualSplay::draw()
     }
 }
 
-/******************************************************************************/
-
-void VisualSplay::moveTree(Location loc) {
+void VisualSplay::moveTreeBy(Location loc) {
     screen->setColor(0x000000);
     draw();
     if (splay != NULL) {

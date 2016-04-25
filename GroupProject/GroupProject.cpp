@@ -113,7 +113,6 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
-                v->moveTree(changedLoc);
                 //g->Clear();
                 //v->draw();
                 

@@ -8,7 +8,7 @@ struct Location
     Location(int a = 0, int b = 0)
     {
         x = a;
-        x = b;
+        y = b;
     }
     
     bool operator==(Location l)
