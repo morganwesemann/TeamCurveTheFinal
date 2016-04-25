@@ -158,6 +158,8 @@ void VisualSplay::buildVisualMap()
             
             
             
+            
+            
         }
 
     }// if tree is !NULL
