@@ -1,11 +1,3 @@
-/*
- * GroupProject.h
- *
- *  Created on: Mar 28, 2014
- *  Created on: Mar 28, 2014
- *      Author: Dr. Booth
- */
-
 #ifndef GroupProject_H_
 #define GroupProject_H_
 #include "GLUT_Plotter.h"
@@ -18,20 +10,16 @@
 #include "VisualSplay.h"
 
 
-class GroupProject{
+class GroupProject
+{
 private:
     GLUT_Plotter *g;
     VisualSplay *v;
     AlphanumericPlotter *alpha;
     
 public:
-    //constructor
     GroupProject(GLUT_Plotter* g);
-    
-    //Main GAIM FUNCTION
     void Play(void);
-    
-    void drawT();
 };
 
 #endif /* GroupProject_H_ */
