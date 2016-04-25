@@ -31,7 +31,7 @@ private:
     SplayTree<int>* splay;              // pointer to splay tree
     GLUT_Plotter* screen;               // plotter for screen
     AlphanumericPlotter* alpha;         // alphanumeric plotter
-    
+        
     int totalNodeSlots;
     int treeHeight;
     int screenHeight;

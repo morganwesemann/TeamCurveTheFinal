@@ -128,10 +128,24 @@ void Line::draw(CircleNode a, CircleNode b) //this line connects 2 circlesnodes
                     if (chckLeft > pow(lessNode->getRadius(),2) && chckRight > pow(moreNode->getRadius(),2))
                     {
                         screen->plot(i, addedBySlope);
-                        screen->plot(i-1, addedBySlope);
-                        screen->plot(i+1, addedBySlope);
-                        screen->plot(i, addedBySlope+1);
-                        screen->plot(i, addedBySlope-1);
+                        if (i - 1 >0 && i - 1 < screen->getWidth()) {
+                            screen->plot(i-1, addedBySlope);
+                        }
+                        
+                        if (i + 1 >0 && i + 1 < screen->getWidth()) {
+                            screen->plot(i-1, addedBySlope);
+                        }
+                        
+                        if (addedBySlope - 1 >0 && addedBySlope - 1 < screen->getHeight()) {
+                            screen->plot(i, addedBySlope-1);
+
+                        }
+                        
+                        if (addedBySlope + 1 >0 && addedBySlope + 1 < screen->getHeight()) {
+                            screen->plot(i, addedBySlope+1);
+                        }
+                        
+                        
                     }
                 }
             }

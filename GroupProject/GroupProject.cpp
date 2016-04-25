@@ -12,8 +12,10 @@ GroupProject::GroupProject(GLUT_Plotter* g)
 /******************************************************************************/
 
 bool doInsert = false;
+bool first = true;
 string ourNumber;
 Location changedLoc;
+Location oldLoc;
 
 void GroupProject::Play(void) //GroupProject Main Game Loop
 {
@@ -87,30 +89,37 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         
         //if location is IN BOUNDS, plot
         if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
-        
+            if (c.state == 1) {
+                oldLoc.x = c.x;
+                oldLoc
+                .y = c.y;
+                cout << "x: " << c.x << " y: " << c.y << endl;
+            }
             if (c.state == 2) {
-                cout << "mouse move" << endl;
-                if (changedLoc.y > c.y) {
-                    changedLoc.y = 1;
-                } else {
-                    changedLoc.y = -1;
-                }
                 
-                if (changedLoc.x > c.x) {
-                    changedLoc.x = -1;
-                } else {
-                    changedLoc.x = 1;
-                }
                 
-                cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
+                cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
+                cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
+                
+                changedLoc.y = (c.y - oldLoc.y)* -1;
+                //cout << "y diff" << changedLoc.y << endl;
+                oldLoc.y = c.y;
+                
+                changedLoc.x = c.x - oldLoc.x;
+                oldLoc.x = c.x;
+                
+                
+         
+                
+                //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
                 v->moveTree(changedLoc);
-                g->Clear();
-                v->draw();
+                //g->Clear();
+                //v->draw();
                 
-                changedLoc.x = c.x;
-                changedLoc.y = c.y;
+                //changedLoc.x = c.x;
+                //changedLoc.y = c.y;
                 
                 
             }

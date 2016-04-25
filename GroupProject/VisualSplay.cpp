@@ -35,60 +35,12 @@ void VisualSplay::clear() //DESTRUCTOR
     delete splay;
     visualMap.clear();
 }
-/******************************************************************************/
-void VisualSplay::moveTree(Location loc)// move tree with mouse drag
-{
-    if (splay != NULL)
-    {
-        rootLoc.x += loc.x;
-        rootLoc.y += loc.y;
-    }
-}
-/******************************************************************************/
-
-void VisualSplay::draw()
-{
-    if (splay != NULL)
-    {
-        buildVisualMap();
-        
-        for (int i = 1; i < totalNodeSlots+1; i++)
-        {
-            if (visualMap.find(i) != visualMap.end())
-            {
-                visualMap[i]->draw();
-                Line lin(screen);
-                int rightChild = 2*i + 1;
-                int leftChild = 2*i;
-                
-                if (rightChild < totalNodeSlots+1) //only draw right child if exists
-                {
-                    if (visualMap.find(rightChild) != visualMap.end())
-                        lin.draw(*visualMap[i], *visualMap[rightChild]);
-                }
-                
-                if (leftChild < totalNodeSlots+1) //only draw left child if exists
-                {
-                    if (visualMap.find(leftChild) != visualMap.end())
-                        lin.draw(*visualMap[i], *visualMap[leftChild]);
-                }
-                
-            }// if item found
-            
-        }//for loop
-        
-    }//if !NULL
-    
-}//draw()
-
 
 /******************************************************************************/
 
-
-
-void VisualSplay::buildVisualMap()
+void VisualSplay::checkBalance()
 {
-    if (splay != NULL) // if tree is null, do not draw
+    if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         
         /*retrieve our tree as a vector of indexes and data
@@ -163,7 +115,11 @@ void VisualSplay::buildVisualMap()
         
         for (int i = 0; i < numNodes; i++) // do this for all nodes
         {
+            //get current index
             currentIndex = vectorOfNodePairs[i].first;
+            
+            //get current data
+            
             currentData = vectorOfNodePairs[i].second;
             
             if (currentIndex == 1) // DRAW ROOT
@@ -191,15 +147,75 @@ void VisualSplay::buildVisualMap()
             }
             
             locationToInsert.y = parentLocation.y - 100;
-            
-            // insert item to draw into map
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
+            
+            /*
+             * ADAM CODE GO HERE
+             *
+             */
         }
         
-    }// draw if function is
+    }// if tree is !NULL
     
 }// checkBalance()
 
 
+//TODO: refactor for visualMap, not visualSplay
+void VisualSplay::draw()
+{
+    if (splay != NULL) // if tree is null, do not draw
+    {
+        checkBalance();
+        // ONLY PART THAT DRAWS
+        //draw tree (nodes and lines)
+        
+        map<int,CircleNode*>::iterator searchForNode;
+        
+        
+        
+        for (int i = 1; i < totalNodeSlots+1; i++)
+        {
+            searchForNode = visualMap.find(i);
+            if (searchForNode != visualMap.end())
+            {
+                visualMap[i]->draw();
+                Line lin(screen);
+                int child1 = i*2;
+                int child2 = i*2 + 1;
+                //only draw left child if exists
+                if (child1 < totalNodeSlots+1)
+                {
+                    searchForNode = visualMap.find(child1);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[i], *visualMap[child1]);
+                    }
+                }
+                //only draw right child if exists
+                if (child2 < totalNodeSlots+1)
+                {
+                    searchForNode = visualMap.find(child2);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[i], *visualMap[child2]);
+                    }
+                }
+            }
+        }
+    }
+}
 
+void VisualSplay::moveTree(Location loc) {
+    screen->setColor(0x000000);
+    draw();
+    if (splay != NULL) {
+    
+        rootLoc.x += loc.x;
+        rootLoc.y += loc.y;
+        //cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
+    }
+    screen->setColor(0xffffff);
+    draw();
+}
+/******************************************************************************/
 

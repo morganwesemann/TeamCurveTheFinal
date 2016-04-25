@@ -90,6 +90,10 @@ void GLUT_Plotter::RegisterMouseMoveFunc(void (*func)(int x, int y)){
     glutMotionFunc(func);
 }
 
+void GLUT_Plotter::RegisterMousePassiveMoveFunc(void (*func)(int x, int y)) {
+    glutPassiveMotionFunc(func);
+}
+
 void GLUT_Plotter::RegisterIdleFunc(void (*func)(void)){
     glutIdleFunc(func);
 }
@@ -147,6 +151,7 @@ void GLUT_Plotter::callBacks(){
     RegisterSpecialKeyboardFunc(SpecialKeyboardFunction);
     RegisterMouseFunc(mouseFunction);
     RegisterMouseMoveFunc(mouseMoveFunction);
+    RegisterMousePassiveMoveFunc(mousePassiveMoveFunction);
 
 }
 
@@ -211,6 +216,16 @@ void mouseMoveFunction(int x, int y){
     c.x = x;
     c.y = y;
     c.state = 2;
+    g->addClick(c);
+    
+}
+
+void mousePassiveMoveFunction(int x, int y){
+    Click c;
+    
+    c.x = x;
+    c.y = y;
+    c.state = 1;
     g->addClick(c);
     
 }

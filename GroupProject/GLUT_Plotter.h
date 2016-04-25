@@ -62,6 +62,7 @@ public:
     void RegisterSpecialKeyboardFunc(void (*func)(int key, int x, int y));
     void RegisterMouseFunc(void (*func)(int button, int state,int x, int y));
     void RegisterMouseMoveFunc(void (*func)(int x, int y));
+    void RegisterMousePassiveMoveFunc(void (*func)(int x, int y));
     void RegisterIdleFunc(void (*func)(void));
     
     void MainLoop();
@@ -76,6 +77,7 @@ void keyboardFunction(unsigned char, int, int);
 void SpecialKeyboardFunction(int, int, int);
 void mouseFunction(int button, int state,int x, int y);
 void mouseMoveFunction(int x, int y);
+void mousePassiveMoveFunction(int x, int y);
 
 void setpixel(char *buf, int x, int y, int r, int g, int b, int width);
 
