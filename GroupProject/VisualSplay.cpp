@@ -166,8 +166,6 @@ void VisualSplay::draw()
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         buildVisualMap();
-        // ONLY PART THAT DRAWS
-        //draw tree (nodes and lines)
         
         map<int,CircleNode*>::iterator searchForNode;
         queue<int> indexQueue;
@@ -213,26 +211,29 @@ void VisualSplay::draw()
         
         /*for (int i = 1; i < totalNodeSlots+1; i++)
         {
-            if (visualMap.find(i) != visualMap.end())
+            searchForNode = visualMap.find(i);
+            if (searchForNode != visualMap.end())
             {
                 visualMap[i]->draw();
                 Line lin(screen);
-                int leftchild = i*2;
-                int rightChild = i*2 + 1;
-                
-                if (leftchild < totalNodeSlots+1)
+                int child1 = i*2;
+                int child2 = i*2 + 1;
+                //only draw left child if exists
+                if (child1 < totalNodeSlots+1)
                 {
-                    if (visualMap.find(leftchild) != visualMap.end())
+                    searchForNode = visualMap.find(child1);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[leftchild]);
+                        lin.draw(*visualMap[i], *visualMap[child1]);
                     }
                 }
-                
-                if (rightChild < totalNodeSlots+1)
+                //only draw right child if exists
+                if (child2 < totalNodeSlots+1)
                 {
-                    if (visualMap.find(rightChild) != visualMap.end())
+                    searchForNode = visualMap.find(child2);
+                    if (searchForNode != visualMap.end())
                     {
-                        lin.draw(*visualMap[i], *visualMap[rightChild]);
+                        lin.draw(*visualMap[i], *visualMap[child2]);
                     }
                 }
             }

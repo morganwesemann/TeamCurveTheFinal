@@ -158,8 +158,13 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             if (c.state == 1) {
                 oldLoc.x = c.x;
                 oldLoc.y = c.y;
+                cout << "x: " << c.x << " y: " << c.y << endl;
             }
             if (c.state == 2) {
+                
+                
+                cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
+                //cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
                 
                 changedLoc.y = (c.y - oldLoc.y)* -1;
                 //cout << "y diff" << changedLoc.y << endl;
@@ -174,6 +179,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
+                v->moveTreeBy(changedLoc);
                 //g->Clear();
                 //v->draw();
                 
