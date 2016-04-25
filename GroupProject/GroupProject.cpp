@@ -33,34 +33,37 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 ourNumber.clear();
                 break;
             case 13:
-                if (doInsert)
-                {
-                    doInsert = false;
-                    doDelete = false;
-                   // cout << "our number: " << ourNumber;
-                    int temp = atoi(ourNumber.c_str());
-                    g->setColor(0x000000);
-                    v->draw();
-                    v->insert(temp);
-                    g->setColor(0xffffff);
-                    v->draw();
-                    ourNumber.clear();
+                if (ourNumber.length() != 0) {
+                    if (doInsert)
+                    {
+                    
+                        doInsert = false;
+                        doDelete = false;
+                       // cout << "our number: " << ourNumber;
+                        int temp = atoi(ourNumber.c_str());
+                        g->setColor(0x000000);
+                        v->draw();
+                        v->insert(temp);
+                        g->setColor(0xffffff);
+                        v->draw();
+                        ourNumber.clear();
 
-                }
-                
-                if (doDelete) {
-                    doInsert = false;
-                    // cout << "our number: " << ourNumber;
-                    int temp = atoi(ourNumber.c_str());
-                    //cout << "int: " << temp;
+                    }
                     
-                    g->setColor(0x000000);
-                    v->draw();
-                    v->remove(temp);
-                    g->setColor(0xffffff);
-                    v->draw();
-                    ourNumber.clear();
-                    
+                    if (doDelete) {
+                        doInsert = false;
+                        // cout << "our number: " << ourNumber;
+                        int temp = atoi(ourNumber.c_str());
+                        //cout << "int: " << temp;
+                        
+                        g->setColor(0x000000);
+                        v->draw();
+                        v->remove(temp);
+                        g->setColor(0xffffff);
+                        v->draw();
+                        ourNumber.clear();
+                        
+                    }
                 }
                 
                 break;
@@ -124,6 +127,8 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 
             case 27: exit(1); //ESC key
 		              break;
+            case 'L':
+                break;
             case 'R':
             case 'r':
                 doDelete = true;
@@ -158,12 +163,12 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             if (c.state == 1) {
                 oldLoc.x = c.x;
                 oldLoc.y = c.y;
-                cout << "x: " << c.x << " y: " << c.y << endl;
+                //cout << "x: " << c.x << " y: " << c.y << endl;
             }
             if (c.state == 2) {
                 
                 
-                cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
+                //cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
                 //cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
                 
                 changedLoc.y = (c.y - oldLoc.y)* -1;
@@ -202,3 +207,10 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
     
 }
 /******************************************************************************/
+
+void GroupProject::showInput() {
+    
+}
+void GroupProject::hideInput() {
+    
+}

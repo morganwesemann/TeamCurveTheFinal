@@ -20,6 +20,9 @@ private:
 public:
     GroupProject(GLUT_Plotter* g);
     void Play(void);
+    void showInput();
+    void hideInput();
 };
+
 
 #endif /* GroupProject_H_ */
