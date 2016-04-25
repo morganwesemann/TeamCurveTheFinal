@@ -157,6 +157,7 @@ void VisualSplay::buildVisualMap()
 /******************************************************************************/
 
 void VisualSplay::draw()
+
 {
     if (splay != NULL)
     {

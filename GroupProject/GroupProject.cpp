@@ -24,6 +24,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         int k = g->getKey();
 
         switch (k){
+                
             case 'I':
             case 'i':
                 doInsert = true;
@@ -36,13 +37,14 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                     int temp = atoi(ourNumber.c_str());
                     g->setColor(0xffffff);
                     v->insert(temp);
-                    g->Clear();
+                    g->setColor(0xffffff);
                     v->draw();
                     ourNumber.clear();
 
                 }
                 
                 break;
+            //numbers 0-9
             case 0x30:
             case 0x31:
             case 0x32:
@@ -64,9 +66,11 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                         //cout << "our number: " << ourNumber;
                         int temp = atoi(ourNumber.c_str());
                         //cout << "int: " << temp;
-                        g->setColor(0xffffff);
+                        
+                        g->setColor(0x000000);
+                        v->draw();
                         v->insert(temp);
-                        g->Clear();
+                        g->setColor(0xffffff);
                         v->draw();
                         ourNumber.clear();
                     }
@@ -77,6 +81,18 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 
             case 27: exit(1); //ESC key
 		              break;
+            case 'c':
+            case 'C':
+                float screenWidth = g->getWidth();
+                
+                float screenHeight = g->getHeight();
+                cout << endl << "w: " << screenWidth  << " h: " << screenHeight << endl;
+                Location newRootLoc(screenWidth/2, screenHeight - 100);
+                g->setColor(0xffffff);
+                
+                v->moveTreeTo(newRootLoc);
+                break;
+
         }
     }
     
