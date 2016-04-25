@@ -49,7 +49,9 @@ public:
     void remove(int val);
     void clear();
     void draw();
-    void moveTree(Location loc);
+    void moveTreeBy(Location loc);
+    void moveTreeTo(Location loc);
+    void setRoot(Location loc);
     
     VisualSplay()
     {

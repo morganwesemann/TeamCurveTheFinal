@@ -36,9 +36,12 @@ void VisualSplay::clear() //DESTRUCTOR
     visualMap.clear();
 }
 
+
 /******************************************************************************/
 
-void VisualSplay::checkBalance()
+
+
+void VisualSplay::buildVisualMap()
 {
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
@@ -147,12 +150,9 @@ void VisualSplay::checkBalance()
             }
             
             locationToInsert.y = parentLocation.y - 100;
-            visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
             
-            /*
-             * ADAM CODE GO HERE
-             *
-             */
+            // insert item to draw into map
+            visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
         }
         
     }// if tree is !NULL
@@ -165,7 +165,7 @@ void VisualSplay::draw()
 {
     if (splay != NULL) // if tree is null, do not draw
     {
-        checkBalance();
+        buildVisualMap();
         // ONLY PART THAT DRAWS
         //draw tree (nodes and lines)
         
@@ -205,7 +205,7 @@ void VisualSplay::draw()
     }
 }
 
-void VisualSplay::moveTree(Location loc) {
+void VisualSplay::moveTreeBy(Location loc) {
     screen->setColor(0x000000);
     draw();
     if (splay != NULL) {
@@ -218,4 +218,13 @@ void VisualSplay::moveTree(Location loc) {
     draw();
 }
 /******************************************************************************/
+
+void VisualSplay::moveTreeTo(Location loc) {
+    screen->setColor(0x000000);
+    draw();
+    rootLoc.x = loc.x;
+    rootLoc.y = loc.y;
+    screen->setColor(0xffffff);
+    draw();
+}
 
