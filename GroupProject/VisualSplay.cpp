@@ -114,9 +114,9 @@ void VisualSplay::buildVisualMap()
             }
         }
         
-        int numNodes = vectorOfNodePairs.size();
+        totalNodes = vectorOfNodePairs.size();
         
-        for (int i = 0; i < numNodes; i++) // do this for all nodes
+        for (int i = 0; i < totalNodes; i++) // do this for all nodes
         {
             //get current index
             currentIndex = vectorOfNodePairs[i].first;
@@ -146,13 +146,17 @@ void VisualSplay::buildVisualMap()
                     locationToInsert.x = parentLocation.x - 60; //neg x left child
                 } else {
                     locationToInsert.x = parentLocation.x + 60; //pos x for right child
-                } 
+                }
             }
             
             locationToInsert.y = parentLocation.y - 100;
             
             // insert item to draw into map
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
+            
+            /*
+             * ADAM CODE GO HERE
+             */
         }
         
     }// if tree is !NULL
@@ -164,17 +168,55 @@ void VisualSplay::buildVisualMap()
 void VisualSplay::draw()
 
 {
-    if (splay != NULL) // if tree is null, do not draw
+    if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         buildVisualMap();
         // ONLY PART THAT DRAWS
         //draw tree (nodes and lines)
         
         map<int,CircleNode*>::iterator searchForNode;
+        queue<int> indexQueue;
+        
+        int currentIndex = 1;
+        
+        indexQueue.push(1);
+        
+        while (!indexQueue.empty()) {
+            searchForNode = visualMap.find(currentIndex);
+            if (searchForNode != visualMap.end())
+            {
+                currentIndex = indexQueue.front();
+                visualMap[currentIndex]->draw();
+                indexQueue.pop();
+                
+                Line lin(screen);
+                int leftChild = currentIndex*2;
+                int rightChild = currentIndex*2 + 1;
+                //only draw left child if exists
+                
+                    searchForNode = visualMap.find(leftChild);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[currentIndex], *visualMap[leftChild]);
+                        indexQueue.push(leftChild);
+                    }
+                
+                //only draw right child if exists
+                
+                    searchForNode = visualMap.find(rightChild);
+                    if (searchForNode != visualMap.end())
+                    {
+                        lin.draw(*visualMap[currentIndex], *visualMap[rightChild]);
+                        indexQueue.push(rightChild);
+                    }
+                
+            }
+        }
         
         
+        //OLD CODE
         
-        for (int i = 1; i < totalNodeSlots+1; i++)
+        /*for (int i = 1; i < totalNodeSlots+1; i++)
         {
             searchForNode = visualMap.find(i);
             if (searchForNode != visualMap.end())
@@ -202,7 +244,7 @@ void VisualSplay::draw()
                     }
                 }
             }
-        }
+        }*/
     }
 }
 

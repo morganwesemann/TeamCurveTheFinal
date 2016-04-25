@@ -33,6 +33,7 @@ private:
     AlphanumericPlotter* alpha;         // alphanumeric plotter
         
     int totalNodeSlots;
+    int totalNodes;
     int treeHeight;
     int screenHeight;
     int screenWidth;
