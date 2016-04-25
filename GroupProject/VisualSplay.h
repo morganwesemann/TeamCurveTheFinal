@@ -34,9 +34,7 @@ private:
     GLUT_Plotter* screen;               // plotter
     
     AlphanumericPlotter* alpha;         // alphanumeric plotter
-    
-    vector<string> splitStrIntoVector(string str, const char &d = ' ');
-    
+        
     int totalNodeSlots;
     int treeHeight;
     

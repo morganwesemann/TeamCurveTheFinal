@@ -232,33 +232,3 @@ void VisualSplay::moveTree(Location loc) {
 }
 /******************************************************************************/
 
-
-vector<string> VisualSplay::splitStrIntoVector(string sentence, const char &d)
-{
-    vector<string> vec;
-    //iterator to beginning of sentence
-    string::iterator it = sentence.begin();
-    string::iterator temp;
-    //while the iterator is not at the end of the sentence
-    while (it != sentence.end())
-    {
-        //find the next space
-        temp = find(it, sentence.end(),d);
-        /*
-         if we aren't at the end, add the word in between the
-         two iterators to the vector
-         */
-        if (it != sentence.end())
-        {
-            vec.push_back(string(it,temp));
-        }
-        //set iterator to end of word
-        it = temp;
-        //skip through extra spaces
-        while ((it != sentence.end()) && (*it == d))
-        {
-            it++;
-        }
-    }
-    return vec;
-}
