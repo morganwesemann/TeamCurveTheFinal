@@ -35,7 +35,8 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 {
                     doInsert = false;
                     int temp = atoi(ourNumber.c_str());
-                    g->setColor(0xffffff);
+                    g->setColor(0x000000);
+                    v->draw();
                     v->insert(temp);
                     g->setColor(0xffffff);
                     v->draw();

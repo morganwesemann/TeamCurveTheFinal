@@ -136,8 +136,8 @@ void VisualSplay::buildVisualMap()
                 parentLocation = visualMap[parentIndex]->getLocation();
                 parentData = visualMap[parentIndex]->getData();
                 
-                //possibleChild = parentIndex*2;
-                //searchForNode = visualMap.find(possibleChild);
+                possibleChild = parentIndex*2;
+                searchForNode = visualMap.find(possibleChild);
                 
                 if (currentData < parentData)
                     locationToInsert.x = parentLocation.x - 60; //pos x left child
@@ -191,6 +191,8 @@ void VisualSplay::draw()
         }
     }
 }
+
+/******************************************************************************/
 
 void VisualSplay::moveTreeBy(Location loc) {
     screen->setColor(0x000000);

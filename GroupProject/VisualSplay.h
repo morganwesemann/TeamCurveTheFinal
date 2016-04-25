@@ -32,7 +32,7 @@ private:
     GLUT_Plotter* screen;               // plotter for screen
     AlphanumericPlotter* alpha;         // alphanumeric plotter
         
-    int totalNodeSlots;
+    int totalNodeSlots;                 // # of node indexes
     int treeHeight;
     int screenHeight;
     int screenWidth;
