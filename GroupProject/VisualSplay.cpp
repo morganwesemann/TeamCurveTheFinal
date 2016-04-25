@@ -148,6 +148,18 @@ void VisualSplay::buildVisualMap()
             locationToInsert.y = parentLocation.y - 100;
             
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
+            
+            /*
+             visual map (index, circlNodes)
+             compare
+             
+             
+             */
+            
+            
+            
+            
+            
         }
         
     }// if tree is !NULL
