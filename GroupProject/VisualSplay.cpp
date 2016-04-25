@@ -176,14 +176,18 @@ void VisualSplay::buildVisualMap()
             // root left is 2
             // root right is 3
             // start checking at level 2, where index is >3
+            
+/******************************************************************************/
             if(totalNodes > 3)
             {
+                queue<int> collisionQueue;
+                
                 cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                 cout << "HELLO"<<endl;
                 cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                 
-                int tempIndex = currentIndex/4; // search from grandparent
-                int genCount = 1;
+                int tempIndex = currentIndex/2; // search from grandparent
+                // this is only guaranteed the first time
                 
                 //bool collisionFound = false;
                 CircleNode* checkXposNode;
@@ -273,24 +277,19 @@ void VisualSplay::buildVisualMap()
                             cout << "queue END"<<endl;
                             cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                             
-                        }// collision handling here
-                    }
-                    ////////////////////////////////////////////////////////////
-                    else // parent index not found, quit
-                    {
-                        cerr << "**************************************" <<endl;
-                        cerr << "Searching up for collisions has failed"<<endl;
-                        cerr << "Error in VisualSplay.cpp in buildVisualMap"<<endl;
-                        cerr << "Quitting..." << endl;
-                        cerr << "**************************************" <<endl;
-                        exit(-2);
-                    }// else: parent index not found, quit
+                        }//if(checkXposNode->getX() == addedNode->getX())
+                        
+                    }//if(visualMap.find(tempIndex) != visualMap.end()) lookup parent
                     
                     tempIndex = tempIndex / 2; // UPDATE tempIndex, which checks x positions of parents
                     
-                }// while: tempIndex > 1, not reached root yet
+                }//while(tempIndex >= 1) : repeat this work until root is reached
+                
+                //DO WHILE
             
-            }// if: only start checking once level 2 reached, guaranteed grandparent
+            }// if(totalNodes > 3): only start checking once level 2 reached, guaranteed grandparent
+            
+/******************************************************************************/
         
         }// for: loop until all nodes are accounted for
         
