@@ -37,8 +37,10 @@ void GroupProject::drawT() {
 }*/
 
 bool doInsert = false;
+bool first = true;
 string ourNumber;
 Location changedLoc;
+Location oldLoc;
 
 //GroupProject Main Game Loop
 void GroupProject::Play(void){
@@ -119,25 +121,29 @@ void GroupProject::Play(void){
         if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
         
             if (c.state == 2) {
-                cout << "mouse move" << endl;
-                if (changedLoc.y > c.y) {
-                    changedLoc.y = 1;
-                } else {
-                    changedLoc.y = -1;
+                
+                if (first) {
+                    first = false;
+                    oldLoc.y = c.y;
+                    oldLoc.x = c.x;
                 }
                 
-                if (changedLoc.x > c.x) {
-                    changedLoc.x = -1;
-                } else {
-                    changedLoc.x = 1;
-                }
+                changedLoc.y = c.y - oldLoc.y;
+                cout << "y diff" << changedLoc.y << endl;
+                oldLoc.y = c.y;
+                
+                changedLoc.x = c.x - oldLoc.x;
+                oldLoc.y = c.x;
+                
+                
+         
                 
                 cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
                 v->moveTree(changedLoc);
-                g->Clear();
-                v->draw();
+                //g->Clear();
+                //v->draw();
                 
                 changedLoc.x = c.x;
                 changedLoc.y = c.y;

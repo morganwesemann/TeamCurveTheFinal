@@ -52,7 +52,7 @@ void VisualSplay::deleteVisualSplay()
 
 void VisualSplay::checkBalance()
 {
-    if (splay != NULL) // if tree is null, do not draw
+    if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
         
         /*retrieve our tree as a vector of indexes and data
@@ -67,8 +67,13 @@ void VisualSplay::checkBalance()
          */
         vector< pair<int,string> > vectorOfNodePairs = splay->parseToVector();
         
+        for (int i = 0; i < vectorOfNodePairs.size(); i++) {
+            cout << "index: " << vectorOfNodePairs[i].first << " data: " << vectorOfNodePairs[i].second << endl;
+        }
+        cout << endl;
+        cout << endl;
         
-        //note that pairs are accessed using pair.first and pair.second members
+        /*//note that pairs are accessed using pair.first and pair.second members
         
         //iterator for map, searching for a node
         map<int,CircleNode*>::iterator searchForNode;
@@ -356,7 +361,7 @@ void VisualSplay::draw()
     if (splay != NULL) // if tree is null, do not draw
     {
         checkBalance();
-        // ONLY PART THAT DRAWS
+        /*// ONLY PART THAT DRAWS
         //draw tree (nodes and lines)
         
         map<int,CircleNode*>::iterator searchForNode;
@@ -391,17 +396,21 @@ void VisualSplay::draw()
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
 void VisualSplay::moveTree(Location loc) {
+    screen->setColor(0x000000);
+    draw();
     if (splay != NULL) {
     
         rootLoc.x += loc.x;
         rootLoc.y += loc.y;
         cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
     }
+    screen->setColor(0xffffff);
+    draw();
 }
 /******************************************************************************/
 
