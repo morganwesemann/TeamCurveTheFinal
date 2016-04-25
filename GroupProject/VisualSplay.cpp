@@ -152,8 +152,6 @@ void VisualSplay::buildVisualMap()
             /*
              visual map (index, circlNodes)
              compare
-             
-             
              */
             
             
