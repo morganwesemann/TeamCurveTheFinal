@@ -33,13 +33,25 @@ string menuButton::getData(){
 }
 
 bool menuButton::isLocation(Location l){
-    return (l.x >= loc.x && l.x <= loc.x + width && l.y >= loc.y && l.y <= loc.y - height + 1);
+    if( l.x < loc.x ) {
+        cout << "Loc is too far left" << endl;
+        return false;
+    }
+    if( l.y > loc.y ) {
+        cout << "Loc is too far up" << endl;
+        return false;
+    }
+    if( l.y < loc.y - 109 ) {
+        cout << "Loc is too far down" << endl;
+        return false;
+    }
+    return true;
 }
 
 void UI::init(){
     cout << "INIT" << endl;
     screen->setColor(0xffffff);
-    for(int i = 0; i < 6; i++) {
+    for(int i = 0; i < 7; i++) {
         cout << "INIT " << i << endl;
         Line line(screen);
         Location tl, tr, bl, br;
@@ -65,16 +77,15 @@ void UI::init(){
         line.drawBetweenLocations(tr, br);
         line.drawBetweenLocations(bl, br);
         
-        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x + 10, buttons[i]->getLocation().y-50);
+        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x + 10, buttons[i]->getLocation().y-30);
 
     }
 }
 
 void UI::getClick(Location loc){
-    for(int i = 0; i < 6; i++) {
-        if(buttons[i]->isLocation(buttons[i]->getLocation())){
-            m = (mode)i;
-            cout << "MODE IS NOW " << m;
+    for(int i = 0; i < 7; i++) {
+        if(buttons[i]->isLocation(loc)){
+            m = mode(6 - i);
             return;
         }
     }

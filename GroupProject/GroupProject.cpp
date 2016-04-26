@@ -159,8 +159,12 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         Click c;
         c = g->getClick();
         
+        
         //if location is IN BOUNDS, plot
         if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
+            if (c.state == 0) {
+                gui->getClick(Location(c.x, c.y));
+            }
             if (c.state == 1) {
                 oldLoc.x = c.x;
                 oldLoc.y = c.y;

@@ -54,9 +54,9 @@ class UI {
 private:
     GLUT_Plotter* screen;
     AlphanumericPlotter* alpha;
-    menuButton* buttons[6];
-    int buttonWidth = 170, buttonHeight = 128;
-    enum mode {INS, REM, CEN, CLR, HELP, QUIT};
+    menuButton* buttons[7];
+    int buttonWidth = 170, buttonHeight = 109;
+    enum mode {INS, REM, FIND, CEN, CLR, HELP, QUIT};
     mode m;
     
 public:
@@ -64,17 +64,18 @@ public:
         screen = g;
         alpha = a;
         buttons[0] = new menuButton("INSERT", Location(854, 768), 0);
-        buttons[1] = new menuButton("REMOVE", Location(854, 640), 0);
-        buttons[2] = new menuButton("CENTER", Location(854, 512), 1);
-        buttons[3] = new menuButton("CLEAR", Location(854, 384), 2);
-        buttons[4] = new menuButton("HELP", Location(854, 256), 1);
-        buttons[5] = new menuButton("QUIT", Location(854, 128), 1);
+        buttons[1] = new menuButton("REMOVE", Location(854, 768 - (buttonHeight)), 0);
+        buttons[2] = new menuButton("FIND", Location(854, 768 - (buttonHeight*2)), 0);
+        buttons[3] = new menuButton("CENTER", Location(854, 768 - (buttonHeight*3)), 1);
+        buttons[4] = new menuButton("CLEAR", Location(854, 768 - (buttonHeight*4)), 2);
+        buttons[5] = new menuButton("HELP", Location(854, 768 - (buttonHeight*5)), 1);
+        buttons[6] = new menuButton("QUIT", Location(854, 768 - (buttonHeight*6)), 1);
         init();
         
     }
     
     ~UI() {
-        for(int i = 0; i < 6; i++) {
+        for(int i = 0; i < 7; i++) {
             delete buttons[i];
         }
     }
