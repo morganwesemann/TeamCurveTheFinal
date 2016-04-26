@@ -21,23 +21,14 @@ class menuButton {
 private:
     Location loc;
     int width = 170, height = 109;
-    AlphanumericPlotter* alpha;
-    GLUT_Plotter* screen;
     string data;
     string buffer;
     enum type {MODE, STATIC, CONFIRM};
     type typeMode;
     
 public:
-    menuButton() {
-        screen = NULL;
-        data = "";
-        alpha = NULL;
-    }
     
-    menuButton(GLUT_Plotter* g, AlphanumericPlotter* a, string d, Location l, int t) {
-        screen = g;
-        alpha = a;
+    menuButton(string d, Location l, int t) {
         data = d;
         loc = l;
         typeMode = (type)t;
@@ -61,9 +52,23 @@ public:
 
 class UI {
 private:
-    menuButton buttons[7];
+    GLUT_Plotter* screen;
+    AlphanumericPlotter* alpha;
+    menuButton* buttons[7];
     
 public:
+    UI(GLUT_Plotter* g, AlphanumericPlotter* a) {
+        screen = g;
+        alpha = a;
+        buttons[0] = new menuButton("INSERT", Location(854, 768), 0);
+        buttons[1] = new menuButton("REMOVE", Location(854, 659), 0);
+        buttons[2] = new menuButton("CENTER", Location(854, 550), 1);
+        buttons[3] = new menuButton("CLEAR", Location(854, 441), 2);
+        buttons[4] = new menuButton("BONUS", Location(854, 332), 1);
+        buttons[5] = new menuButton("HELP", Location(854, 223), 1);
+        buttons[6] = new menuButton("QUIT", Location(854, 114), 2);
+        
+    }
     void init();
     void getClick(Location loc);
     
