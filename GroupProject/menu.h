@@ -84,7 +84,7 @@ public:
     bool getClick(Location loc);
     
     int getButtonWidth() {
-        return buttonWidth;
+        return buttonWidth + 1;
     }
     
     int getMode() {
