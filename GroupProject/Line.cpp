@@ -92,7 +92,7 @@ void Line::drawBetweenNodes(CircleNode a, CircleNode b) //this line connects 2 c
         {
             if (switchXY == true) // VERTICAL HERE
             {
-                if (addedBySlope>0 && addedBySlope < screen->getWidth() && i>0 && i < screen->getHeight())
+                if (addedBySlope>0 && addedBySlope < screen->getMaxPixelX() && i>0 && i < screen->getHeight())
                 {
                     // GETTING LOCATIONS
                     Location temp = lessNode->getLocation();
@@ -107,17 +107,12 @@ void Line::drawBetweenNodes(CircleNode a, CircleNode b) //this line connects 2 c
                     // CONNECTS CIRCLE WITH LINE THAT DOES CROSS BORDER
                     if (checkLeft > pow(lessNode->getRadius(),2) && checkRight > pow(moreNode->getRadius(),2))
                     {
-                        /*screen->plot(addedBySlope, i);
-                        screen->plot(addedBySlope+1, i);
-                        screen->plot(addedBySlope, i+1);
-                        screen->plot(addedBySlope-1, i);
-                        screen->plot(addedBySlope, i-1);*/
                         
-                        if (addedBySlope - 1 >0 && addedBySlope - 1 < screen->getWidth()) {
+                        if (addedBySlope - 1 >0 && addedBySlope - 1 < screen->getMaxPixelX()) {
                             screen->plot(addedBySlope-1, i);
                         }
                         
-                        if (addedBySlope + 1 >0 && addedBySlope + 1 < screen->getWidth()) {
+                        if (addedBySlope + 1 >0 && addedBySlope + 1 < screen->getMaxPixelX()) {
                             screen->plot(addedBySlope+1, i);
                         }
                         
@@ -130,7 +125,7 @@ void Line::drawBetweenNodes(CircleNode a, CircleNode b) //this line connects 2 c
             }
             else // NONVERTICAL LINES
             {
-                if (i>0 && i < screen->getWidth() && addedBySlope>0 && addedBySlope < screen->getHeight())
+                if (i>0 && i < screen->getMaxPixelX() && addedBySlope>0 && addedBySlope < screen->getHeight())
                 {
                     Location temp = lessNode->getLocation();
                     Location temp2 = moreNode->getLocation();
@@ -141,11 +136,11 @@ void Line::drawBetweenNodes(CircleNode a, CircleNode b) //this line connects 2 c
                     if (chckLeft > pow(lessNode->getRadius(),2) && chckRight > pow(moreNode->getRadius(),2))
                     {
                         screen->plot(i, addedBySlope);
-                        if (i - 1 >0 && i - 1 < screen->getWidth()) {
+                        if (i - 1 >0 && i - 1 < screen->getMaxPixelX()) {
                             screen->plot(i-1, addedBySlope);
                         }
                         
-                        if (i + 1 >0 && i + 1 < screen->getWidth()) {
+                        if (i + 1 >0 && i + 1 < screen->getMaxPixelX()) {
                             screen->plot(i+1, addedBySlope);
                         }
                         
@@ -241,7 +236,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                 for (int j = -1; j < 1; j++) {
                     int x = addedBySlope+j;
                     int y = i;
-                    if (x>0 && x < screen->getWidth() && y>0 && y < screen->getHeight())
+                    if (x>0 && x < screen->getMaxPixelX() && y>0 && y < screen->getHeight())
                     {
                         screen->plot(x, y);
                     }
@@ -250,7 +245,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                 for (int j = -1; j < 1; j++) {
                     int x = addedBySlope;
                     int y = i+j;
-                    if (x>0 && x < screen->getWidth() && y>0 && y < screen->getHeight())
+                    if (x>0 && x < screen->getMaxPixelX() && y>0 && y < screen->getHeight())
                     {
                         screen->plot(x, y);
                     }
@@ -263,7 +258,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                 for (int j = -1; j < 1; j++) {
                     int y = addedBySlope+j;
                     int x = i;
-                    if (x>0 && x < screen->getWidth() && y>0 && y < screen->getHeight())
+                    if (x>0 && x < screen->getMaxPixelX() && y>0 && y < screen->getHeight())
                     {
                         screen->plot(x, y);
 
@@ -273,7 +268,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                 for (int j = -1; j < 1; j++) {
                     int y = addedBySlope;
                     int x = i+j;
-                    if (x>0 && x < screen->getWidth() && y>0 && y < screen->getHeight())
+                    if (x>0 && x < screen->getMaxPixelX() && y>0 && y < screen->getHeight())
                     {
                         screen->plot(x, y);
                     }

@@ -34,6 +34,13 @@ void VisualSplay::remove(int val) //REMOVE FUNCTION
     }
 
 }
+
+/******************************************************************************/
+
+void VisualSplay::find(int val) {
+    
+}
+
 /******************************************************************************/
 void VisualSplay::clear() //DESTRUCTOR
 {

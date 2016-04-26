@@ -21,6 +21,11 @@ private:
     int screenHeight;
     int screenWidth;
     int maxPixelX;
+    bool doInsert = false;
+    bool doDelete = false;
+    string ourNumber;
+    Location changedLoc;
+    Location oldLoc;
     
 public:
     GroupProject(GLUT_Plotter* g);

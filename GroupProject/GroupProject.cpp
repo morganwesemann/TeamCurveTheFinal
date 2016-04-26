@@ -5,15 +5,14 @@
 GroupProject::GroupProject(GLUT_Plotter* g)
 {
     this->g = g;
+    g->setColor(0xffffff);
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
     gui = new UI(g, alpha);
-     g->setColor(0xffffff);
-     //alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
-     //alpha->plotString("0123456789", 300, 300);
-     //char* buffer = g->getBuffer();
     screenWidth = g->getWidth();
-    //screenHeight =
+    screenHeight = g->getHeight();
+    maxPixelX = screenWidth - gui->getButtonWidth();
+    g->setMaxPixelX(maxPixelX);
 }
 
 /******************************************************************************/
@@ -21,12 +20,7 @@ GroupProject::GroupProject(GLUT_Plotter* g)
 
 
 
-bool doInsert = false;
-bool doDelete = false;
-bool first = true;
-string ourNumber;
-Location changedLoc;
-Location oldLoc;
+
 
 void GroupProject::Play(void) //GroupProject Main Game Loop
 {
@@ -169,7 +163,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         
         
         //if location is IN BOUNDS, plot
-        if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
+        if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < screenHeight) {
             if (c.state == 0) {
                 if(gui->getClick(Location(c.x, c.y))){
                     switch (gui->getMode())
@@ -177,10 +171,12 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                         case 0:
                             doInsert = true;
                             doDelete = false;
+                            ourNumber.clear();
                             break;
                         case 1:
                             doDelete = true;
                             doInsert = false;
+                            ourNumber.clear();
                             break;
                         case 2:
                             //FIND
@@ -211,16 +207,12 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             if (c.state == 1) {
                 oldLoc.x = c.x;
                 oldLoc.y = c.y;
-                //cout << "x: " << c.x << " y: " << c.y << endl;
             }
             if (c.state == 2) {
                 
                 
-                //cout << "old loc y: " << oldLoc.y << " click y: " << c.y << endl;
-                //cout << "old loc x: " << oldLoc.x << " click x: " << c.x << endl;
                 
                 changedLoc.y = (c.y - oldLoc.y)* -1;
-                //cout << "y diff" << changedLoc.y << endl;
                 oldLoc.y = c.y;
                 
                 changedLoc.x = c.x - oldLoc.x;
@@ -229,16 +221,9 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 
          
                 
-                //cout << "x: " << changedLoc.x << " y: " << changedLoc.y << endl;
                 
                 g->setColor(0xffffff);
                 v->moveTreeBy(changedLoc);
-                //g->Clear();
-                //v->draw();
-                
-                //changedLoc.x = c.x;
-                //changedLoc.y = c.y;
-                
                 
             }
             /*g->setColor(0xffffff);

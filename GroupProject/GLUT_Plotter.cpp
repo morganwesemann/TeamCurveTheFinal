@@ -15,6 +15,7 @@ GLUT_Plotter::GLUT_Plotter(int w, int h)
     
     width  = w;
     height = h;
+    maxPixelX = w;
     buffer = new char[width*height*3];
     g = this;
     init();
@@ -183,6 +184,13 @@ void GLUT_Plotter::addClick(Click c){
     mouseQueue.push(c);
 }
 
+int  GLUT_Plotter::getMaxPixelX() {
+    return maxPixelX;
+}
+void   GLUT_Plotter::setMaxPixelX(int val) {
+    maxPixelX = val;
+}
+
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -238,3 +246,5 @@ void setpixel(char *buf, int x, int y, int r, int g, int b, int width) {
     buf[(y*width+x)*3+1] = g;
     buf[(y*width+x)*3+2] = b;
 }
+
+

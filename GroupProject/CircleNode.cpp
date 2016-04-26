@@ -30,7 +30,7 @@ void CircleNode::draw()
         {
             x = loc.x + ((radius+padding) * cos(i *  twoPi / 360));
             y = loc.y + ((radius+padding) * sin(i * twoPi / 360));
-            if (x > 0 && x < screen->getWidth() && y > 0 && y < screen->getHeight())
+            if (x > 0 && x < screen->getMaxPixelX() && y > 0 && y < screen->getHeight())
             {
                 screen->plot(x,y);
             }

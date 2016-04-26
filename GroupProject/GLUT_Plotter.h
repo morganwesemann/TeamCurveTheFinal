@@ -6,7 +6,6 @@
  *  Modified on: Mar 22, 2014
  */
 
-// DO NOT CHANGE
 
 #ifndef GLUT_PLOTTER_H_
 #define GLUT_PLOTTER_H_
@@ -32,7 +31,7 @@ protected:
     char *buffer;
     queue<int> keyboardQueue;
     queue<Click> mouseQueue;
-    
+    int maxPixelX;
     unsigned int color;
     
 public:
@@ -43,7 +42,8 @@ public:
     void Clear();
     void init(int *argc, char **argv);
     void init();
-    
+    int   getMaxPixelX();
+    void   setMaxPixelX(int val);
     int   getWidth();
     int   getHeight();
     char* getBuffer();

@@ -50,6 +50,7 @@ public:
     VisualSplay(GLUT_Plotter* g, AlphanumericPlotter* a);
     void insert(int val);
     void remove(int val);
+    void find(int val);
     void clear();
     void draw();
     void moveTreeBy(Location loc);

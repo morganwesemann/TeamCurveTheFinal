@@ -167,8 +167,7 @@ void AlphanumericPlotter::plotString(string str, int x, int y)
                     
                     if (c == '1')
                     {
-                        if (x+k > 0 && x+k < screen->getWidth() && y-j > 0 && y-j < screen->getHeight()) {
-                        //screen->setColor(0xffffff);
+                        if (x+k > 0 && x+k < screen->getMaxPixelX() && y-j > 0 && y-j < screen->getHeight()) {
                         screen->plot(x+k,y-j);
                         }
                     }
