@@ -55,6 +55,7 @@ private:
     GLUT_Plotter* screen;
     AlphanumericPlotter* alpha;
     menuButton* buttons[7];
+    int buttonWidth = 170, buttonHeight = 109;
     
 public:
     UI(GLUT_Plotter* g, AlphanumericPlotter* a) {
@@ -67,6 +68,7 @@ public:
         buttons[4] = new menuButton("BONUS", Location(854, 332), 1);
         buttons[5] = new menuButton("HELP", Location(854, 223), 1);
         buttons[6] = new menuButton("QUIT", Location(854, 114), 2);
+        init();
         
     }
     void init();

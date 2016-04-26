@@ -9,31 +9,7 @@
 #include "menu.h"
 
 void menuButton::draw() {
-    Line line(screen);
-    Location tl, tr, bl, br;
-    tl = getLocation();
-    tr = getLocation();
-    bl = getLocation();
-    br = getLocation();
     
-    tr.x += width;
-    
-    bl.y -= height;
-    
-    br.x += width;
-    br.y -= height;
-    
-    //cout << "TL: " << tl.x << ", " << tl.y << endl;
-    //cout << "TR: " << tr.x << ", " << tr.y << endl;
-    //cout << "BL: " << bl.x << ", " << bl.y << endl;
-    //cout << "BR: " << br.x << ", " << br.y << endl;
-    
-    line.drawBetweenLocations(tl, tr);
-    line.drawBetweenLocations(tl, bl);
-    line.drawBetweenLocations(tr, br);
-    line.drawBetweenLocations(bl, br);
-    
-    alpha->plotString(data, loc.x, loc.y-30);
     
 }
 
@@ -70,21 +46,43 @@ void action(){
 }
 
 void UI::init(){
-    Location insertBut(1024-170, 768);
-    Location removeBut(1024-170, 768-109);
-    Location clearBut(1024-170, 768-109-109);
-    Location centerBut(1024-170, 768-109-109-109);
-    menuButton buttons[4];
-    buttons[0] = menuButton(g, alpha, "INSERT", insertBut, 0);
-    buttons[1] = menuButton(g, alpha, "REMOVE", removeBut, 0);
-    buttons[2] = menuButton(g, alpha, "CLEAR", clearBut, 0);
-    buttons[3] = menuButton(g, alpha, "CENTER", centerBut, 0);
-    initMenu(buttons, 4);
+    cout << "INIT" << endl;
+    for(int i = 0; i < 7; i++) {
+        cout << "INIT " << i << endl;
+        Line line(screen);
+        line.drawBetweenLocations(Location(0,0), Location(700, 700));
+        alpha->plotString("TEST", 500, 500);
+        Location tl, tr, bl, br;
+        tl = buttons[i]->getLocation();
+        tr = buttons[i]->getLocation();
+        bl = buttons[i]->getLocation();
+        br = buttons[i]->getLocation();
+        
+        tr.x += buttonWidth;
+        
+        bl.y -= buttonHeight;
+        
+        br.x += buttonWidth;
+        br.y -= buttonHeight;
+        
+        //cout << "TL: " << tl.x << ", " << tl.y << endl;
+        //cout << "TR: " << tr.x << ", " << tr.y << endl;
+        //cout << "BL: " << bl.x << ", " << bl.y << endl;
+        //cout << "BR: " << br.x << ", " << br.y << endl;
+        
+        line.drawBetweenLocations(tl, tr);
+        line.drawBetweenLocations(tl, bl);
+        line.drawBetweenLocations(tr, br);
+        line.drawBetweenLocations(bl, br);
+        
+        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x, buttons[i]->getLocation().y-30);
+
+    }
 }
 
 void UI::getClick(Location loc){
     for(int i = 0; i < 7; i++) {
-        if(buttons[i].isLocation(buttons[i].getLocation())){
+        if(buttons[i]->isLocation(buttons[i]->getLocation())){
             //do stuff
         }
     }

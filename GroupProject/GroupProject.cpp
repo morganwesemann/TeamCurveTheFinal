@@ -7,16 +7,14 @@ GroupProject::GroupProject(GLUT_Plotter* g)
     this->g = g;
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
+    gui = new UI(g, alpha);
+    alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
+    
 }
 
 /******************************************************************************/
 
-void GroupProject::initMenu(menuButton buttons[], int size){
-    for(int i = 0; i < size; i++) {
-        buttons[i].draw();
-    }
-}
-/******************************************************************************/
+
 
 bool doInsert = false;
 bool doDelete = false;
@@ -30,6 +28,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
     
     while(g->kbhit()) //Check for Keyboard Hit
     {
+        //gui->init();
         int k = g->getKey();
 
         switch (k){

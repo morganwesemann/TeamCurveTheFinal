@@ -17,11 +17,11 @@ private:
     GLUT_Plotter *g;
     VisualSplay *v;
     AlphanumericPlotter *alpha;
+    UI *gui;
     
 public:
     GroupProject(GLUT_Plotter* g);
     void Play(void);
-    void initMenu(menuButton[], int);
-};
+    };
 
 #endif /* GroupProject_H_ */
