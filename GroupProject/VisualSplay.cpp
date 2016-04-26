@@ -12,7 +12,7 @@ VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) // constructor
     rootLoc.x = screenWidth / 2;           // fixes root loc in x
     rootLoc.y = screenHeight - 100;        // fixes root loc in y
     
-
+    
     splay = new SplayTree<int>;            // tree here
     
     totalNodeSlots = 0;                    // number of nodes
@@ -51,6 +51,7 @@ void VisualSplay::buildVisualMap()
      *
      * Above tree is INDEXES of those nodes, each level has 2^level nodes
      */
+    
     
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
@@ -112,6 +113,15 @@ void VisualSplay::buildVisualMap()
         
         totalNodes = vectorOfNodePairs.size();
         
+        // root index is 1
+        // root left is 2
+        // root right is 3
+        // start checking at level 2, where index is >3
+        
+        
+        
+        
+        
         for (int i = 0; i < totalNodes; i++) // do this for all nodes
         {
             //get current index
@@ -120,6 +130,13 @@ void VisualSplay::buildVisualMap()
             //get current data
             
             currentData = vectorOfNodePairs[i].second;
+            
+            int temp = stoi(currentData);
+            
+            if (temp == 0) {
+                temp;
+            }
+            
             
             if (currentIndex == 1) // DRAW ROOT
             {
@@ -149,20 +166,150 @@ void VisualSplay::buildVisualMap()
             
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
             
+            cout << "In map, key -> " << currentIndex << " added " << endl;
+            
             /*
-             visual map (index, circlNodes)
-             compare
+             Location locationToInsert;
+             Location parentLocation;
+             int parentIndex;
+             int currentIndex;
+             int possibleChildIndex;
+             int numTreeLevels;
+             string currentData;
+             string parentData;
              */
             
+            // root index is 1
+            // root left is 2
+            // root right is 3
+            // start checking at level 2, where index is >3
             
+            /******************************************************************************/
+            if(currentIndex > 3)
+            {
+                
+                
+                int newCurrentIndex;
+                queue<int> collisionCheckQueue;//ADDING MOVED NODE INDEXES HERE
+                collisionCheckQueue.push(currentIndex);//ADDING MOVED NODE INDEXES HERE
+                //any node that is moved
+                // the moved node's index will be pushed here
+                
+                while(!collisionCheckQueue.empty())//ADDING MOVED NODE INDEXES HERE
+                {
+                    newCurrentIndex = collisionCheckQueue.front();
+                    collisionCheckQueue.pop();//ADDING MOVED NODE INDEXES HERE
+                    
+                    cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                    cout << "HELLO"<<endl;
+                    cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                    
+                    int tempIndex = newCurrentIndex/2; // search from grandparent
+                    // this is only guaranteed the first time
+                    
+                    //bool collisionFound = false;
+                    CircleNode* checkXposNode;
+                    
+                    CircleNode* addedNode = visualMap[newCurrentIndex];
+                    
+                    // stop searching up when tempIndex = 1
+                    // tempIndex = 1 is the root node
+                    
+                    while(tempIndex >= 1)
+                    {
+                        //bool collisionFound = false;
+                        
+                        if(visualMap.find(tempIndex) != visualMap.end()) // parent index found
+                        {
+                            checkXposNode = visualMap[tempIndex];
+                            
+                            cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                            cout << "Ancestor index found, checking for collisions"<<endl;
+                            cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                            
+                            if(checkXposNode->getX() == addedNode->getX())// collision found bc x pos is same
+                            {
+                                
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << "Collision found, correcting"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                
+                                int ancestorData = stoi(checkXposNode->getData());
+                                int currentData = stoi(addedNode->getData());
+                                
+                                int movedIndex;
+                                int offset;
+                                
+                                if(currentData < ancestorData) // data < anc data
+                                {
+                                    // for ancestor, move LEFT child LEFT
+                                    movedIndex = 2*tempIndex;
+                                    offset = - 60;
+                                }
+                                else // data > anc data
+                                {
+                                    // for ancestor, move RIGHT child RIGHT
+                                    movedIndex = 2*tempIndex + 1;
+                                    offset = 60;
+                                }
+                                
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << "queue START"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                queue<int> updatePosQueue;
+                                int current;
+                                
+                                updatePosQueue.push(movedIndex);
+                                
+                                
+                                while(!updatePosQueue.empty())
+                                {
+                                    current = updatePosQueue.front();
+                                    visualMap[current]->setX((visualMap[current]->getX()+offset));
+                                    updatePosQueue.pop();
+                                    
+                                    collisionCheckQueue.push(current);//ADDING MOVED NODE INDEXES HERE
+                                    
+                                    int left = current*2;
+                                    int right = current*2 + 1;
+                                    
+                                    if(visualMap.find(left) != visualMap.end())
+                                    {
+                                        updatePosQueue.push(left);
+                                    }
+                                    
+                                    if(visualMap.find(right) != visualMap.end())
+                                    {
+                                        updatePosQueue.push(right);
+                                    }
+                                    
+                                } // bfs queue
+                                
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << "queue END"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                
+                            }//if(checkXposNode->getX() == addedNode->getX())
+                            
+                        }//if(visualMap.find(tempIndex) != visualMap.end()) lookup parent
+                        
+                        tempIndex = tempIndex / 2; // UPDATE tempIndex, which checks x positions of parents
+                        
+                    }//while(tempIndex >= 1) : repeat this work until root is reached
+                    
+                }
+                
+                //DO WHILE
+                
+            }// if(totalNodes > 3): only start checking once level 2 reached, guaranteed grandparent
             
+            /******************************************************************************/
             
-            
-        }
-
-    }// if tree is !NULL
+        }// for: loop until all nodes are accounted for
+        
+    }// if: tree exists (tree is not NULL)
     
-}// checkBalance()
+}// function: checkBalance()
 
 /******************************************************************************/
 
@@ -216,34 +363,34 @@ void VisualSplay::draw()
         //OLD CODE
         
         /*for (int i = 1; i < totalNodeSlots+1; i++)
-        {
-            searchForNode = visualMap.find(i);
-            if (searchForNode != visualMap.end())
-            {
-                visualMap[i]->draw();
-                Line lin(screen);
-                int child1 = i*2;
-                int child2 = i*2 + 1;
-                //only draw left child if exists
-                if (child1 < totalNodeSlots+1)
-                {
-                    searchForNode = visualMap.find(child1);
-                    if (searchForNode != visualMap.end())
-                    {
-                        lin.draw(*visualMap[i], *visualMap[child1]);
-                    }
-                }
-                //only draw right child if exists
-                if (child2 < totalNodeSlots+1)
-                {
-                    searchForNode = visualMap.find(child2);
-                    if (searchForNode != visualMap.end())
-                    {
-                        lin.draw(*visualMap[i], *visualMap[child2]);
-                    }
-                }
-            }
-        }*/
+         {
+         searchForNode = visualMap.find(i);
+         if (searchForNode != visualMap.end())
+         {
+         visualMap[i]->draw();
+         Line lin(screen);
+         int child1 = i*2;
+         int child2 = i*2 + 1;
+         //only draw left child if exists
+         if (child1 < totalNodeSlots+1)
+         {
+         searchForNode = visualMap.find(child1);
+         if (searchForNode != visualMap.end())
+         {
+         lin.draw(*visualMap[i], *visualMap[child1]);
+         }
+         }
+         //only draw right child if exists
+         if (child2 < totalNodeSlots+1)
+         {
+         searchForNode = visualMap.find(child2);
+         if (searchForNode != visualMap.end())
+         {
+         lin.draw(*visualMap[i], *visualMap[child2]);
+         }
+         }
+         }
+         }*/
     }
 }
 
@@ -253,7 +400,7 @@ void VisualSplay::moveTreeBy(Location loc) {
     screen->setColor(0x000000);
     draw();
     if (splay != NULL) {
-    
+        
         rootLoc.x += loc.x;
         rootLoc.y += loc.y;
         //cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
