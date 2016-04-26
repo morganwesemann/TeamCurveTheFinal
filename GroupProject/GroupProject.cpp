@@ -200,10 +200,10 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                             //Clear
                             break;
                         case 5:
-                            //Help
+                            exit(1);
                             break;
                         case 6:
-                            exit(1);
+                            break;
                             
                     }
                 }

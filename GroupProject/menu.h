@@ -56,7 +56,7 @@ private:
     AlphanumericPlotter* alpha;
     menuButton* buttons[7];
     int buttonWidth = 170, buttonHeight = 109;
-    enum mode {INS, REM, FIND, CEN, CLR, HELP, QUIT};
+    enum mode {INS, REM, FIND, CEN, CLR, QUIT, TXT};
     mode m;
     
 public:
@@ -68,8 +68,8 @@ public:
         buttons[2] = new menuButton("FIND", Location(854, 768 - (buttonHeight*2)), 0);
         buttons[3] = new menuButton("CENTER", Location(854, 768 - (buttonHeight*3)), 1);
         buttons[4] = new menuButton("CLEAR", Location(854, 768 - (buttonHeight*4)), 2);
-        buttons[5] = new menuButton("HELP", Location(854, 768 - (buttonHeight*5)), 1);
-        buttons[6] = new menuButton("QUIT", Location(854, 768 - (buttonHeight*6)), 1);
+        buttons[5] = new menuButton("QUIT", Location(854, 768 - (buttonHeight*5)), 1);
+        buttons[6] = new menuButton("", Location(854, 768 - (buttonHeight*6)), 1);
         init();
         
     }
@@ -89,6 +89,10 @@ public:
     
     int getMode() {
         return m;
+    }
+    
+    void setMode(int i) {
+        m = (mode)i;
     }
     
 };
