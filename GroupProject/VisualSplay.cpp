@@ -22,17 +22,26 @@ VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) // constructor
 void VisualSplay::insert(int val) //INSERTION FUNCTION
 {
     splay->insert(val);
+    buildVisualMap();
+
 }
 /******************************************************************************/
 void VisualSplay::remove(int val) //REMOVE FUNCTION
 {
-    if(splay != NULL)
+    if(splay != NULL) {
         splay->remove(val);
+        buildVisualMap();
+    }
+
 }
 /******************************************************************************/
 void VisualSplay::clear() //DESTRUCTOR
 {
     delete splay;
+    map<int,CircleNode*>::iterator it;
+    for (it = visualMap.begin(); it != visualMap.end(); it++) {
+        delete visualMap[it->first];
+    }
     visualMap.clear();
 }
 
@@ -318,7 +327,6 @@ void VisualSplay::draw()
 {
     if (splay->getNumNodes() != 0) // if tree is null, do not draw
     {
-        buildVisualMap();
         
         map<int,CircleNode*>::iterator searchForNode;
         queue<int> indexQueue;
