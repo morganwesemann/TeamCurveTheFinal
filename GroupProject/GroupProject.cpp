@@ -30,6 +30,7 @@ Location oldLoc;
 
 void GroupProject::Play(void) //GroupProject Main Game Loop
 {
+    
     while(g->kbhit()) //Check for Keyboard Hit
     {
         int k = g->getKey();

@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iostream>
 #include "VisualSplay.h"
+#include "menu.h"
 
 
 class GroupProject
@@ -23,6 +24,7 @@ private:
 public:
     GroupProject(GLUT_Plotter* g);
     void Play(void);
+    void initMenu(menuButton[], int);
 };
 
 #endif /* GroupProject_H_ */
