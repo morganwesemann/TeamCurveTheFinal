@@ -7,7 +7,7 @@ GroupProject::GroupProject(GLUT_Plotter* g)
     this->g = g;
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
-    
+    gui = new UI(g, alpha);
      g->setColor(0xffffff);
      //alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
      //alpha->plotString("0123456789", 300, 300);
@@ -33,8 +33,9 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
     
     while(g->kbhit()) //Check for Keyboard Hit
     {
-        //gui->init();
+        gui->init();
         int k = g->getKey();
+        
 
         switch (k){
                 
@@ -170,7 +171,42 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         //if location is IN BOUNDS, plot
         if (c.x > 0 && c.x < g->getWidth() && c.y > 0 && c.y < g->getHeight()) {
             if (c.state == 0) {
-                gui->getClick(Location(c.x, c.y));
+                if(gui->getClick(Location(c.x, c.y))){
+                    switch (gui->getMode())
+                    {
+                        case 0:
+                            doInsert = true;
+                            doDelete = false;
+                            break;
+                        case 1:
+                            doDelete = true;
+                            doInsert = false;
+                            break;
+                        case 2:
+                            //FIND
+                            break;
+                        case 3:
+                        {
+                            float screenWidth = g->getWidth();
+                            
+                            float screenHeight = g->getHeight();
+                            Location newRootLoc(screenWidth/2, screenHeight - 100);
+                            g->setColor(0xffffff);
+                            
+                            v->moveTreeTo(newRootLoc);
+                        }
+                            break;
+                        case 4:
+                            //Clear
+                            break;
+                        case 5:
+                            //Help
+                            break;
+                        case 6:
+                            exit(1);
+                            
+                    }
+                }
             }
             if (c.state == 1) {
                 oldLoc.x = c.x;

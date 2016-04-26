@@ -49,10 +49,10 @@ bool menuButton::isLocation(Location l){
 }
 
 void UI::init(){
-    cout << "INIT" << endl;
+    //cout << "INIT" << endl;
     screen->setColor(0xffffff);
     for(int i = 0; i < 7; i++) {
-        cout << "INIT " << i << endl;
+        //cout << "INIT " << i << endl;
         Line line(screen);
         Location tl, tr, bl, br;
         tl = buttons[i]->getLocation();
@@ -82,11 +82,13 @@ void UI::init(){
     }
 }
 
-void UI::getClick(Location loc){
+bool UI::getClick(Location loc){
     for(int i = 0; i < 7; i++) {
         if(buttons[i]->isLocation(loc)){
             m = mode(6 - i);
-            return;
+            cout << "MODE = " << m << endl;
+            return true;
         }
     }
+    return false;
 }

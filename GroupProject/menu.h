@@ -81,10 +81,14 @@ public:
     }
     
     void init();
-    void getClick(Location loc);
+    bool getClick(Location loc);
     
     int getButtonWidth() {
         return buttonWidth;
+    }
+    
+    int getMode() {
+        return m;
     }
     
 };
