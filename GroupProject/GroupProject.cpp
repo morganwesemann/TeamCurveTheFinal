@@ -7,11 +7,17 @@ GroupProject::GroupProject(GLUT_Plotter* g)
     this->g = g;
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
-    gui = new UI(g, alpha);
     
+     g->setColor(0xffffff);
+     //alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
+     //alpha->plotString("0123456789", 300, 300);
+     //char* buffer = g->getBuffer();
+    screenWidth = g->getWidth();
+    //screenHeight =
 }
 
 /******************************************************************************/
+
 
 
 
@@ -31,6 +37,8 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         int k = g->getKey();
 
         switch (k){
+                
+            
                 
             case 'I':
             case 'i':
@@ -145,9 +153,8 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 g->setColor(0xffffff);
                 
                 v->moveTreeTo(newRootLoc);
-                break;
                 
-            
+                break;
 
         }
     }

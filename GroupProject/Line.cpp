@@ -173,8 +173,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
     
     //cout << node1.getData() << node2.getData(); //logging
     
-    //if (locA.y == locB.y || locB.x == locA.x)
-    if(locA == locB)
+    if (locA.y == locB.y || locB.x == locA.x)
         slope = 0;
     else
         slope = float((locA.y - locB.y)) / (locA.x - locB.x);
@@ -185,9 +184,6 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
     int i, j; // position variables
     
     bool switchXY = false; //
-    
-    CircleNode* lessNode = NULL;
-    CircleNode* moreNode = NULL;
     
     if (locA != locB) // if same, do not plot
     {
@@ -221,7 +217,6 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
             if (locA.y < locB.y)
             {
                 
-                
                 i = locA.y;
                 j = locB.y;
                 addedBySlope = locA.x;
@@ -242,6 +237,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
         {
             if (switchXY == true) // VERTICAL HERE
             {
+                
                 for (int j = -1; j < 1; j++) {
                     int x = addedBySlope+j;
                     int y = i;
@@ -260,12 +256,6 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                     }
                 }
                 
-                       /* screen->plot(addedBySlope+1, i);
-                        screen->plot(addedBySlope, i+1);
-                        screen->plot(addedBySlope-1, i);
-                        screen->plot(addedBySlope, i-1);*/
-                    
-                
             }
             else // NONVERTICAL LINES
             {
@@ -276,6 +266,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                     if (x>0 && x < screen->getWidth() && y>0 && y < screen->getHeight())
                     {
                         screen->plot(x, y);
+
                     }
                 }
                 
@@ -287,38 +278,7 @@ void Line::drawBetweenLocations(Location locA, Location locB) {
                         screen->plot(x, y);
                     }
                 }
-                
-                /*if (i>0 && i < screen->getWidth() && addedBySlope>0 && addedBySlope < screen->getHeight())
-                {
-                    Location temp = lessNode->getLocation();
-                    Location temp2 = moreNode->getLocation();
-                    
-                    float chckLeft = pow((i - temp.x),2) + pow((addedBySlope - temp.y),2);
-                    float chckRight = pow((i - temp2.x),2) + pow((addedBySlope - temp2.y),2);
-                    
-                    if (chckLeft > pow(lessNode->getRadius(),2) && chckRight > pow(moreNode->getRadius(),2))
-                    {
-                        screen->plot(i, addedBySlope);
-                        if (i - 1 >0 && i - 1 < screen->getWidth()) {
-                            screen->plot(i-1, addedBySlope);
-                        }
-                        
-                        if (i + 1 >0 && i + 1 < screen->getWidth()) {
-                            screen->plot(i-1, addedBySlope);
-                        }
-                        
-                        if (addedBySlope - 1 >0 && addedBySlope - 1 < screen->getHeight()) {
-                            screen->plot(i, addedBySlope-1);
-                            
-                        }
-                        
-                        if (addedBySlope + 1 >0 && addedBySlope + 1 < screen->getHeight()) {
-                            screen->plot(i, addedBySlope+1);
-                        }
-                        
-                        
-                    }
-                }*/
+    
             }
             addedBySlope += slope;
             i++;
