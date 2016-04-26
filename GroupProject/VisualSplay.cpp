@@ -40,7 +40,7 @@ void VisualSplay::clear() //DESTRUCTOR
     delete splay;
     map<int,CircleNode*>::iterator it;
     for (it = visualMap.begin(); it != visualMap.end(); it++) {
-        delete visualMap[it->first];
+        delete it->second;
     }
     visualMap.clear();
 }
@@ -405,25 +405,45 @@ void VisualSplay::draw()
 /******************************************************************************/
 
 void VisualSplay::moveTreeBy(Location loc) {
-    screen->setColor(0x000000);
-    draw();
-    if (splay != NULL) {
-        
+    
+    if (splay->getNumNodes() != 0) {
+        screen->setColor(0x000000);
+        draw();
         rootLoc.x += loc.x;
         rootLoc.y += loc.y;
-        //cout << "x: " << rootLoc.x << " y: " << rootLoc.y << endl;
+        updateLocations(loc);
+        screen->setColor(0xffffff);
+        draw();
     }
-    screen->setColor(0xffffff);
-    draw();
+    
 }
 /******************************************************************************/
 
 void VisualSplay::moveTreeTo(Location loc) {
-    screen->setColor(0x000000);
-    draw();
-    rootLoc.x = loc.x;
-    rootLoc.y = loc.y;
-    screen->setColor(0xffffff);
-    draw();
+    if (splay->getNumNodes() != 0) {
+        screen->setColor(0x000000);
+        draw();
+        rootLoc.x = loc.x;
+        rootLoc.y = loc.y;
+        buildVisualMap();
+        screen->setColor(0xffffff);
+        draw();
+    }
+}
+
+void VisualSplay::updateLocations(Location loc) {
+    if (splay->getNumNodes() != 0) {
+        
+        map<int, CircleNode*>::iterator it;
+        Location currentLocation;
+        CircleNode* current;
+        for (it = visualMap.begin(); it != visualMap.end(); it++) {
+            current = it->second;
+            currentLocation = current->getLocation();
+            currentLocation.x += loc.x;
+            currentLocation.y += loc.y;
+            current->setLocation(currentLocation);
+        }
+    }
 }
 

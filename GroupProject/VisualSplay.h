@@ -44,6 +44,7 @@ private:
     map<int,CircleNode*> visualMap;     // map <index, circleNodes>
     void buildVisualMap();                // converts vector<index, data>
                                         // to map<index, circleNodes>
+    void updateLocations(Location loc);
 public:
     
     VisualSplay(GLUT_Plotter* g, AlphanumericPlotter* a);
