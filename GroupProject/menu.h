@@ -12,6 +12,9 @@
 #include "AlphanumericPlotter.h"
 #include "GLUT_Plotter.h"
 #include "Location.h"
+#include "Line.h"
+
+
 
 class menuButton {
     
@@ -49,7 +52,21 @@ public:
     int getX();
     int getY();
     string getData();
+    
+    bool isLocation(Location);
+    
+    void action();
 
+};
+
+class UI {
+private:
+    menuButton buttons[7];
+    
+public:
+    void init();
+    void getClick(Location loc);
+    
 };
 
 #endif /* menu_h */

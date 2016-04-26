@@ -10,12 +10,11 @@ GroupProject::GroupProject(GLUT_Plotter* g)
 }
 
 /******************************************************************************/
-menuButton insertBut, removeBut, clearBut, centerBut, quitBut, helpBut, bonusBut;
-void GroupProject::initMenu(){
-    Location here(500, 500);
-    insertBut.setLocation(here);
-    insertBut.setData("INSERT");
-    insertBut.draw();
+
+void GroupProject::initMenu(menuButton buttons[], int size){
+    for(int i = 0; i < size; i++) {
+        buttons[i].draw();
+    }
 }
 /******************************************************************************/
 
@@ -28,7 +27,7 @@ Location oldLoc;
 
 void GroupProject::Play(void) //GroupProject Main Game Loop
 {
-    initMenu();
+    
     while(g->kbhit()) //Check for Keyboard Hit
     {
         int k = g->getKey();
