@@ -71,6 +71,16 @@ void CircleNode::setRadius(int r)
     radius = r;
 }
 
+void CircleNode::setX(float xval)
+{
+    loc.x = xval;
+}
+
+void CircleNode::setY(float yval)
+{
+    loc.y = yval;
+}
+
 string CircleNode::getData()
 {
     return data;
