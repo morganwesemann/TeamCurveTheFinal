@@ -71,8 +71,18 @@ public:
         init();
         
     }
+    
+    ~UI() {
+        for(int i = 0; i < 7; i++) {
+            delete buttons[i];
+        }
+    }
+    
     void init();
     void getClick(Location loc);
+    int getButtonWidth() {
+        return buttonWidth;
+    }
     
 };
 

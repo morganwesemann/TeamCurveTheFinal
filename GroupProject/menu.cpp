@@ -47,11 +47,10 @@ void action(){
 
 void UI::init(){
     cout << "INIT" << endl;
+    screen->setColor(0xffffff);
     for(int i = 0; i < 7; i++) {
         cout << "INIT " << i << endl;
         Line line(screen);
-        line.drawBetweenLocations(Location(0,0), Location(700, 700));
-        alpha->plotString("TEST", 500, 500);
         Location tl, tr, bl, br;
         tl = buttons[i]->getLocation();
         tr = buttons[i]->getLocation();
@@ -84,6 +83,8 @@ void UI::getClick(Location loc){
     for(int i = 0; i < 7; i++) {
         if(buttons[i]->isLocation(buttons[i]->getLocation())){
             //do stuff
+            
+            return;
         }
     }
 }

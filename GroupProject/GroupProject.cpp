@@ -8,7 +8,6 @@ GroupProject::GroupProject(GLUT_Plotter* g)
     alpha = new AlphanumericPlotter(g);
     v = new VisualSplay(g,alpha);
     gui = new UI(g, alpha);
-    alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
     
 }
 
