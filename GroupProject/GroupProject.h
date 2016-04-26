@@ -24,7 +24,6 @@ private:
 public:
     GroupProject(GLUT_Plotter* g);
     void Play(void);
-    void initMenu(menuButton[], int);
-};
+    };
 
 #endif /* GroupProject_H_ */

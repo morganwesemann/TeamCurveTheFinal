@@ -33,6 +33,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
     
     while(g->kbhit()) //Check for Keyboard Hit
     {
+        //gui->init();
         int k = g->getKey();
 
         switch (k){
