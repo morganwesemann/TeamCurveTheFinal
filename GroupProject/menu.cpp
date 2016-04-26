@@ -8,11 +8,6 @@
 
 #include "menu.h"
 
-void menuButton::draw() {
-    
-    
-}
-
 void menuButton::setLocation(Location l) {
     loc = l;
 }
@@ -38,20 +33,15 @@ string menuButton::getData(){
 }
 
 bool menuButton::isLocation(Location l){
-    return (l.x >= loc.x && l.x <= loc.x + width && l.y >= loc.y && l.y <= loc.y + height);
-}
-
-void action(){
-    
+    return (l.x >= loc.x && l.x <= loc.x + width && l.y >= loc.y && l.y <= loc.y - height + 1);
 }
 
 void UI::init(){
     cout << "INIT" << endl;
-    for(int i = 0; i < 7; i++) {
+    screen->setColor(0xffffff);
+    for(int i = 0; i < 6; i++) {
         cout << "INIT " << i << endl;
         Line line(screen);
-        line.drawBetweenLocations(Location(0,0), Location(700, 700));
-        alpha->plotString("TEST", 500, 500);
         Location tl, tr, bl, br;
         tl = buttons[i]->getLocation();
         tr = buttons[i]->getLocation();
@@ -75,15 +65,17 @@ void UI::init(){
         line.drawBetweenLocations(tr, br);
         line.drawBetweenLocations(bl, br);
         
-        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x, buttons[i]->getLocation().y-30);
+        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x + 10, buttons[i]->getLocation().y-50);
 
     }
 }
 
 void UI::getClick(Location loc){
-    for(int i = 0; i < 7; i++) {
+    for(int i = 0; i < 6; i++) {
         if(buttons[i]->isLocation(buttons[i]->getLocation())){
-            //do stuff
+            m = (mode)i;
+            cout << "MODE IS NOW " << m;
+            return;
         }
     }
 }
