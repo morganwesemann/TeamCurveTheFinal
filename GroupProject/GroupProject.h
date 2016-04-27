@@ -31,6 +31,7 @@ private:
     
 public:
     GroupProject(GLUT_Plotter* g);
+    ~GroupProject();
     void Play(void);
     };
 

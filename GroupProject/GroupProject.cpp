@@ -20,6 +20,11 @@ GroupProject::GroupProject(GLUT_Plotter* g)
 
 /******************************************************************************/
 
+GroupProject::~GroupProject() {
+    delete gui;
+    v->clearTree();
+}
+
 
 void GroupProject::Play(void) //GroupProject Main Game Loop
 {
@@ -31,6 +36,13 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         
 
         switch (k){
+            case 'L':
+                g->setColor(0x000000);
+                v->draw();
+                v->clearTree();
+                gui->redrawButton(TEXT, "");
+                gui->deselectButton();
+                break;
             case 8:
             case 0x7f:
                 if (doInsert || doFind || doDelete) {
@@ -95,34 +107,11 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 if (doInsert || doFind || doDelete) {
                     ourNumber += char(k);
                     gui->redrawButton(TEXT, ourNumber);
-                    /*if (ourNumber.length() == 3) {
-                        int temp = atoi(ourNumber.c_str());
-                        g->setColor(0x000000);
-                        v->draw();
-                        if (doInsert) {
-                            v->insert(temp);
-                        } else if (doFind) {
-                            v->find(temp);
-                        } else if (doDelete) {
-                            v->remove(temp);
-                            
-                        }
-                        gui->deselectButton();
-                        doDelete = false;
-                        doInsert = false;
-                        doFind = false;
-                        g->setColor(0xffffff);
-                        v->draw();
-                        ourNumber.clear();
-                        gui->redrawButton(TEXT, "");
-                    }*/
 
                 }
                 
                 break;
-                
-                
-            case 27: exit(1); //ESC key
+            case 'Q': exit(1); //ESC key
 		              break;
             case 'R':
             case 'r':
@@ -150,9 +139,6 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 v->moveTreeTo(newRootLoc);
                 
                 break;
-                
-            
-
         }
     }
     
@@ -180,12 +166,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                                     g->setColor(0x000000);
                                     v->draw();
                                     if (doInsert) {
-                                        cout << "insert";
                                         v->insert(temp);
-                                    } else if (doFind) {
-                                        v->find(temp);
-                                    } else if (doDelete) {
-                                        v->remove(temp);
                                     }
                                     gui->deselectButton();
                                     doDelete = false;
@@ -291,28 +272,16 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             }
             if (c.state == 2) {
                 
-                
-                
                 changedLoc.y = (c.y - oldLoc.y)* -1;
                 oldLoc.y = c.y;
                 
                 changedLoc.x = c.x - oldLoc.x;
                 oldLoc.x = c.x;
                 
-                
-         
-                
-                
                 g->setColor(0xffffff);
                 v->moveTreeBy(changedLoc);
                 
             }
-            /*g->setColor(0xffffff);
-            alpha->plotString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 100);
-            alpha->plotString("0123456789", 300, 300);
-            //char* buffer = g->getBuffer();
-            g->plot(c.x, g->getHeight() - c.y);
-            */
         }
     }
     
