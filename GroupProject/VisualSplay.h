@@ -51,7 +51,8 @@ public:
     void insert(int val);
     void remove(int val);
     void find(int val);
-    void clear();
+    void clearVisualMap();
+    void clearTree();
     void draw();
     void moveTreeBy(Location loc);
     void moveTreeTo(Location loc);

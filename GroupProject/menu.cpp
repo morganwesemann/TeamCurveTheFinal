@@ -77,7 +77,7 @@ void UI::init(){
         line.drawBetweenLocations(tr, br);
         line.drawBetweenLocations(bl, br);
         
-        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x + 10, buttons[i]->getLocation().y-30);
+        alpha->plotString(buttons[i]->getData(), buttons[i]->getLocation().x + 10, buttons[i]->getLocation().y-80);
 
     }
 }
@@ -86,6 +86,9 @@ bool UI::getClick(Location loc){
     for(int i = 0; i < 7; i++) {
         if(buttons[i]->isLocation(loc)){
             m = mode(6 - i);
+            if ((6-i) == INSERT || (6-i) == REMOVE || (6-i) == FIND) {
+                buttonSelect(6 - i);
+            }
             cout << "MODE = " << m << endl;
             return true;
         }

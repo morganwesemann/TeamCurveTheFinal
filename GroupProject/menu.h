@@ -56,20 +56,23 @@ private:
     AlphanumericPlotter* alpha;
     menuButton* buttons[7];
     int buttonWidth = 170, buttonHeight = 109;
-    enum mode {INS, REM, FIND, CEN, CLR, HELP, QUIT};
+    enum mode {TEXT, INSERT, REMOVE, FIND, CENTER, CLEAR, QUIT, NONE};
     mode m;
+    
+    mode selectedButton;
     
 public:
     UI(GLUT_Plotter* g, AlphanumericPlotter* a) {
         screen = g;
         alpha = a;
-        buttons[0] = new menuButton("INSERT", Location(854, 768), 0);
-        buttons[1] = new menuButton("REMOVE", Location(854, 768 - (buttonHeight)), 0);
-        buttons[2] = new menuButton("FIND", Location(854, 768 - (buttonHeight*2)), 0);
-        buttons[3] = new menuButton("CENTER", Location(854, 768 - (buttonHeight*3)), 1);
-        buttons[4] = new menuButton("CLEAR", Location(854, 768 - (buttonHeight*4)), 2);
-        buttons[5] = new menuButton("HELP", Location(854, 768 - (buttonHeight*5)), 1);
+        buttons[0] = new menuButton("", Location(854, 768), 0);
+        buttons[1] = new menuButton("INSERT", Location(854, 768 - (buttonHeight)), 0);
+        buttons[2] = new menuButton("REMOVE", Location(854, 768 - (buttonHeight*2)), 0);
+        buttons[3] = new menuButton("FIND", Location(854, 768 - (buttonHeight*3)), 1);
+        buttons[4] = new menuButton("CENTER", Location(854, 768 - (buttonHeight*4)), 2);
+        buttons[5] = new menuButton("CLEAR", Location(854, 768 - (buttonHeight*5)), 1);
         buttons[6] = new menuButton("QUIT", Location(854, 768 - (buttonHeight*6)), 1);
+        selectedButton = NONE;
         init();
         
     }
@@ -89,6 +92,38 @@ public:
     
     int getMode() {
         return m;
+    }
+    
+    void buttonSelect(int but) {
+        if (selectedButton != NONE) {
+            deselectButton();
+        }
+        screen->setColor(0x33cc33);
+        alpha->isButton(true);
+        alpha->plotString(buttons[but]->getData(), buttons[but]->getLocation().x + 10, buttons[but]->getLocation().y-80);
+        alpha->isButton(false);
+        screen->setColor(0xffffff);
+        selectedButton = mode(but);
+    }
+    
+    void deselectButton() {
+        if (selectedButton != NONE) {
+            screen->setColor(0xffffff);
+            alpha->isButton(true);
+            alpha->plotString(buttons[selectedButton]->getData(), buttons[selectedButton]->getLocation().x + 10, buttons[selectedButton]->getLocation().y-80);
+            alpha->isButton(false);
+        }
+    }
+    
+    void redrawButton(int but, string data) {
+        screen->setColor(0x000000);
+        alpha->isButton(true);
+        alpha->plotString(buttons[but]->getData(), buttons[but]->getLocation().x + 10, buttons[but]->getLocation().y-80);
+        buttons[but]->setData(data);
+        screen->setColor(0xffffff);
+        alpha->plotString(buttons[but]->getData(), buttons[but]->getLocation().x + 10, buttons[but]->getLocation().y-80);
+        alpha->isButton(false);
+
     }
     
 };

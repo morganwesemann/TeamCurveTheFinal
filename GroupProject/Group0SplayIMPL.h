@@ -401,74 +401,6 @@ vector<pair<int,string> > SplayTree<Base>::parseToVector()
     //}
     
     return dataVector;
-    
-    
-    /*
-    vector<pair<int,string> > nodes;
-    
-    pair<int,string> indexDataPair;
-    pair<int,SplayNode<Base>*> currentPair;
-    SplayNode<Base>* node;
-    if(root == NULL) //empty tree
-    {
-        return nodes;
-    }
-    
-    queue <pair<int,SplayNode<Base>*> > qParent,qChildren;
-    int levelNum = 0;
-    
-    currentPair.first = 1;
-    currentPair.second = root;
-    
-    qParent.push(currentPair);
-    
-    while(!qParent.empty())
-    {
-        
-        while(!qParent.empty() )
-        {
-            currentPair = qParent.front();
-            
-            indexDataPair.first = currentPair.first;
-            node = currentPair.second;
-            stringstream intAsString;
-            intAsString << node->data;
-            string data = intAsString.str();
-            
-            indexDataPair.second = data;
-            
-            nodes.push_back(indexDataPair);
-            
-            qParent.pop();
-            
-            
-            if(node->left!=NULL)
-            {
-                currentPair.first = currentPair.first*2;
-                currentPair.second = node->left;
-                qChildren.push(currentPair);
-                
-            }
-            
-            
-            if(node->right!=NULL)
-            {
-                currentPair.first = currentPair.first*2+1;
-                currentPair.second = node->right;
-                qChildren.push(currentPair);
-                
-            }
-            
-            
-        }
-        
-        levelNum++;
-        qParent = qChildren;
-        while(!qChildren.empty()) qChildren.pop();
-    }//while
-    
-    return nodes;
-     */
      
 }
 
@@ -778,5 +710,13 @@ void SplayTree<Base>::remove(const Base &item)
 }// remove()
 
 /*******************************************************************************/
+
+template <class Base>
+void SplayTree<Base>::deleteTree() {
+    SplayNode<Base> *r = root;
+    root = NULL;
+    numNodes = 0;
+    delete r;
+}
 
 

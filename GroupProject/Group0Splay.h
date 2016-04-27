@@ -100,6 +100,7 @@ public:
     int getNumNodes();
     int getWidth(int depth);
     int getHeight(SplayNode<Base> *n);
+    void deleteTree();
     SplayNode<Base>* getRoot();
 protected:
     int numNodes;

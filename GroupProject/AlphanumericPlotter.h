@@ -38,6 +38,8 @@ private:
     
     GLUT_Plotter* screen;
     
+    bool isMenu;
+    
     void init();
 public:
     
@@ -50,6 +52,8 @@ public:
     void plotString(string str, int x, int y);
 
     int getPixelWidth(string str);
+    
+    void isButton(bool b);
     
 };
 

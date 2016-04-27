@@ -23,9 +23,11 @@ private:
     int maxPixelX;
     bool doInsert = false;
     bool doDelete = false;
+    bool doFind = false;
     string ourNumber;
     Location changedLoc;
     Location oldLoc;
+    enum mode {TEXT, INSERT, REMOVE, FIND, CENTER, CLEAR, QUIT};
     
 public:
     GroupProject(GLUT_Plotter* g);

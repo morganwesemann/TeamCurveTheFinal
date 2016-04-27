@@ -15,6 +15,7 @@ AlphanumericPlotter::AlphanumericPlotter(GLUT_Plotter* g)
     screen = g;
     numCharacters = 36;
     spaceAmount = 5;
+    isMenu = false;
     init();
 }
 
@@ -23,6 +24,7 @@ AlphanumericPlotter& AlphanumericPlotter::operator=(AlphanumericPlotter& a)
     screen = a.screen;
     numCharacters = a.numCharacters;
     spaceAmount = a.spaceAmount;
+    isMenu = a.isMenu;
     init();
     return *this;
 }
@@ -167,8 +169,14 @@ void AlphanumericPlotter::plotString(string str, int x, int y)
                     
                     if (c == '1')
                     {
-                        if (x+k > 0 && x+k < screen->getMaxPixelX() && y-j > 0 && y-j < screen->getHeight()) {
-                        screen->plot(x+k,y-j);
+                        if (isMenu) {
+                            if (x+k > 0 && x+k < screen->getWidth() && y-j > 0 && y-j < screen->getHeight()) {
+                                screen->plot(x+k,y-j);
+                            }
+                        } else {
+                            if (x+k > 0 && x+k < screen->getMaxPixelX() && y-j > 0 && y-j < screen->getHeight()) {
+                                screen->plot(x+k,y-j);
+                            }
                         }
                     }
                 }
@@ -203,3 +211,8 @@ int AlphanumericPlotter::getPixelWidth(string str)
     }
     return pixelWidth;
 }
+
+void AlphanumericPlotter::isButton(bool b) {
+    isMenu = b;
+}
+

@@ -6,10 +6,10 @@ VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) // constructor
     
     alpha = a;                             // alphanumeric plotter
     
-    screenHeight = screen->getHeight();    // screen width
-    screenWidth = screen->getWidth();      // screen height
-    
-    rootLoc.x = screenWidth / 2;           // fixes root loc in x
+    screenHeight = screen->getHeight();    // screen height
+    screenWidth = screen->getWidth();      // screen width
+    int maxPixelX = screen->getMaxPixelX();
+    rootLoc.x = maxPixelX / 2;           // fixes root loc in x
     rootLoc.y = screenHeight - 100;        // fixes root loc in y
     
     
@@ -28,7 +28,7 @@ void VisualSplay::insert(int val) //INSERTION FUNCTION
 /******************************************************************************/
 void VisualSplay::remove(int val) //REMOVE FUNCTION
 {
-    if(splay != NULL) {
+    if (splay->getNumNodes() != 0) {
         splay->remove(val);
         buildVisualMap();
     }
@@ -38,18 +38,25 @@ void VisualSplay::remove(int val) //REMOVE FUNCTION
 /******************************************************************************/
 
 void VisualSplay::find(int val) {
-    
+    if (splay->getNumNodes() != 0) {
+        splay->find(val);
+        buildVisualMap();
+    }
 }
 
 /******************************************************************************/
-void VisualSplay::clear() //DESTRUCTOR
+void VisualSplay::clearVisualMap() //DESTRUCTOR
 {
-    delete splay;
     map<int,CircleNode*>::iterator it;
     for (it = visualMap.begin(); it != visualMap.end(); it++) {
         delete it->second;
     }
     visualMap.clear();
+}
+
+void VisualSplay::clearTree() {
+    splay->deleteTree();
+    clearVisualMap();
 }
 
 
@@ -79,9 +86,9 @@ void VisualSplay::buildVisualMap()
         for(int i = 0; i < vectorOfNodePairs.size(); i++)
         {
             readPair = vectorOfNodePairs[i];
-            cout << "(Index = " << readPair.first << " , ";
+            /*cout << "(Index = " << readPair.first << " , ";
             cout << "Data = " << readPair.second << ")";
-            cout << endl;
+            cout << endl;*/
         }
         //CHECK VECTOR
         
@@ -99,11 +106,11 @@ void VisualSplay::buildVisualMap()
         
         int backIndex = vectorOfNodePairs.back().first;//index of last elem in vector
         
-        cout<<"LAST INDEX = "<< backIndex << endl;
-        cout << "**************************************" << endl<<endl;
+        /*cout<<"LAST INDEX = "<< backIndex << endl;
+        cout << "**************************************" << endl<<endl;*/
         
         
-        visualMap.clear();
+        clearVisualMap();
         if (backIndex == 1) // 1 item (only root)
         {
             numTreeLevels = 0;
@@ -134,10 +141,6 @@ void VisualSplay::buildVisualMap()
         // root right is 3
         // start checking at level 2, where index is >3
         
-        
-        
-        
-        
         for (int i = 0; i < totalNodes; i++) // do this for all nodes
         {
             //get current index
@@ -146,12 +149,6 @@ void VisualSplay::buildVisualMap()
             //get current data
             
             currentData = vectorOfNodePairs[i].second;
-            
-            int temp = stoi(currentData);
-            
-            if (temp == 0) {
-                temp;
-            }
             
             
             if (currentIndex == 1) // DRAW ROOT
@@ -182,7 +179,7 @@ void VisualSplay::buildVisualMap()
             
             visualMap[currentIndex] = new CircleNode(screen,alpha,vectorOfNodePairs[i].second,locationToInsert);
             
-            cout << "In map, key -> " << currentIndex << " added " << endl;
+            //cout << "In map, key -> " << currentIndex << " added " << endl;
             
             /*
              Location locationToInsert;
@@ -216,9 +213,9 @@ void VisualSplay::buildVisualMap()
                     newCurrentIndex = collisionCheckQueue.front();
                     collisionCheckQueue.pop();//ADDING MOVED NODE INDEXES HERE
                     
-                    cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                    /*cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                     cout << "HELLO"<<endl;
-                    cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                    cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;*/
                     
                     int tempIndex = newCurrentIndex/2; // search from grandparent
                     // this is only guaranteed the first time
@@ -239,16 +236,16 @@ void VisualSplay::buildVisualMap()
                         {
                             checkXposNode = visualMap[tempIndex];
                             
-                            cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                            /*cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                             cout << "Ancestor index found, checking for collisions"<<endl;
-                            cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                            cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;*/
                             
                             if(checkXposNode->getX() == addedNode->getX())// collision found bc x pos is same
                             {
                                 
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                /*cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                                 cout << "Collision found, correcting"<<endl;
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;*/
                                 
                                 int ancestorData = stoi(checkXposNode->getData());
                                 int currentData = stoi(addedNode->getData());
@@ -269,9 +266,9 @@ void VisualSplay::buildVisualMap()
                                     offset = 60;
                                 }
                                 
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                /*cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                                 cout << "queue START"<<endl;
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;*/
                                 queue<int> updatePosQueue;
                                 int current;
                                 
@@ -301,9 +298,9 @@ void VisualSplay::buildVisualMap()
                                     
                                 } // bfs queue
                                 
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                /*cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
                                 cout << "queue END"<<endl;
-                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+                                cout << endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;*/
                                 
                             }//if(checkXposNode->getX() == addedNode->getX())
                             
@@ -373,39 +370,6 @@ void VisualSplay::draw()
                 
             }
         }
-        
-        
-        //OLD CODE
-        
-        /*for (int i = 1; i < totalNodeSlots+1; i++)
-         {
-         searchForNode = visualMap.find(i);
-         if (searchForNode != visualMap.end())
-         {
-         visualMap[i]->draw();
-         Line lin(screen);
-         int child1 = i*2;
-         int child2 = i*2 + 1;
-         //only draw left child if exists
-         if (child1 < totalNodeSlots+1)
-         {
-         searchForNode = visualMap.find(child1);
-         if (searchForNode != visualMap.end())
-         {
-         lin.draw(*visualMap[i], *visualMap[child1]);
-         }
-         }
-         //only draw right child if exists
-         if (child2 < totalNodeSlots+1)
-         {
-         searchForNode = visualMap.find(child2);
-         if (searchForNode != visualMap.end())
-         {
-         lin.draw(*visualMap[i], *visualMap[child2]);
-         }
-         }
-         }
-         }*/
     }
 }
 
@@ -437,6 +401,8 @@ void VisualSplay::moveTreeTo(Location loc) {
         draw();
     }
 }
+
+/******************************************************************************/
 
 void VisualSplay::updateLocations(Location loc) {
     if (splay->getNumNodes() != 0) {
