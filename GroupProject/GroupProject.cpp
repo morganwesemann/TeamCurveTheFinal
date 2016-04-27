@@ -105,8 +105,10 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
             case 0x39:
                 
                 if (doInsert || doFind || doDelete) {
-                    ourNumber += char(k);
-                    gui->redrawButton(TEXT, ourNumber);
+                    if (ourNumber.length() < 3) {
+                        ourNumber += char(k);
+                        gui->redrawButton(TEXT, ourNumber);
+                    }
 
                 }
                 
