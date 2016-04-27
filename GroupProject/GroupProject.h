@@ -27,7 +27,7 @@ private:
     string ourNumber;
     Location changedLoc;
     Location oldLoc;
-    enum mode {TEXT, INSERT, REMOVE, FIND, CENTER, CLEAR, QUIT};
+    enum mode {TEXT, INSERT, REMOVE, FIND, CENTER, CLEAR, QUIT, NONE};
     
 public:
     GroupProject(GLUT_Plotter* g);

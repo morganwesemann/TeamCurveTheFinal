@@ -31,7 +31,17 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
         
 
         switch (k){
-                
+            case 8:
+            case 0x7f:
+                if (doInsert || doFind || doDelete) {
+                    int length = ourNumber.length();
+                    if (length > 0) {
+                        ourNumber.erase(length-1,1);
+                        gui->redrawButton(TEXT, ourNumber);
+                        cout << ourNumber;
+                    }
+                }
+                break;
             case 'I':
             case 'i':
                 doInsert = true;
@@ -85,7 +95,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 if (doInsert || doFind || doDelete) {
                     ourNumber += char(k);
                     gui->redrawButton(TEXT, ourNumber);
-                    if (ourNumber.length() == 3) {
+                    /*if (ourNumber.length() == 3) {
                         int temp = atoi(ourNumber.c_str());
                         g->setColor(0x000000);
                         v->draw();
@@ -105,7 +115,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                         v->draw();
                         ourNumber.clear();
                         gui->redrawButton(TEXT, "");
-                    }
+                    }*/
 
                 }
                 
@@ -136,6 +146,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 Location newRootLoc(maxPixelX/2, screenHeight - 100);
                 g->setColor(0xffffff);
                 gui->redrawButton(TEXT, "");
+                gui->deselectButton();
                 v->moveTreeTo(newRootLoc);
                 
                 break;
@@ -160,25 +171,95 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                     switch (gui->getMode())
                     {
                         case INSERT:
-                            gui->redrawButton(TEXT, "");
-                            doInsert = true;
-                            doDelete = false;
-                            doFind = false;
-                            ourNumber.clear();
+                            
+                            if (doInsert == true) {
+                                size_t length = ourNumber.length();
+                                
+                                if (length > 0) {
+                                    int temp = atoi(ourNumber.c_str());
+                                    g->setColor(0x000000);
+                                    v->draw();
+                                    if (doInsert) {
+                                        cout << "insert";
+                                        v->insert(temp);
+                                    } else if (doFind) {
+                                        v->find(temp);
+                                    } else if (doDelete) {
+                                        v->remove(temp);
+                                    }
+                                    gui->deselectButton();
+                                    doDelete = false;
+                                    doInsert = false;
+                                    doFind = false;
+                                    g->setColor(0xffffff);
+                                    v->draw();
+                                    ourNumber.clear();
+                                    gui->redrawButton(TEXT, "");
+                                }
+                            } else {
+                                doInsert = true;
+                                gui->buttonSelect(INSERT);
+                                gui->redrawButton(TEXT, "");
+                                doDelete = false;
+                                doFind = false;
+                                ourNumber.clear();
+                            }
+
                             break;
                         case REMOVE:
-                            gui->redrawButton(TEXT, "");
-                            doDelete = true;
-                            doInsert = false;
-                            doFind = false;
-                            ourNumber.clear();
+                            if (doDelete == true) {
+                                size_t length = ourNumber.length();
+                                if (length > 0) {
+                                    int temp = atoi(ourNumber.c_str());
+                                    g->setColor(0x000000);
+                                    v->draw();
+                                    if (doDelete) {
+                                        v->remove(temp);
+                                    }
+                                    gui->deselectButton();
+                                    doDelete = false;
+                                    doInsert = false;
+                                    doFind = false;
+                                    g->setColor(0xffffff);
+                                    v->draw();
+                                    ourNumber.clear();
+                                    gui->redrawButton(TEXT, "");
+                                }
+                            } else {
+                                gui->redrawButton(TEXT, "");
+                                doDelete = true;
+                                doInsert = false;
+                                doFind = false;
+                                ourNumber.clear();
+                            }
                             break;
                         case FIND:
-                            gui->redrawButton(TEXT, "");
-                            doFind = true;
-                            doDelete = false;
-                            doInsert = false;
-                            ourNumber.clear();
+                            if (doFind == true) {
+                                size_t length = ourNumber.length();
+                                
+                                if (length > 0) {
+                                    int temp = atoi(ourNumber.c_str());
+                                    g->setColor(0x000000);
+                                    v->draw();
+                                    if (doFind) {
+                                        v->find(temp);
+                                    }
+                                    gui->deselectButton();
+                                    doDelete = false;
+                                    doInsert = false;
+                                    doFind = false;
+                                    g->setColor(0xffffff);
+                                    v->draw();
+                                    ourNumber.clear();
+                                    gui->redrawButton(TEXT, "");
+                                }
+                            } else {
+                                gui->redrawButton(TEXT, "");
+                                doFind = true;
+                                doDelete = false;
+                                doInsert = false;
+                                ourNumber.clear();
+                            }
                             break;
                         case CENTER:
                         {
@@ -186,6 +267,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                             Location newRootLoc(maxPixelX/2, screenHeight - 100);
                             g->setColor(0xffffff);
                             v->moveTreeTo(newRootLoc);
+                            gui->deselectButton();
                         }
                             break;
                         case CLEAR:
@@ -193,6 +275,7 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                             v->draw();
                             v->clearTree();
                             gui->redrawButton(TEXT, "");
+                            gui->deselectButton();
                             
                             break;
                         
