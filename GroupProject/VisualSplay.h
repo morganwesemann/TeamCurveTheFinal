@@ -1,10 +1,8 @@
-//
-//  VisualSplay.h
-//  GroupProject
-//
-//  Created by Morgan Wesemann on 4/18/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: VisualSplay.h
+ */
 
 #ifndef VisualSplay_h
 #define VisualSplay_h

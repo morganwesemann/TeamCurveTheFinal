@@ -1,7 +1,7 @@
 /* The letter O
 *
-*
-*
+* Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+* Project: VisualSplayTree
 *
 *
 *

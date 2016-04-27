@@ -1,11 +1,8 @@
-//============================================================================
-// Name        : Tetris Driver.cpp
-// Author      : Dr. Booth
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Main Driver For Group Project
-//============================================================================
-
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: main.cpp
+ */
 #include <iostream>
 #include "GroupProject.h"
 using namespace std;

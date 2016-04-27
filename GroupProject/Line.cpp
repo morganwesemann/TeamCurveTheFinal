@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: Line.cpp
+ */
 #include "Line.h"
 using namespace std;
 

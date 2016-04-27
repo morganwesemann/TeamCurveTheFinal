@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: GroupProject.cpp
+ */
 #include "GroupProject.h"
 
 
@@ -132,6 +137,10 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 doDelete = false;
                 ourNumber.clear();
                 break;
+            case 'T':
+                g->setColor(0xffffff);
+                alpha->plotString("TEAMCURVETHEFINAL", 200, 500);
+                break;
             case 'c':
             case 'C':
                 Location newRootLoc(maxPixelX/2, screenHeight - 100);
@@ -141,9 +150,8 @@ void GroupProject::Play(void) //GroupProject Main Game Loop
                 v->moveTreeTo(newRootLoc);
                 
                 break;
-        }
+                    }
     }
-    
     
     //Check for mouse click
     while(g->click()){

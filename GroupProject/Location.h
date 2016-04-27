@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: Location.h
+ */
 #ifndef Location_h
 #define Location_h
 

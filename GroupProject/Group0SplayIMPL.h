@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: Group0SplayIMPL.h
+ */
 #include "Group0Splay.h"
 #include <queue>
 

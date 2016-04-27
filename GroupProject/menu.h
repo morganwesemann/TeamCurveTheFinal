@@ -1,11 +1,8 @@
-//
-//  menu.h
-//  GroupProject
-//
-//  Created by Wallen, Alex on 4/25/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
-
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: menu.cpp
+ */
 #ifndef menu_h
 #define menu_h
 

@@ -1,10 +1,8 @@
-//
-//  CircleNode.h
-//  3334groupproject
-//
-//  Created by Morgan Wesemann on 4/15/16.
-//  Copyright © 2016 Morgan Wesemann. All rights reserved.
-//
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: CircleNode.h
+ */
 
 #ifndef CircleNode_h
 #define CircleNode_h

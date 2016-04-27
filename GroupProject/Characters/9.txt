@@ -1,7 +1,7 @@
 /* The number 9
 *
-*
-*
+* Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+* Project: VisualSplayTree
 *
 *
 *

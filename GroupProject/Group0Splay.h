@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: Group0Splay.h
+ */
 #ifndef SPLAYTREECONSTANT
 #define SPLAYTREECONSTANT
 

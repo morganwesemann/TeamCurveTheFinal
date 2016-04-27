@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: AlphanumericPlotter.h
+ */
 #ifndef AlphanumericPlotter_h
 #define AlphanumericPlotter_h
 
@@ -23,9 +28,6 @@ struct character
         fileName = "";
     }
 };
-
-
-
 
 class AlphanumericPlotter
 {

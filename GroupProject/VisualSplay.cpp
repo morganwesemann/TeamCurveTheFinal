@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: VisualSplay.cpp
+ */
 #include "VisualSplay.h"
 /******************************************************************************/
 VisualSplay::VisualSplay(GLUT_Plotter* g,AlphanumericPlotter* a) // constructor

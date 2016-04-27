@@ -1,3 +1,8 @@
+/*
+ * Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+ * Project: VisualSplayTree
+ * File: GroupProject.h
+ */
 #ifndef GroupProject_H_
 #define GroupProject_H_
 #include "GLUT_Plotter.h"

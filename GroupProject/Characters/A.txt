@@ -1,7 +1,7 @@
-/* The number 0
+/* The letter A
 *
-*
-*
+* Authors: Adam Kim, Ean Evans, Alex Wallen, Morgan Wesemann
+* Project: VisualSplayTree
 *
 *
 *
